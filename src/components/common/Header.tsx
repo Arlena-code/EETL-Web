@@ -13,7 +13,7 @@ import {
 } from '@ant-design/icons';
 
 const { useBreakpoint } = Grid;
-
+import logo from '@/assets/images/EETL_logo.png';
 type MenuItem = Required<MenuProps>['items'][number];
 
 const menuItems: MenuItem[] = [
@@ -60,7 +60,7 @@ const AppHeader: React.FC = () => {
         {/* Logo */}
         {screens.md ? (
           <img 
-            src="/logo.png" 
+            src={logo}
             alt="Logo" 
             style={{ height: 40 }} 
           />
