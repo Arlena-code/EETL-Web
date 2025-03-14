@@ -1,13 +1,18 @@
 import React from 'react';
-import { Menu, type MenuProps } from 'antd';
+import { Menu, type MenuProps, Input, Button, Grid } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   HomeFilled,
   InfoCircleFilled,
   AppstoreFilled,
   ReadFilled,
-  MailFilled
+  MailFilled,
+  SearchOutlined,
+  GlobalOutlined,
+  MenuOutlined
 } from '@ant-design/icons';
+
+const { useBreakpoint } = Grid;
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -41,19 +46,63 @@ const menuItems: MenuItem[] = [
 
 const AppHeader: React.FC = () => {
   const location = useLocation();
+  const screens = useBreakpoint();
   
   return (
-    <Menu
-      mode="horizontal"
-      selectedKeys={[location.pathname]}
-      items={menuItems}
-      style={{
-        position: 'sticky',
-        top: 0,
-        zIndex: 1000,
+    <div style={{ position: 'sticky', top: 0, zIndex: 1000, background: '#fff' }}>
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        padding: '0 24px',
         borderBottom: '1px solid #f0f0f0'
-      }}
-    />
+      }}>
+        {/* Logo */}
+        {screens.md ? (
+          <img 
+            src="/logo.png" 
+            alt="Logo" 
+            style={{ height: 40 }} 
+          />
+        ) : (
+          <Button 
+            type="text" 
+            icon={<MenuOutlined />}
+          />
+        )}
+        
+        {/* 搜索框 */}
+        {screens.md && (
+          <Input
+            placeholder="模糊搜索..."
+            prefix={<SearchOutlined />}
+            style={{ width: 300 }}
+            allowClear
+          />
+        )}
+        
+        {/* 語言切換 */}
+        <Button 
+          type="text" 
+          icon={<GlobalOutlined />}
+          onClick={() => console.log('切換語言')}
+        >
+          {screens.md ? '中/EN' : ''}
+        </Button>
+      </div>
+      
+      {/* 菜單 */}
+      {screens.md && (
+        <Menu
+          mode="horizontal"
+          selectedKeys={[location.pathname]}
+          items={menuItems}
+          style={{
+            borderBottom: '1px solid #f0f0f0'
+          }}
+        />
+      )}
+    </div>
   );
 };
 
