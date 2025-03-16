@@ -1,118 +1,95 @@
 import React from 'react';
-import { Flex, Divider, Typography, Grid, theme } from 'antd';
-import {
-  FacebookFilled,
-  XOutlined,
-  LinkedinFilled,
-  YoutubeFilled
-} from '@ant-design/icons';
+import { Flex, Typography, Divider, Button } from 'antd';
+import { PhoneFilled, MailFilled } from '@ant-design/icons';
 
-const { useToken } = theme;
-const { Text, Link } = Typography;
-const { useBreakpoint } = Grid;
+const { Text } = Typography;
+import logo from '@/assets/images/EETL_logo_light.png'
 
-interface FooterSection {
-  title: string;
-  items: { label: string; href: string; external?: boolean }[];
-}
-
+const addressIcon = <img src='./src/assets/icons/address-light.svg' alt="Address" style={{ width: '18x', height: '18px' }} />
+const companyIcon = <img src='./src/assets/icons/company-light.svg' alt="Company" style={{ width: '18x', height: '18px' }} />
 const Footer: React.FC = () => {
-  const { token } = useToken();
-  const screens = useBreakpoint();
-  
-  const sections: FooterSection[] = [
-    {
-      title: '解决方案',
-      items: [
-        { label: '企业数字化', href: '/solutions/enterprise' },
-        { label: '云服务平台', href: '/solutions/cloud' },
-        { label: 'AI 智能系统', href: '/solutions/ai' }
-      ]
-    },
-    {
-      title: '开发者',
-      items: [
-        { label: '文档中心', href: '/docs', external: true },
-        { label: 'API 参考', href: '/api', external: true },
-        { label: 'GitHub', href: 'https://github.com', external: true }
-      ]
-    },
-    {
-      title: '支持',
-      items: [
-        { label: '联系我们', href: '/contact' },
-        { label: '服务状态', href: '/status' },
-        { label: '帮助中心', href: '/support' }
-      ]
-    }
-  ];
-
   return (
-    <footer style={{
-      background: token.colorBgContainer,
-      borderTop: `1px solid ${token.colorBorderSecondary}`,
-      padding: screens.md ? token.paddingXL : token.paddingLG
-    }}>
-      <Flex vertical gap={token.sizeXXL} style={{ maxWidth: 1280, margin: '0 auto' }}>
-        <Flex justify="space-between" wrap="wrap" gap={token.sizeXL}>
-          {/* 品牌信息 */}
-          <Flex vertical gap={token.sizeMD} style={{ minWidth: 240 }}>
-            <Text strong style={{ fontSize: token.fontSizeXL }}>TechInnovation</Text>
-            <Text type="secondary" style={{ maxWidth: 280 }}>
-              引领下一代企业数字化解决方案
+    <footer style={{ background: '#102f5a' }}>
+      <div className='container'>
+        <Flex justify="space-between" gap={16} style={{ alignItems: 'stretch' }}>
+          {/* 第一块：Logo 和联系方式 */}
+          <Flex vertical gap={15} style={{ width: '30%' }} className='pt-40 pb-20'>
+            <div>
+              <img 
+                src={logo}
+                alt="Logo"
+                style={{ height: 60 }}
+              />
+            </div>
+            <div className='pt-10 pl-5'>
+              <Flex className='mb-15' align="center" gap={8}>
+                {companyIcon}
+                <Text>公司：研达创新电子（深圳）有限公司</Text>
+              </Flex>
+              <Flex className='mb-15' align="center" gap={8}>
+                {addressIcon}
+                <Text>地址：深圳市南山区留仙大道4168号众冠时代广场A座39楼3902室</Text>
+              </Flex>
+              <Flex className='mb-15' align="center" gap={8}>
+                <PhoneFilled />
+                <Text>电话：0755-8837 7106</Text>
+              </Flex>
+              <Flex align="center" gap={8}>
+                <MailFilled />
+                <Text>邮箱：Sales@etlevo.com</Text>
+              </Flex>
+            </div>
+          </Flex>
+          <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+          {/* 第二块：产品咨询 */}
+          <Flex vertical gap={15} style={{ width: '40%' }} className='mt-30 pt-45 pb-20'>
+            <Text className='mb-5' style={{ fontSize: 18 }}>产品咨询</Text>
+            <Text>
+              无论是批量采购询价、替代料号匹配，还是技术参数确认，只需留下您的需求，将会获得：
             </Text>
-            <Flex gap={token.sizeSM}>
-              <Link href="https://facebook.com" target="_blank">
-                <FacebookFilled style={{ fontSize: token.fontSizeLG }} />
-              </Link>
-              <Link href="https://x.com" target="_blank">
-                <XOutlined style={{ fontSize: token.fontSizeLG }} />
-              </Link>
-              <Link href="https://linkedin.com" target="_blank">
-                <LinkedinFilled style={{ fontSize: token.fontSizeLG }} />
-              </Link>
-              <Link href="https://youtube.com" target="_blank">
-                <YoutubeFilled style={{ fontSize: token.fontSizeLG }} />
-              </Link>
+            <ul>
+              <li className='mb-15'>• 20年+行业经验团队的一站式解决方案；</li>
+              <li className='mb-15'>• 自主选择沟通方式：在线客服/企业微信/专属客户经理电话跟进，
+              守护每一次询盘的安全与效率，让元器件采购更智能、更省心。</li>
+            </ul>
+            <div className='text-center pt-15'>
+              <Button color="primary"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
+                点击咨询
+              </Button>
+            </div>
+          </Flex>
+          <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
+          {/* 第三块：分部地址 */}
+          <Flex vertical gap={15} style={{ width: '30%' }} className='mt-30 pt-45 pb-20'>
+            <Text style={{ fontSize: 18 }}>分部地址</Text>
+            <Flex align="center" gap={8}>
+              {addressIcon}
+              <Text>
+                上海：上海市长宁区仙霞路319号远东国际广场A栋6楼603室
+              </Text>
+            </Flex>
+            <Flex align="center" gap={8}>
+              {addressIcon}
+              <Text>
+                北京：北京市朝阳区来广营西路5号院诚盈中心1号楼5层515室
+              </Text>
+            </Flex>
+            <Flex align="center" gap={8}>
+              {addressIcon}
+              <Text>
+                香港：香港新界荃灣柴灣角街84-92號順豐工業中心16楼P-Q室
+              </Text>
             </Flex>
           </Flex>
-
-          {/* 导航区块 */}
-          <Flex gap={token.sizeXXL} wrap="wrap">
-            {sections.map((section) => (
-              <Flex key={section.title} vertical gap={token.sizeXS}>
-                <Text strong>{section.title}</Text>
-                <Flex vertical gap={token.sizeXXS}>
-                  {section.items.map((item) => (
-                    <Link 
-                      key={item.href}
-                      href={item.href}
-                      target={item.external ? '_blank' : undefined}
-                      type="secondary"
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </Flex>
-              </Flex>
-            ))}
-          </Flex>
         </Flex>
+      </div>
 
-        <Divider style={{ margin: 0 }} />
+      <Divider style={{ margin: '20px 0' }} />
 
-        {/* 底部信息 */}
-        <Flex justify="space-between" wrap="wrap" gap={token.sizeSM}>
-          <Text type="secondary">
-            © {new Date().getFullYear()} TechInnovation. All rights reserved.
-          </Text>
-          <Flex gap={token.sizeLG}>
-            <Link href="/terms" type="secondary">服务条款</Link>
-            <Link href="/privacy" type="secondary">隐私政策</Link>
-            <Link href="/cookies" type="secondary">Cookie 设置</Link>
-          </Flex>
-        </Flex>
-      </Flex>
+      {/* 版权信息 */}
+      <Text className='pb-20 pt-20' style={{ textAlign: 'center', display: 'block' }}>
+        版权所有 © 研达创新电子（深圳）有限公司 <span className='ml-30'>粤ICP备2021155542号</span>
+      </Text>
     </footer>
   );
 };

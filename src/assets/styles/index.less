@@ -1,0 +1,164 @@
+/* 20250315 V1 */
+
+/*Heaer CSS*/
+header {
+  background-color: #ffffff;
+  .header-container{
+    border-bottom: 1px solid rgb(224, 229, 255);
+    height: 100px;
+  }
+  .header-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 100%;
+  }
+  .languageBtn{
+    display: flex;
+    gap: 8;
+    .ant-btn{
+      padding-right: 0;
+      padding-left: 10px;
+      &:hover{
+        background: transparent !important;
+        color: #1d2089 !important;
+      }
+    }
+  }
+  .header-menu{
+    font-size: 16px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    .ant-menu-item{
+      width: 140px;
+      text-align: center;
+      font-weight: 600;
+      color: #2d3246 !important;
+      &::after{
+        border-width: 3px !important;
+      }
+      &:hover{
+        a{
+          font-weight: 600;
+          color: #1d2089 !important;
+        }
+      }
+    }
+  }
+}
+
+//banner
+.banner-text{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  text-align: center;
+  background-color: rgba(29, 32, 137, 0.33);
+  box-shadow: transparent 0px 0px 0px;
+  padding: 20px 80px;
+  color: #ffffff;
+  max-width: 864px;
+  .title{
+    font-size: 3.375rem;
+  }
+  .subtitle{
+    font-size: 1rem;
+    padding-bottom: 20px;
+    &::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      translate: translateX(-50%);
+      display: block;
+      width: 42px;
+      height: 5px;
+      background: #ffffff;
+    }
+  }
+  .ant-typography{
+    color: #ffffff;
+    font-size: 1rem;
+  }
+}
+.slogan-area{
+  padding: 40px 0;
+}
+.slogan-text{
+  font-size: 1.375rem;
+  font-weight: bold;
+  color: #1d2089
+}
+.divider-text .ant-divider-inner-text{
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: #bbbbbb;
+  font-family: Trebuchet MS,Helvetica,sans-serif;
+  letter-spacing: 8px;
+}
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+  align-items: center;
+}
+
+// 保证页面内容与footer的间距
+.main-content {
+  min-height: calc(100vh - 128px);
+}
+
+//产品标签页
+.productTabs-swiper{
+  .ant-tabs-top >.ant-tabs-nav::before{
+    border-bottom-color: #1d2089;
+  }
+  .ant-tabs-nav{
+    background: #f5f7fa;
+    .ant-tabs-tab{
+      width: 215px;
+      justify-content: center;
+    }
+    .ant-tabs-tab-active{
+      background: #1d2089;
+    }
+  }
+  .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab{
+    border-bottom: 0;
+    border-top: 0;
+    border-radius: 0;
+    border-right-color: #eeeeee;
+    .ant-tabs-tab-btn{
+     font-weight: bold; 
+    }
+  }
+}
+.product-swiper{
+  .swiper-slide{
+    height: 100%;
+    .ant-image{
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
+// News
+.card-image {
+ .ant-card-cover{
+    height: 200px;
+    img{object-fit: cover;height: 100%;}
+ } 
+}
+
+// 添加以下footer样式
+footer {
+  color: #ffffff;
+  .ant-typography{
+    color: #ffffff;
+  } 
+}
+
+

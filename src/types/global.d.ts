@@ -10,4 +10,13 @@ declare module '*.module.less' {
   interface ImportMeta {
     readonly env: ImportMetaEnv;
   }
+
+  interface Product {
+    id: number;
+    name: string;
+    // 根据实际需求扩展其他字段
+}
+
+// 更新 ProductSwiper 的类型定义
+const ProductSwiper: React.FC<{ products: Product[] }>;
   
