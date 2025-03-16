@@ -28,6 +28,10 @@ const App: React.FC = () => {
           fontSize: 14, // 字体大小
           colorBgBase: '#ffffff', // 背景色
           colorBgLayout: '#ffffff', // Layout 背景色
+          colorTextBase: '#333333', // 文本颜色
+          colorTextSecondary: '#666666', // 次要文本颜色
+          colorBorder: '#dddddd', // 边框颜色
+          colorBorderSecondary: '#eeeeee', // 次要边框颜色
           
         },
         components: {

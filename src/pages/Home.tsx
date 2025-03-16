@@ -223,7 +223,7 @@ const Home: React.FC = () => {
           <div className='banner-text'>
             <div className='title'>为您护航</div>
             <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
-            <Paragraph>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
+            <Paragraph className='font-size1'>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
           </div>
         </div>
         <div className="banner-2">
@@ -240,7 +240,7 @@ const Home: React.FC = () => {
           <div className='banner-text'>
             <div className='title'>为您护航</div>
             <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
-            <Paragraph>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
+            <Paragraph className='font-size1'>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
           </div>
         </div>
         <div className="banner-3">
@@ -257,7 +257,7 @@ const Home: React.FC = () => {
           <div className='banner-text'>
             <div className='title'>为您护航</div>
             <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
-            <Paragraph>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
+            <Paragraph className='font-size1'>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
           </div>
         </div>
       </Carousel>
