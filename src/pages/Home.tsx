@@ -6,8 +6,8 @@ import { Autoplay } from 'swiper/modules';
 import type { TabsProps } from 'antd';
 import '@/assets/styles/swiper.min.css';
 
-import ProductSwiper from '@/components/ProductSwiper';
-import NewsPage from '@/components/NewsPage';
+import ProductSwiper from '../components/ProductSwiper';
+import NewsPage from '../components/NewsPage';
 
 const { Title, Paragraph } = Typography;
 import SolutionIcon from '@/assets/icons/slogan1.svg';
@@ -125,23 +125,67 @@ const Home: React.FC = () => {
   ];
   
   const tab2Products = [
-    { src: './src/assets/images/product/taiyo/taiyo1.png' },
-    { src: './src/assets/images/product/taiyo/taiyo2.png' },
-    { src: './src/assets/images/product/taiyo/taiyo3.png' },
-    { src: './src/assets/images/product/taiyo/taiyo4.png' },
-    { src: './src/assets/images/product/taiyo/taiyo5.png' },
-    { src: './src/assets/images/product/taiyo/taiyo6.png' },
-    { src: './src/assets/images/product/taiyo/taiyo7.jpg' },
+    { 
+      src: './src/assets/images/product/taiyo/taiyo1.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo2.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo3.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo4.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo5.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo6.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo7.jpg',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
   ];
   
   const tab3Products = [
-    { src: './src/assets/images/product/taiyo/taiyo1.png' },
-    { src: './src/assets/images/product/taiyo/taiyo2.png' },
-    { src: './src/assets/images/product/taiyo/taiyo3.png' },
-    { src: './src/assets/images/product/taiyo/taiyo4.png' },
-    { src: './src/assets/images/product/taiyo/taiyo5.png' },
-    { src: './src/assets/images/product/taiyo/taiyo6.png' },
-    { src: './src/assets/images/product/taiyo/taiyo7.jpg' },
+    { 
+      src: './src/assets/images/product/taiyo/taiyo1.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo2.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo3.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo4.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo5.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo6.png',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
+    { src: './src/assets/images/product/taiyo/taiyo7.jpg',
+      name: '中高压',
+      company: 'Taiyo Yuden',
+    },
   ];
   
   const items: TabsProps['items'] = [
