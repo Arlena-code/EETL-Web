@@ -8,11 +8,10 @@ interface CoBrandingProps {
 }
 const CoBrandingProduct: React.FC<CoBrandingProps> = ({ brands }) => {
   return (
-    <div className='mb-30'>
-      <Title level={3} className='mb-20 text-center' style={{letterSpacing: '2px',fontWeight: 'normal'}}>相关代理产品</Title>
-      <Row gutter={16}>
+    <div className='mb-30 p-10'>
+      <Row gutter={20}>
         {brands.map((product, index) => (
-          <Col key={index} md={12} lg={8} xl={6} className='mb-15'>
+          <Col key={index} md={12} lg={8} xl={6} className='mb-20'>
             <Card hoverable className='h-100'>
               <Image
                 preview={false}
@@ -22,7 +21,7 @@ const CoBrandingProduct: React.FC<CoBrandingProps> = ({ brands }) => {
                 placeholder={<Image preview={false} src={product.src} />}
               />
               <div className="product-info mt-20">
-                <Title level={4} className='mb-5' style={{ fontWeight: 'normal' }}>{product.name}</Title>
+                <Title level={4} className='mb-5 text-ellipsis' style={{ fontWeight: 'normal' }}>{product.name}</Title>
                 <div>
                   <p className='mt-0' style={{color: '#ff6b35'}}>{product.description}<br/>{product.deliceryTime}</p>
                 </div>

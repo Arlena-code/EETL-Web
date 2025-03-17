@@ -1,50 +1,71 @@
 import React from 'react';
-import { List, Tag } from 'antd';
-import { Link } from 'react-router-dom';
+import { Image, Divider, Typography, theme, Tabs  } from 'antd';
+import type { TabsProps } from 'antd';
+import NewsPage from '../components/NewsPage';
 
-interface Article {
-  id: number;
-  title: string;
-  date: string;
-  category: string;
-  preview: string;
-}
+const { Title } = Typography;
+const { useToken } = theme;
 
 const News: React.FC = () => {
-  const articles: Article[] = [
+  const { token } = useToken();
+
+  const items: TabsProps['items'] = [
     {
-      id: 1,
-      title: '行业数字化转型白皮书发布',
-      date: '2024-03-15',
-      category: '行业动态',
-      preview: '最新行业趋势分析...'
+      key: '1',
+      label: '产品动态',
+      children: (
+        <div className='bg-light p-20'>
+          <div className='pb-50'>
+            <NewsPage viewMode="article" />
+          </div>
+        </div>
+      ),
     },
     {
-      id: 2,
-      title: '新产品版本更新日志',
-      date: '2024-03-10',
-      category: '产品更新',
-      preview: '优化用户体验...'
-    }
+      key: '2',
+      label: '员工风采',
+      children: (
+        <div className='bg-light p-20'>
+          <div className='mt-30'>
+          </div>
+        </div>
+      ),
+    },
   ];
-
+  const onChange = (key: string) => {
+    console.log(key);
+  };
+  
   return (
-    <div className="news-page">
-      <List
-        itemLayout="vertical"
-        dataSource={articles}
-        renderItem={(article) => (
-          <List.Item
-            extra={<Tag color="blue">{article.category}</Tag>}
-          >
-            <List.Item.Meta
-              title={<Link to={`/article/${article.id}`}>{article.title}</Link>}
-              description={article.date}
+    <div style={{paddingBottom: '80px'}}>
+      <div className="position-relative">
+        <Image
+          width={'100%'}
+          preview={false}
+          src="./src/assets/images/banner_news.jpg"
+          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
+          placeholder={
+            <Image
+              preview={false}
+              src="./src/assets/images/banner_news.jpg"
             />
-            <div className="article-preview">{article.preview}</div>
-          </List.Item>
-        )}
-      />
+          }
+        />
+        <div className='banner-text' style={{ 
+          maxWidth: '600px',
+          width: '80%',
+          margin: '0 auto',
+          textAlign: 'center'
+        }}>
+          <Divider className='divider-text text-light'>News</Divider>
+          <Title className='text-center' level={2} style={{fontSize: token.fontSizeHeading1}}>新闻动态</Title>
+        </div>
+      </div>
+      <div className='container'>
+        <div className='tabs-common mt-30 mb-30'>
+          <Tabs defaultActiveKey="1" tabPosition="left" type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
+        </div>
+      </div>
     </div>
   );
 };

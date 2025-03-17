@@ -211,6 +211,7 @@ const Home: React.FC = () => {
       <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={4000} ref={carouselRef} effect="fade">
         <div className="banner-1">
           <Image
+            width={'100%'}
             preview={false}
             src="./src/assets/images/banner1.jpg"
             placeholder={
@@ -228,6 +229,7 @@ const Home: React.FC = () => {
         </div>
         <div className="banner-2">
           <Image
+            width={'100%'}
             preview={false}
             src="./src/assets/images/banner2.jpg"
             placeholder={
@@ -245,6 +247,7 @@ const Home: React.FC = () => {
         </div>
         <div className="banner-3">
           <Image
+            width={'100%'}
             preview={false}
             src="./src/assets/images/banner3.jpg"
             placeholder={
@@ -360,7 +363,7 @@ const Home: React.FC = () => {
             <Divider className='divider-text'>NEWS</Divider>
             <Title className='text-center text-primary' level={2}>新闻动态</Title>
           </div>
-          <NewsPage />
+          <NewsPage viewMode="card" />
         </div>
       </div>
     </div>

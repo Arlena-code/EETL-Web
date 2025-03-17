@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConfigProvider, Layout } from 'antd';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './pages/Home';
@@ -10,6 +10,8 @@ import Cobranding from './pages/Co-branding';
 import JoinUs from './pages/JoinUs';
 import News from './pages/News';
 import Contact from './pages/Contact';
+import NewsPageDetail from './components/NewsPageDetail';
+import Require from './components/Require';
 
 import './assets/styles/index.less'
 
@@ -66,6 +68,8 @@ const App: React.FC = () => {
               <Route path="/news" element={<News />} />
               <Route path="/joinus" element={<JoinUs />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/news/:id" element={<NewsPageDetail />} />
+              <Route path="/require" element={<Require />} />
             </Routes>
           </Content>
 

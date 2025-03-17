@@ -1,12 +1,21 @@
 import React from 'react';
-import { Flex, Typography, Divider, Button } from 'antd';
+import { Flex, Typography, Divider, Button, FloatButton  } from 'antd';
 import { PhoneFilled, MailFilled } from '@ant-design/icons';
 
 const { Text } = Typography;
 import logo from '@/assets/images/EETL_logo_light.png'
 
-const addressIcon = <img src='./src/assets/icons/address-light.svg' alt="Address" style={{ width: '18x', height: '18px' }} />
-const companyIcon = <img src='./src/assets/icons/company-light.svg' alt="Company" style={{ width: '18x', height: '18px' }} />
+
+import AddressIcon from '@/assets/icons/address-light.svg';
+import CompanyIcon from '@/assets/icons/company-light.svg';
+
+// 将 SVG 转换为 React 组件
+const addressIcon = (
+  <img src={AddressIcon} alt="Address" style={{ width: '18px', height: '18px' }} />
+);
+const companyIcon = (
+  <img src={CompanyIcon} alt="Company" style={{ width: '18px', height: '18px' }} />
+);
 const Footer: React.FC = () => {
   return (
     <footer style={{ background: '#102f5a' }}>
@@ -42,7 +51,7 @@ const Footer: React.FC = () => {
           </Flex>
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第二块：产品咨询 */}
-          <Flex vertical gap={15} style={{ width: '40%' }} className='mt-30 pt-45 pb-20'>
+          <Flex vertical gap={15} style={{ width: '35%' }} className='mt-30 pt-45 pb-20'>
             <Text className='mb-5' style={{ fontSize: 18 }}>产品咨询</Text>
             <Text>
               无论是批量采购询价、替代料号匹配，还是技术参数确认，只需留下您的需求，将会获得：
@@ -60,7 +69,7 @@ const Footer: React.FC = () => {
           </Flex>
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第三块：分部地址 */}
-          <Flex vertical gap={15} style={{ width: '30%' }} className='mt-30 pt-45 pb-20'>
+          <Flex vertical gap={15} style={{ width: '35%' }} className='mt-30 pt-45 pb-20'>
             <Text style={{ fontSize: 18 }}>分部地址</Text>
             <Flex align="center" gap={8}>
               {addressIcon}
@@ -83,7 +92,7 @@ const Footer: React.FC = () => {
           </Flex>
         </Flex>
       </div>
-
+      <FloatButton.BackTop visibilityHeight={0} />
       <Divider style={{ margin: '20px 0' }} />
 
       {/* 版权信息 */}

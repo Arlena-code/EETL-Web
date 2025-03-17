@@ -18,37 +18,37 @@ const CoBranding: React.FC = () => {
   const brandTaiyo = [
     { 
       src: './src/assets/images/product/taiyo/taiyo1.png',
-      name: '中高压电容器',
+      name: '陶瓷电容器',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
     { src: './src/assets/images/product/taiyo/taiyo2.png',
-      name: '中高压',
+      name: '能源设备-电容',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
     { src: './src/assets/images/product/taiyo/taiyo3.png',
-      name: '中高压',
+      name: '模块',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
     { src: './src/assets/images/product/taiyo/taiyo4.png',
-      name: '中高压',
+      name: '多层陶瓷器件',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
     { src: './src/assets/images/product/taiyo/taiyo5.png',
-      name: '中高压',
+      name: '电感器',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
     { src: './src/assets/images/product/taiyo/taiyo6.png',
-      name: '中高压',
+      name: 'FBAR、SAW、RF模块',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
@@ -63,11 +63,30 @@ const CoBranding: React.FC = () => {
 
   const items: TabsProps['items'] = [
     {
+      key: '0',
+      label: '合作品牌',
+      children: (
+        <div className='bg-light p-20'>
+          <Title level={3} className='text-secondary mb-5 mt-10'>EETL合作品牌</Title>
+          <Divider style={{ marginTop: '0' }} />
+          <Paragraph className='text-paragraph text-indent'>
+            我们与全球多家知名电子元器件制造商建立了长期稳定的合作关系，为客户提供高质量的产品和服务。
+          </Paragraph>
+          <Paragraph className='text-paragraph text-indent'>
+            以下是我们主要合作的品牌产品，点击左侧标签可以查看每个品牌的详细介绍。
+          </Paragraph>
+          <div className='mt-30'>
+            <CoBrandingProduct brands={brandTaiyo} />
+          </div>
+        </div>
+      ),
+    },
+    {
       key: '1',
       label: 'TAIYO YUDEN',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>TAIYO YUDEN</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10' style={{ textTransform: 'uppercase' }}>TAIYO YUDEN</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_01.png' height={30} preview={false} />
           <div className='mt-20'>
@@ -87,7 +106,7 @@ const CoBranding: React.FC = () => {
       label: 'ELNA',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>ELNA</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10' style={{ textTransform: 'uppercase' }}>ELNA</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_02.png' height={40} preview={false} />
           <div className='mt-20'>
@@ -106,7 +125,7 @@ const CoBranding: React.FC = () => {
       label: 'HRS',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>HRS</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10' style={{ textTransform: 'uppercase' }}>HRS</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_03.png' height={50} preview={false} />
           <div className='mt-20'>
@@ -122,10 +141,10 @@ const CoBranding: React.FC = () => {
     },
     {
       key: '4',
-      label: 'Prosemi',
+      label: 'PROSEMI',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>Prosemi</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10' style={{ textTransform: 'uppercase' }}>Prosemi</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_04.png' preview={false} />
           <div className='mt-20'>
@@ -142,10 +161,10 @@ const CoBranding: React.FC = () => {
     },
     {
       key: '5',
-      label: 'Rohm',
+      label: 'ROHM',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>Rohm</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10' style={{ textTransform: 'uppercase' }}>Rohm</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_05.png' preview={false} />
           <div className='mt-20'>
@@ -161,10 +180,10 @@ const CoBranding: React.FC = () => {
     },
     {
       key: '6',
-      label: '信维通信',
+      label: 'SUNWAY',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>信维通信</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10'>信维通信</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_08.png' preview={false} />
           <div className='mt-20'>
@@ -181,10 +200,10 @@ const CoBranding: React.FC = () => {
     },
     {
       key: '7',
-      label: '芯能',
+      label: 'INVSEMI',
       children: (
         <div className='bg-light p-20'>
-          <Title level={3} className='text-secondary mb-5 mt-10' style={{ fontWeight: 'bold' }}>芯能</Title>
+          <Title level={3} className='text-secondary mb-5 mt-10'>芯能</Title>
           <Divider style={{ marginTop: '0' }} />
           <Image src='./src/assets/images/logo_company_09.png' preview={false} />
           <div className='mt-20'>
@@ -212,12 +231,12 @@ const CoBranding: React.FC = () => {
         <Image
           width={'100%'}
           preview={false}
-          src="./src/assets/images/banner_about.jpg"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 80%' }}
+          src="./src/assets/images/banner-cobrand.png"
+          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
-              src="./src/assets/images/banner_about.jpg"
+              src="./src/assets/images/banner-cobrand.png"
             />
           }
         />

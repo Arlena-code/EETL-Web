@@ -13,7 +13,7 @@ const JoinUs: React.FC = () => {
           width={'100%'}
           preview={false}
           src="./src/assets/images/banner_joinus.jpg"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 80%' }}
+          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
@@ -33,14 +33,14 @@ const JoinUs: React.FC = () => {
       </div>
       <div className='container'>
         <div className='text-center mt-40 mb-30'>
-          <Title className='text-primary' level={2}>招聘职位</Title>
-          <Title className='text-primary' level={3} style={{fontWeight: 'normal'}}>欢迎加入EETL 共创美好未来</Title>
+          <Title className='text-primary' level={1}>招聘职位</Title>
+          <Title className='text-primary' level={2} style={{fontWeight: 'normal'}}>欢迎加入EETL 共创美好未来</Title>
         </div>
         <div className='mt-20'>
           <Row gutter={30}>
             <Col span={12} lg={8}>
               <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
-                <Title level={4} className='text-center pb-10'>销售工程师</Title>
+                <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>销售工程师</Title>
                 <Paragraph className='mb-30'>
                   <div className='font-size1'>工作职责：</div>
                   <ul className='list-common mt-10 mb-10'>
@@ -62,7 +62,7 @@ const JoinUs: React.FC = () => {
             </Col>
             <Col span={12} lg={8}>
               <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
-                <Title level={4} className='text-center pb-10'>客服专员</Title>
+                <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>客服专员</Title>
                 <Paragraph className='mb-30'>
                   <div className='font-size1'>工作职责：</div>
                   <ul className='list-common mt-10 mb-10'>
@@ -85,7 +85,7 @@ const JoinUs: React.FC = () => {
             </Col>
             <Col span={12} lg={8}>
             <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
-                <Title level={4} className='text-center pb-10'>产品经理</Title>
+                <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>产品经理</Title>
                 <Paragraph className='mb-30'>
                   <div className='font-size1'>工作职责：</div>
                   <ul className='list-common mt-10 mb-10'>
@@ -110,7 +110,7 @@ const JoinUs: React.FC = () => {
           </Row>
         </div>
         <div className='mt-50 mb-30 text-center'>
-          <Button color="primary" variant="outlined"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
+          <Button color="primary" variant="outlined"  shape="round" size="large" href="/require" style={{width: '200px'}}>
             投递简历
           </Button>
         </div>

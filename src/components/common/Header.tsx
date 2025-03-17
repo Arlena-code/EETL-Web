@@ -106,19 +106,21 @@ const AppHeader: React.FC = () => {
       <div className="header-container">
         <div className='container header-top'>
           {/* Logo */}
-          {screens.md ? (
-            <img 
-              src={logo}
-              alt="Logo" 
-              style={{ height: 40 }} 
-            />
-          ) : (
-            <img 
-              src={logo}
-              alt="Logo" 
-              style={{ height: 30 }} 
-            />
-          )}
+          <a href='/'>
+            {screens.md ? (
+              <img 
+                src={logo}
+                alt="研达创新电子（深圳）有限公司-EETL" 
+                style={{ height: 40 }} 
+              />
+            ) : (
+              <img 
+                src={logo}
+                alt="研达创新电子（深圳）有限公司-EETL" 
+                style={{ height: 30 }} 
+              />
+            )}
+          </a>
           
           
           {/* 搜索框 */}

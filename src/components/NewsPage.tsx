@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import { Card, Pagination, Row, Col, Button } from 'antd';
 import type { PaginationProps } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 const { Meta } = Card;
 
+// 修改 NewsPage 组件接口
+interface NewsPageProps {
+  viewMode?: 'card' | 'article'; // 新增 viewMode prop
+}
 interface NewsItem {
   id: number;
   title: string;
@@ -12,17 +17,45 @@ interface NewsItem {
   src: string;
 }
 
-const NewsPage: React.FC = () => {
+// 新增文章新闻组件
+const ArticleNews: React.FC<{ news: NewsItem[] }> = ({ news }) => {
+  const navigate = useNavigate();
+
+  const handleClick = (id: number) => {
+    navigate(`/news/${id}`);
+  };
+
+  return (
+    <div className="article-news">
+      {news.map((item) => (
+        <div 
+          key={item.id} 
+          className="article-item mb-30"
+          onClick={() => handleClick(item.id)}
+          style={{ cursor: 'pointer' }}
+        >
+          <img src={item.src} alt={item.title} className="article-image" />
+          <div className="article-content">
+            <h4 className="article-title">{item.title}</h4>
+            <p className="article-text">{item.content}</p>
+            <p className="article-date">{item.date}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+};
+const NewsPage: React.FC<NewsPageProps> = ({ viewMode = 'card' }) => {
   const [currentPage, setCurrentPage] = useState(1);
-  const pageSize = 5; // 每页显示5条新闻
+  const pageSize = 5;
 
   // 模拟新闻数据
   const newsData: NewsItem[] = [
     {
       id: 1,
       src: './src/assets/images/news/56056059.png',
-      title: '新闻标题1',
-      content: '新闻内容1',
+      title: 'EETL产品推荐-TAIYO：MCOIL™金属类功率电感器和铁氧体类功率电感器',
+      content: '本文将为大家介绍在各类市场发挥作用的太阳诱电功率电感：MCOIL™金属类功率电感器和铁氧体类功率电感器。',
       date: '2024-01-01',
     },
     {
@@ -70,17 +103,30 @@ const NewsPage: React.FC = () => {
 
   return (
     <div className="news-page">
-      <div className="news-list">
-        <Row gutter={ {xs: 8, sm: 16, md: 24} }>
-          {currentNews.map((news) => (
-            <Col key={news.id} span={24} md={12} lg={8} xl={6}>
-              <Card className="card-image mb-20" hoverable cover={<img alt="news" src={news.src} />}>
-                <Meta title={news.title} description={news.date} />
-              </Card>
-            </Col>
-          ))}
-        </Row>
-      </div>
+      {/* 根据视图模式显示不同内容 */}
+      {viewMode === 'card' ? (
+        <div>
+          <div className="news-list">
+            <Row gutter={ {xs: 8, sm: 16, md: 24} }>
+              {currentNews.map((news) => (
+                <Col key={news.id} span={24} md={12} lg={8} xl={6}>
+                  <Card className="card-image mb-20" hoverable cover={<img alt="news" src={news.src} />}>
+                    <Meta title={news.title} description={news.date} />
+                  </Card>
+                </Col>
+              ))}
+            </Row>
+          </div>
+          
+          <div className='text-center mt-50 mb-30'>
+            <Button color="primary" variant="outlined"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
+              查看更多
+            </Button>
+          </div>
+        </div>
+      ) : (
+        <ArticleNews news={currentNews} />
+      )}
       <div className="text-center mt-30">
         <Pagination
           current={currentPage}
@@ -90,11 +136,6 @@ const NewsPage: React.FC = () => {
           itemRender={itemRender}
           style={{justifyContent: 'center'}}
         />
-      </div>
-      <div className='text-center mt-50 mb-30'>
-        <Button color="primary" variant="outlined"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
-          查看更多
-        </Button>
       </div>
     </div>
   );
