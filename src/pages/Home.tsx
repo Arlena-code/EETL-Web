@@ -347,8 +347,8 @@ const Home: React.FC = () => {
           </div>
           
           {/* 产品展示 */}
-          <div className='productTabs-swiper mt-30'>
-            <Tabs defaultActiveKey="1" type="card" centered size="large" items={items} onChange={onChange} />
+          <div className='tabs-common productTabs-swiper mt-30'>
+            <Tabs defaultActiveKey="1" type="card" className='tabs-card' centered size="large" items={items} onChange={onChange} />
           </div>
         </div>
       </div>

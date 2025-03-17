@@ -1,11 +1,5 @@
 import React from 'react';
-import { Flex, Card, Button, Timeline, Typography, theme, Image, Divider, Row, Col } from 'antd';
-import { 
-  MailOutlined, 
-  ReadOutlined, 
-  DownloadOutlined,
-  LineChartOutlined
-} from '@ant-design/icons';
+import { Flex, Card, Timeline, Typography, theme, Image, Divider, Row, Col } from 'antd';
 
 const { useToken } = theme;
 const { Title, Text, Paragraph } = Typography;
@@ -33,7 +27,7 @@ const AboutPage: React.FC = () => {
   ];
 
   return (
-    <div>
+    <div style={{paddingBottom: '80px'}}>
       <div className="position-relative">
         <Image
           width={'100%'}
@@ -84,65 +78,69 @@ const AboutPage: React.FC = () => {
           </Flex>
           </Col>
         </Row>
-        <Flex justify='center' gap={token.sizeXXL} style={{ paddingBottom: '80px' }}>
-          {/* 里程碑卡片 */}
-          <Card
-            title={<Text strong>发展历程</Text>}
-            style={{ flex: 1, minWidth: 320 }}
-            styles={{
-              body: { padding: 0 }
-            }}
-          >
-            <Flex vertical style={{ padding: token.paddingLG }}>
-              <Timeline
-                items={timelineItems.map(item => ({
-                  color: item.color,
-                  label: (
-                    <Text strong style={{ fontSize: token.fontSizeLG }}>
-                      {item.label}
-                    </Text>
-                  ),
-                  children: (
-                    <Paragraph 
-                      type="secondary"
-                      style={{ marginBottom: token.marginXS }}
-                    >
-                      {item.content}
-                    </Paragraph>
-                  )
-                }))}
-              />
-            </Flex>
-          </Card>
 
-          {/* 核心价值卡片 */}
-          <Card
-            title={<Text strong>核心价值</Text>}
-            style={{ flex: 1, minWidth: 320 }}
-            actions={[
-              <Flex gap={token.sizeXS} key="actions">
-                <ReadOutlined />
-                <DownloadOutlined />
-              </Flex>
-            ]}
-          >
-            <Flex vertical gap={token.sizeMD}>
-              <Title level={4} style={{ color: token.colorPrimary }}>
+        <div>
+          <div className='mt-30'>
+            <Divider className='divider-text divider-text-sm'>HISTORY</Divider>
+            <Title className='text-center text-primary' level={3}>发展历程</Title>
+          </div>
+
+          {/* 里程碑 */}
+          <Flex vertical style={{ padding: token.paddingLG }}>
+            <Timeline
+              mode="alternate"
+              items={timelineItems.map(item => ({
+                color: item.color,
+                label: (
+                  <Text strong style={{ fontSize: token.fontSizeLG }}>
+                    {item.label}
+                  </Text>
+                ),
+                children: (
+                  <Paragraph 
+                    type="secondary"
+                    style={{ marginBottom: token.marginXS }}
+                  >
+                    {item.content}
+                  </Paragraph>
+                )
+              }))}
+            />
+          </Flex>
+        </div>
+        <div>
+          {/* 核心价值 */}
+          <div className='mt-30 mb-30'>
+            <Divider className='divider-text divider-text-sm'>CORE VALUES</Divider>
+            <Title className='text-center text-primary' level={3}>核心价值</Title>
+          </div>
+          <Flex justify='center' align='center' gap={token.sizeMD}>
+            <Card>
+              <Title level={4}>
                 创新驱动发展
               </Title>
               <Paragraph type="secondary">
                 我们每年将超过30%的营收投入研发，持续引领行业技术创新
               </Paragraph>
-              
-              <Title level={4} style={{ color: token.colorPrimary }}>
+            </Card>
+            <Card>
+              <Title level={4}>
                 技术赋能未来
               </Title>
               <Paragraph type="secondary">
                 拥有50+项技术专利，服务全球1000+企业客户
               </Paragraph>
-            </Flex>
-          </Card>
-        </Flex>
+            </Card>
+            <Card>
+              <Title level={4}>
+                技术赋能未来
+              </Title>
+              <Paragraph type="secondary">
+                拥有50+项技术专利，服务全球1000+企业客户
+              </Paragraph>
+            </Card>
+          </Flex>
+        </div>
       </div>
     </div>
   );

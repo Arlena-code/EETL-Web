@@ -105,18 +105,25 @@ header {
       color: #ffffff; 
     }
   }
+  &.divider-text-sm{
+    margin: 10px 0;
+    .ant-divider-inner-text{
+     font-size: 1rem; 
+    }
+  }
 }
 .divider-line{
- &::after{
-  content: '';
-  position: absolute;
-  left: 0;
-  top: -2px;
-  display: block;
-  width: 78px;
-  height: 4px;
-  background: #1d2089;
- } 
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    display: block;
+    width: 78px;
+    height: 4px;
+    background: #1d2089;
+  } 
 }
 
 .swiper-wrapper {
@@ -129,8 +136,8 @@ header {
   min-height: calc(100vh - 128px);
 }
 
-//产品标签页
-.productTabs-swiper{
+//标签页
+.tabs-common{
   .ant-tabs-top >.ant-tabs-nav::before{
     border-bottom-color: #1d2089;
   }
@@ -139,16 +146,24 @@ header {
     .ant-tabs-tab{
       width: 215px;
       justify-content: center;
+      &:hover{
+        background: #1d2089;
+      }
     }
     .ant-tabs-tab-active{
       background: #1d2089;
     }
   }
   .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab{
+    border-bottom-color: #e0e5ff;
+  }
+}
+.productTabs-swiper{
+  .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab{
     border-bottom: 0;
     border-top: 0;
     border-radius: 0;
-    border-right-color: #eeeeee;
+    border-right-color: #e0e5ff;
     .ant-tabs-tab-btn{
      font-weight: bold; 
     }
@@ -162,6 +177,26 @@ header {
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+  }
+}
+.tabs-card{
+  .ant-tabs-nav-wrap{
+    margin-bottom: 1px;
+  }
+}
+.tabs-vertical-75{
+  .ant-tabs-tab{
+    height: 75px;
+    color: #666666;
+  }
+  .ant-tabs-nav{
+    .ant-tabs-tab{
+      width: 230px;
+      .ant-tabs-tab-btn{
+        font-weight: bold;
+        font-size: 1.125rem;
+      }
     }
   }
 }

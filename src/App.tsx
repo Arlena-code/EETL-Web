@@ -32,6 +32,7 @@ const App: React.FC = () => {
           colorTextSecondary: '#666666', // 次要文本颜色
           colorBorder: '#dddddd', // 边框颜色
           colorBorderSecondary: '#eeeeee', // 次要边框颜色
+          colorLink: '#609ee9', // 链接颜色
           
         },
         components: {
@@ -46,6 +47,8 @@ const App: React.FC = () => {
             itemColor: '#1e2084', // Tabs 文字颜色
             itemHoverColor: '#ffffff', // Tabs 悬停文字颜色
             itemSelectedColor: '#ffffff', // Tabs 选中文字颜色
+            horizontalItemMargin: '0',
+            cardGutter: 0,
           },
         },
       }}
