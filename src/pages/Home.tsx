@@ -11,6 +11,16 @@ import ProductSwiper from '../components/ProductSwiper';
 import NewsPage from '../components/NewsPage';
 
 const { Title, Paragraph } = Typography;
+import banner1 from '@/assets/images/banner1.jpg';
+import banner2 from '@/assets/images/banner2.jpg';
+import banner3 from '@/assets/images/banner3.jpg';
+import logoCompany01 from '@/assets/images/logo_company_01.png';
+import logoCompany02 from '@/assets/images/logo_company_02.png';
+import logoCompany03 from '@/assets/images/logo_company_03.png';
+import logoCompany04 from '@/assets/images/logo_company_04.png';
+import logoCompany05 from '@/assets/images/logo_company_05.png';
+import logoCompany06 from '@/assets/images/logo_company_06.png';
+import logoCompany07 from '@/assets/images/logo_company_07.png';
 import SolutionIcon from '@/assets/icons/slogan1.svg';
 import DevIcon from '@/assets/icons/slogan2.svg';
 import TrophyIcon from '@/assets/icons/slogan3.svg';
@@ -67,25 +77,25 @@ const Home: React.FC = () => {
   // Swiperlogo 的定义
   const Swiperlogo = [
     {
-      src: './src/assets/images/logo_company_01.png',
+      src: logoCompany01,
     },
     {
-      src: './src/assets/images/logo_company_02.png',
+      src: logoCompany02,
     },
     {
-      src: './src/assets/images/logo_company_03.png',
+      src: logoCompany03,
     },
     {
-      src: './src/assets/images/logo_company_04.png',
+      src: logoCompany04,
     },
     {
-      src: './src/assets/images/logo_company_05.png',
+      src: logoCompany05,
     },
     {
-      src: './src/assets/images/logo_company_06.png',
+      src: logoCompany06,
     },
     {
-      src: './src/assets/images/logo_company_07.png',
+      src: logoCompany07,
     }
   ];
 
@@ -346,11 +356,11 @@ const Home: React.FC = () => {
           <Image
             width={'100%'}
             preview={false}
-            src="./src/assets/images/banner1.jpg"
+            src={banner1}
             placeholder={
               <Image
                 preview={false}
-                src="./src/assets/images/banner1.jpg"
+                src={banner1}
               />
             }
           />
@@ -364,11 +374,11 @@ const Home: React.FC = () => {
           <Image
             width={'100%'}
             preview={false}
-            src="./src/assets/images/banner2.jpg"
+            src={banner2}
             placeholder={
               <Image
                 preview={false}
-                src="./src/assets/images/banner2.jpg"
+                src={banner2}
               />
             }
           />
@@ -382,11 +392,11 @@ const Home: React.FC = () => {
           <Image
             width={'100%'}
             preview={false}
-            src="./src/assets/images/banner3.jpg"
+            src={banner3}
             placeholder={
               <Image
                 preview={false}
-                src="./src/assets/images/banner3.jpg"
+                src={banner3}
               />
             }
           />

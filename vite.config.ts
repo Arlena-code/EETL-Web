@@ -14,7 +14,18 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        assetFileNames: 'assets/[name].[hash].[ext]' // 自定义assets输出路径
+        assetFileNames: (assetInfo) => {
+          // Skip if source is not a string or is CSS content
+          if (typeof assetInfo.source !== 'string' || assetInfo.source.includes('{')) {
+            return 'assets/[name].[hash].[ext]';
+          }
+          
+          // Get relative path
+          const relativePath = path.relative(path.join(__dirname, 'src'), assetInfo.source);
+          // Preserve folder structure
+          const dirname = path.dirname(relativePath).replace('assets', '');
+          return `assets${dirname ? '/' + dirname : ''}/[name].[hash].[ext]`;
+        }
       }
     }
   }
