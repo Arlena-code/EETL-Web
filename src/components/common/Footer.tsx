@@ -1,11 +1,11 @@
 import React from 'react';
-import { Flex, Typography, Divider, Button, FloatButton  } from 'antd';
+import { Flex, Typography, Divider, Button, FloatButton, Grid  } from 'antd';
 import { PhoneFilled, MailFilled } from '@ant-design/icons';
 
 const { Text } = Typography;
 import logo from '@/assets/images/EETL_logo_light.png'
 
-
+const { useBreakpoint } = Grid;
 import AddressIcon from '@/assets/icons/address-light.svg';
 import CompanyIcon from '@/assets/icons/company-light.svg';
 
@@ -17,12 +17,17 @@ const companyIcon = (
   <img src={CompanyIcon} alt="Company" style={{ width: '18px', height: '18px' }} />
 );
 const Footer: React.FC = () => {
+  const screens = useBreakpoint();
   return (
     <footer style={{ background: '#102f5a' }}>
       <div className='container'>
-        <Flex justify="space-between" gap={16} style={{ alignItems: 'stretch' }}>
+        <Flex 
+          justify="space-between" 
+          gap={16} 
+          style={{ alignItems: 'stretch', flexDirection: screens.md ? 'row' : 'column' }}
+        >
           {/* 第一块：Logo 和联系方式 */}
-          <Flex vertical gap={15} style={{ width: '30%' }} className='pt-40 pb-20'>
+          <Flex vertical gap={15} style={{ width: screens.md ? '30%' : '100%' }} className='pt-40 pb-20'>
             <div>
               <img 
                 src={logo}
@@ -51,7 +56,7 @@ const Footer: React.FC = () => {
           </Flex>
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第二块：产品咨询 */}
-          <Flex vertical gap={15} style={{ width: '35%' }} className='mt-30 pt-45 pb-20'>
+          <Flex vertical gap={15} style={{ width: screens.md ? '35%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
             <Text className='mb-5' style={{ fontSize: 18 }}>产品咨询</Text>
             <Text>
               无论是批量采购询价、替代料号匹配，还是技术参数确认，只需留下您的需求，将会获得：
@@ -69,7 +74,7 @@ const Footer: React.FC = () => {
           </Flex>
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第三块：分部地址 */}
-          <Flex vertical gap={15} style={{ width: '35%' }} className='mt-30 pt-45 pb-20'>
+          <Flex vertical gap={15} style={{ width: screens.md ? '35%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
             <Text style={{ fontSize: 18 }}>分部地址</Text>
             <Flex align="center" gap={8}>
               {addressIcon}

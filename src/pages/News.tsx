@@ -1,14 +1,15 @@
 import React from 'react';
-import { Image, Divider, Typography, theme, Tabs  } from 'antd';
+import { Image, Divider, Typography, theme, Tabs, Grid  } from 'antd';
 import type { TabsProps } from 'antd';
 import NewsPage from '../components/NewsPage';
 
 const { Title } = Typography;
 const { useToken } = theme;
-
+const { useBreakpoint } = Grid;
+import bannerNews from '@/assets/images/banner_news.jpg';
 const News: React.FC = () => {
   const { token } = useToken();
-
+  const screens = useBreakpoint();
   const items: TabsProps['items'] = [
     {
       key: '1',
@@ -42,12 +43,12 @@ const News: React.FC = () => {
         <Image
           width={'100%'}
           preview={false}
-          src="./src/assets/images/banner_news.jpg"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
+          src={bannerNews}
+          style={{ height: screens.md ? '250px' : '150px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
-              src="./src/assets/images/banner_news.jpg"
+              src={bannerNews}
             />
           }
         />
@@ -63,7 +64,7 @@ const News: React.FC = () => {
       </div>
       <div className='container'>
         <div className='tabs-common mt-30 mb-30'>
-          <Tabs defaultActiveKey="1" tabPosition="left" type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
+          <Tabs defaultActiveKey="1" tabPosition={screens.md ? "left" : 'top'} type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
         </div>
       </div>
     </div>

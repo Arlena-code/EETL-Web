@@ -19,7 +19,15 @@ const ProductSwiper: React.FC<ProductSwiperProps> = ({ products, onSwiper }) => 
     <Swiper
       modules={[Autoplay, Navigation]}
       spaceBetween={15}
-      slidesPerView={4}
+      slidesPerView={1}
+      breakpoints={{
+        1200: {
+          slidesPerView: 4,
+        },
+        768: {
+          slidesPerView: 3,
+        },
+      }}
       loop={true}
       speed={5000}
       centeredSlides={true}

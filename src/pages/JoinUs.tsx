@@ -1,23 +1,24 @@
 import React from 'react';
-import { Image, Typography, Divider, theme, Row, Col, Button } from 'antd';
+import { Image, Typography, Divider, theme, Row, Col, Button, Grid } from 'antd';
 const { Title, Paragraph } = Typography;
 const { useToken } = theme;
-
+const { useBreakpoint } = Grid;
+import bannerJoinUs from '@/assets/images/banner_joinus.jpg';
 const JoinUs: React.FC = () => {
   const { token } = useToken();
-
+  const screens = useBreakpoint();
   return (
     <div style={{paddingBottom: '80px'}}>
       <div className="position-relative">
         <Image
           width={'100%'}
           preview={false}
-          src="./src/assets/images/banner_joinus.jpg"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
+          src={bannerJoinUs}
+          style={{ height: screens.md ? '250px' : '150px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
-              src="./src/assets/images/banner_joinus.jpg"
+              src={bannerJoinUs}
             />
           }
         /> 
@@ -38,7 +39,7 @@ const JoinUs: React.FC = () => {
         </div>
         <div className='mt-20'>
           <Row gutter={30}>
-            <Col span={12} lg={8}>
+            <Col span={24} lg={8}>
               <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
                 <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>销售工程师</Title>
                 <Paragraph className='mb-30'>
@@ -60,7 +61,7 @@ const JoinUs: React.FC = () => {
                 </Paragraph>
               </div>
             </Col>
-            <Col span={12} lg={8}>
+            <Col span={24} lg={8}>
               <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
                 <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>客服专员</Title>
                 <Paragraph className='mb-30'>
@@ -83,7 +84,7 @@ const JoinUs: React.FC = () => {
                 </Paragraph>
               </div>
             </Col>
-            <Col span={12} lg={8}>
+            <Col span={24} lg={8}>
             <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
                 <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>产品经理</Title>
                 <Paragraph className='mb-30'>

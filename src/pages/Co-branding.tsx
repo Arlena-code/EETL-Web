@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tabs, Image, Typography, Divider, theme } from 'antd';
+import { Tabs, Image, Typography, Divider, theme, Grid } from 'antd';
 import type { TabsProps } from 'antd';
 import CoBrandingProduct from '../components/CoBranding';
 interface CoBranding {
@@ -12,9 +12,12 @@ interface CoBranding {
 }
 const { Title, Paragraph } = Typography;
 const { useToken } = theme;
+const { useBreakpoint } = Grid;
+
+import bannerCoBranding from '@/assets/images/banner-cobrand.png';
 const CoBranding: React.FC = () => {
   const { token } = useToken();
-  
+  const screens = useBreakpoint();
   const brandTaiyo = [
     { 
       src: './src/assets/images/product/brands/taiyo1.png',
@@ -231,12 +234,12 @@ const CoBranding: React.FC = () => {
         <Image
           width={'100%'}
           preview={false}
-          src="./src/assets/images/banner-cobrand.png"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
+          src={bannerCoBranding}
+          style={{ height: screens.md ? '250px' : '150px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
-              src="./src/assets/images/banner-cobrand.png"
+              src={bannerCoBranding}
             />
           }
         />
@@ -252,7 +255,7 @@ const CoBranding: React.FC = () => {
       </div>
       <div className='container'>
         <div className='tabs-common mt-30 mb-30'>
-          <Tabs defaultActiveKey="1" tabPosition="left" type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
+          <Tabs defaultActiveKey="1" tabPosition={screens.md ? "left" : 'top'} type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
         </div>
       </div>
     </div>

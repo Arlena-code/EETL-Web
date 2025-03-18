@@ -455,7 +455,7 @@ const Home: React.FC = () => {
       </div>
       
       {/* 产品中心 */}
-      <div className='p-40'>
+      <div className='pt-40 pb-40'>
         <div className='container'>
           <div className='mb-30'>
             <Divider className='divider-text'>PRODUCT</Divider>

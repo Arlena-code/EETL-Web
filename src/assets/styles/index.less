@@ -309,3 +309,56 @@ footer {
 }
 
 
+// 响应式样式
+@media screen and (max-width: 1400px) {
+  .banner-text .title{
+    font-size: 2.75rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .home-page .ant-carousel .ant-image .ant-image-img{
+    min-height: 300px;
+  }
+  .banner-text{
+    padding: 20px 30px;
+    width: 600px;
+  }
+  .banner-text .title{
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  body,html{font-size: 12px;}
+  .container{padding: 0 10px;}
+  .home-page .ant-carousel .ant-image .ant-image-img{
+    height: 200px;
+  }
+  header .header-container{height: auto;}
+  header .header-top{padding: 10px;gap: 10px;}
+  .banner-text{
+    width: 90vw;
+  }
+  .home-page .ant-carousel .ant-image .ant-image-img{
+    min-height: auto;
+  }
+  .banner-text .title{
+    font-size: 1.75rem;
+  }
+  .tabs-common .ant-tabs-nav .ant-tabs-tab{
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+  .tabs-vertical-75 .ant-tabs-nav .ant-tabs-tab{
+    width: auto;
+  }
+  .tabs-vertical-75 .ant-tabs-tab {
+    height: auto;
+  }
+  .article-news .article-item{
+    padding: 0;
+    flex-direction: column;
+  }
+  .article-news .article-item .article-image{
+    width: 100%;
+  }
+}

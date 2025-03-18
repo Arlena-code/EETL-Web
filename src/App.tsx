@@ -1,5 +1,5 @@
 import React from 'react';
-import { ConfigProvider, Layout } from 'antd';
+import { ConfigProvider, Layout, Grid } from 'antd';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
@@ -16,9 +16,10 @@ import Require from './components/Require';
 import './assets/styles/index.less'
 
 const { Content } = Layout;
-
+const { useBreakpoint } = Grid;
 
 const App: React.FC = () => {
+  const screens = useBreakpoint();
   return (
     
     <ConfigProvider
@@ -29,6 +30,9 @@ const App: React.FC = () => {
           colorPrimary: '#1d2089', // 主色
           borderRadius: 4, // 圆角
           fontSize: 14, // 字体大小
+          fontSizeHeading1: screens.md ? 38 : 28, // 根据屏幕尺寸设置h1大小
+          fontSizeHeading2: screens.md ? 30 : 24, 
+          fontSizeLG: screens.md ? 16 : 14, // 大尺寸字体
           colorBgBase: '#ffffff', // 背景色
           colorBgLayout: '#ffffff', // Layout 背景色
           colorTextBase: '#333333', // 文本颜色
@@ -36,7 +40,6 @@ const App: React.FC = () => {
           colorBorder: '#dddddd', // 边框颜色
           colorBorderSecondary: '#eeeeee', // 次要边框颜色
           colorLink: '#609ee9', // 链接颜色
-          
         },
         components: {
           // 组件级主题变量
@@ -53,6 +56,9 @@ const App: React.FC = () => {
             horizontalItemMargin: '0',
             cardGutter: 0,
           },
+          Card: {
+            bodyPadding: screens.xxl ? 24 : screens.xl ? 16 : 12, // 卡片内边距 
+          }
         },
       }}
     >

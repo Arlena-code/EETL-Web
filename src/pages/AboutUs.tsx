@@ -1,12 +1,15 @@
 import React from 'react';
-import { Flex, Card, Timeline, Typography, theme, Image, Divider, Row, Col } from 'antd';
+import { Flex, Card, Timeline, Typography, theme, Image, Divider, Row, Col, Grid } from 'antd';
 
 const { useToken } = theme;
 const { Title, Text, Paragraph } = Typography;
-
+const { useBreakpoint } = Grid;
+//images
+import bannerAbout from '@/assets/images/banner_about.jpg';
+import ImageCompany from '@/assets/images/company.png';
 const AboutPage: React.FC = () => {
   const { token } = useToken();
-
+  const screens = useBreakpoint();
   // 时间轴数据
   const timelineItems = [
     { 
@@ -32,8 +35,8 @@ const AboutPage: React.FC = () => {
         <Image
           width={'100%'}
           preview={false}
-          src="./src/assets/images/banner_about.jpg"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 80%' }}
+          src={bannerAbout}
+          style={{ height: screens.md ? '250px' : '150px', objectFit: 'cover', objectPosition: '50% 80%' }}
           placeholder={
             <Image
               preview={false}
@@ -52,15 +55,22 @@ const AboutPage: React.FC = () => {
         </div>
       </div>
       <div className='container'>
-        <Row gutter={token.sizeXXL} style={{ padding: '80px 0 40px' }}>
-          <Col span={12}>
-            <img className='w-100' src='./src/assets/images/company.png' alt="关于我们-研达创新电子（深圳）有限公司" />
-          </Col>
+        <Row gutter={token.sizeXXL} style={{ padding: screens.md ? '80px 0 40px' : '20px 0 40px' }}>
+          {screens.md && ( // 仅在md及以上屏幕显示
+            <Col span={12}>
+              <img className='w-100' src={ImageCompany} alt="关于我们-研达创新电子（深圳）有限公司" />
+            </Col>
+          )}
 
           {/* 内容区域 */}
-          <Col span={12}>
+          <Col span={24} lg={12}>
             <Title level={1} style={{fontSize: token.fontSizeHeading3, lineHeight: '150%'}}><span style={{fontSize: token.fontSizeHeading2}}>EETL</span><br/>研达创新电子（深圳）有限公司</Title>
             <Divider className='divider-line' style={{ marginTop: token.marginSM }} />
+            {!screens.md && (
+              <div>
+                <img className='w-100' src={ImageCompany} alt="关于我们-研达创新电子（深圳）有限公司" />
+              </div>
+            )}
             <Flex vertical>
               <Paragraph className='text-indent font-size1' style={{lineHeight: '200%'}}>
                 研达创新EETL公司总部坐落于深圳市南山区西丽大学城片区的众冠时代广场，毗邻美丽的大沙河和西丽湖。公司始创于1997年，是经销多家国内外品牌的电子元器件代理商，为电子终端产品制造商提供供应链服务。
@@ -114,7 +124,7 @@ const AboutPage: React.FC = () => {
             <Divider className='divider-text divider-text-sm'>CORE VALUES</Divider>
             <Title className='text-center text-primary' level={3}>核心价值</Title>
           </div>
-          <Flex justify='center' align='center' gap={token.sizeMD}>
+          <Flex justify='center' align='center' gap={token.sizeMD} style={{ flexDirection: screens.md ? 'row' : 'column' }}>
             <Card>
               <Title level={4}>
                 创新驱动发展

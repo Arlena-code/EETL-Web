@@ -1,20 +1,27 @@
 import React from 'react';
-import { Image, Divider, Typography, theme, Tabs, Flex } from 'antd';
+import { Image, Divider, Typography, theme, Tabs, Flex, Grid } from 'antd';
 import { PhoneFilled, MailFilled } from '@ant-design/icons';
 const { Title, Text } = Typography;
 import type { TabsProps } from 'antd';
 import Amap from '../components/Amap';
 
 const { useToken } = theme;
-const addressIcon = <img src='./src/assets/icons/address.svg' alt="Address" style={{ width: '18x', height: '18px' }} />
+const { useBreakpoint } = Grid;
+import bannerContact from '@/assets/images/banner_contact.png';
+import addressicon from '@/assets/icons/address.svg';
+const addressIcon = <img src={addressicon} alt="Address" style={{ width: '18x', height: '18px' }} />
 
+const Contact: React.FC = () => {
+  const { token } = useToken();
+  const screens = useBreakpoint();
+  
 const items: TabsProps['items'] = [
   {
     key: '1',
     label: 'EETL 深圳',
     children: (
-      <div className='bg-light p-20'>
-        <Flex gap={40}>
+      <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
+        <Flex gap={screens.md ? 40 : 8} vertical={!screens.md} className={screens.md ? '' : 'p-10'}>
           <Flex className='' align="center" gap={8}>
             {addressIcon}
             <div>
@@ -44,8 +51,8 @@ const items: TabsProps['items'] = [
     key: '2',
     label: 'EETL 上海',
     children: (
-      <div className='bg-light p-20'>
-        <Flex gap={40}>
+      <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
+        <Flex gap={screens.md ? 40 : 8} vertical={!screens.md} className={screens.md ? '' : 'p-10'}>
           <Flex className='' align="center" gap={8}>
             {addressIcon}
             <div>
@@ -75,8 +82,8 @@ const items: TabsProps['items'] = [
     key: '3',
     label: 'EETL 北京',
     children: (
-      <div className='bg-light p-20'>
-        <Flex gap={40}>
+      <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
+        <Flex gap={screens.md ? 40 : 8} vertical={!screens.md} className={screens.md ? '' : 'p-10'}>
           <Flex className='' align="center" gap={8}>
             {addressIcon}
             <div>
@@ -106,8 +113,8 @@ const items: TabsProps['items'] = [
     key: '4',
     label: 'EETL 香港',
     children: (
-      <div className='bg-light p-20'>
-        <Flex gap={40}>
+      <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
+        <Flex gap={screens.md ? 40 : 8} vertical={!screens.md}  className={screens.md ? '' : 'p-10'}>
           <Flex className='' align="center" gap={8}>
             {addressIcon}
             <div>
@@ -134,8 +141,6 @@ const items: TabsProps['items'] = [
     ),
   },
 ]
-const Contact: React.FC = () => {
-  const { token } = useToken();
   const onChange = (key: string) => {
     console.log(key);
   };
@@ -145,12 +150,12 @@ const Contact: React.FC = () => {
         <Image
           width={'100%'}
           preview={false}
-          src="./src/assets/images/banner_contact.png"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
+          src={bannerContact}
+          style={{ height: screens.md ? '250px' : '150px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
-              src="./src/assets/images/banner_contact.png"
+              src={bannerContact}
             />
           }
         /> 
@@ -166,7 +171,7 @@ const Contact: React.FC = () => {
       </div>
       <div className='container mt-50 mb-50'>
         <div className='tabs-common tabs-vertical-4in1'>
-          <Tabs defaultActiveKey="1" tabPosition="left" type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
+          <Tabs defaultActiveKey="1" tabPosition={screens.md ? "left" : 'top'} type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
         </div>
       </div>
     </div>
