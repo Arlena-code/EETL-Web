@@ -119,7 +119,7 @@ const NewsPage: React.FC<NewsPageProps> = ({ viewMode = 'card' }) => {
           </div>
           
           <div className='text-center mt-50 mb-30'>
-            <Button color="primary" variant="outlined"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
+            <Button color="primary" variant="outlined" className='button-normal-dark' shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
               查看更多
             </Button>
           </div>

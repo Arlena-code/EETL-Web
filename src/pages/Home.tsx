@@ -2,6 +2,7 @@ import React from 'react';
 import { Carousel, Row, Col, Typography, Divider, Space, Button, Tabs, Image  } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper as SwiperType } from 'swiper'; // 引入 Swiper 类型
 import { Autoplay } from 'swiper/modules';
 import type { TabsProps } from 'antd';
 import '@/assets/styles/swiper.min.css';
@@ -18,6 +19,7 @@ import AddressIcon from '@/assets/icons/address.svg';
 
 const Home: React.FC = () => {
   const carouselRef = React.useRef<CarouselRef>(null);
+  const swiperRefs = React.useRef<{ [key: string]: SwiperType | null }>({});
 
   const slogans = [
     {
@@ -89,102 +91,181 @@ const Home: React.FC = () => {
 
 
   const onChange = (key: string) => {
-    console.log(key);
+    const swiper = swiperRefs.current[key];
+    if (swiper) {
+      swiper.autoplay.start(); // 切換 Tab 時重新啓動自動循環
+    }
   };
 
   const tab1Products = [
     { 
-      src: './src/assets/images/product/taiyo/taiyo1.png',
-      name: '中高压',
+      src: './src/assets/images/product/brands/taiyo1.png',
+      name: '陶瓷电容器',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/taiyo/taiyo2.png',
-      name: '中高压',
+    { src: './src/assets/images/product/brands/taiyo2.png',
+      name: '能源设备（电容器）',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/taiyo/taiyo3.png',
-      name: '中高压',
+    { src: './src/assets/images/product/brands/taiyo3.png',
+      name: '模块',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/taiyo/taiyo4.png',
-      name: '中高压',
+    { src: './src/assets/images/product/brands/taiyo4.png',
+      name: '多层陶瓷器件',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/taiyo/taiyo5.png',
-      name: '中高压',
+    { src: './src/assets/images/product/brands/taiyo5.png',
+      name: 'FBAR、SAW、RF模块',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/taiyo/taiyo6.png',
-      name: '中高压',
+    { src: './src/assets/images/product/brands/taiyo6.png',
+      name: '电感器',
       company: 'Taiyo Yuden',
-    },
-    { src: './src/assets/images/product/taiyo/taiyo7.jpg',
-      name: '中高压',
-      company: 'Taiyo Yuden',
-    },
+    }
   ];
   
   const tab2Products = [
     { 
-      src: './src/assets/images/product/taiyo/taiyo1.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+      src: './src/assets/images/product/brands/ELNA_HVHT.jpg',
+      name: 'HV、HT',
+      company: 'ELNA',
     },
-    { src: './src/assets/images/product/taiyo/taiyo2.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/ELNA_RJF.jpg',
+      name: 'RJF',
+      company: 'ELNA',
     },
-    { src: './src/assets/images/product/taiyo/taiyo3.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/ELNA_RTZ.jpg',
+      name: 'RTZ',
+      company: 'ELNA',
     },
-    { src: './src/assets/images/product/taiyo/taiyo4.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/ELNA_RVR.jpg',
+      name: 'RVR',
+      company: 'ELNA',
     },
-    { src: './src/assets/images/product/taiyo/taiyo5.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/ELNA_RVT.jpg',
+      name: 'RVT',
+      company: 'ELNA',
     },
-    { src: './src/assets/images/product/taiyo/taiyo6.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
-    },
-    { src: './src/assets/images/product/taiyo/taiyo7.jpg',
-      name: '中高压',
-      company: 'Taiyo Yuden',
-    },
+    { src: './src/assets/images/product/brands/ELNA_RYT.jpg',
+      name: 'RYT',
+      company: 'ELNA',
+    }
   ];
   
   const tab3Products = [
     { 
-      src: './src/assets/images/product/taiyo/taiyo1.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+      src: './src/assets/images/product/brands/HRS_1.png',
+      name: '12G-SDI规格对应',
+      company: 'HRS',
     },
-    { src: './src/assets/images/product/taiyo/taiyo2.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/HRS_2.png',
+      name: 'MT金属套管内置防水光纤连接器',
+      company: 'HRS',
     },
-    { src: './src/assets/images/product/taiyo/taiyo3.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/HRS_3.png',
+      name: 'Multi RF对应',
+      company: 'HRS',
     },
-    { src: './src/assets/images/product/taiyo/taiyo4.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/HRS_4.png',
+      name: 'Zero Screw 端子台',
+      company: 'HRS',
     },
-    { src: './src/assets/images/product/taiyo/taiyo5.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/HRS_5.png',
+      name: '插入即锁适合自动化组装',
+      company: 'HRS',
     },
-    { src: './src/assets/images/product/taiyo/taiyo6.png',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/HRS_6.png',
+      name: '高速传输对应',
+      company: 'HRS',
     },
-    { src: './src/assets/images/product/taiyo/taiyo7.jpg',
-      name: '中高压',
-      company: 'Taiyo Yuden',
+    { src: './src/assets/images/product/brands/HRS_7.png',
+      name: '抗振设计浮动式连接器',
+      company: 'HRS',
+    },
+    { src: './src/assets/images/product/brands/HRS_8.png',
+      name: '新一代标准以太网连接器',
+      company: 'HRS',
+    },
+  ];
+
+  const tab4Products = [
+    { 
+      src: './src/assets/images/product/brands/Prosemi_1.png',
+      name: '表面贴片自恢复保险丝',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_2.png',
+      name: '方块保险丝',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_3.png',
+      name: '高速半导体保险丝',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_4.png',
+      name: '功率二极管',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_5.png',
+      name: '光伏专用保险丝',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_6.png',
+      name: '陶瓷管保险丝',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_7.png',
+      name: '陶瓷气体放电管',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_8.png',
+      name: '维修开关系列保险丝',
+      company: 'PROSEMI',
+    },
+    { src: './src/assets/images/product/brands/Prosemi_9.png',
+      name: '英规熔断器',
+      company: 'PROSEMI',
+    },
+  ];
+
+  const tab5Products = [
+    { 
+      src: './src/assets/images/product/brands/ROHM_IC.png',
+      name: 'IC',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_LED.png',
+      name: 'LED',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_3.png',
+      name: '传感器',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_4.png',
+      name: '电阻',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_5.png',
+      name: '二极管',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_6.png',
+      name: '功率半导体',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_7.png',
+      name: '激光二极管',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_8.png',
+      name: '晶体管',
+      company: 'ROHM',
+    },
+    { src: './src/assets/images/product/brands/ROHM_9.png',
+      name: '钽电容器',
+      company: 'ROHM',
     },
   ];
   
@@ -192,23 +273,75 @@ const Home: React.FC = () => {
     {
       key: '1',
       label: 'TAIYO YUDEN',
-      children: <ProductSwiper products={tab1Products} />,
+      children: (
+        <ProductSwiper
+          products={tab1Products}
+          onSwiper={(swiper) => (swiperRefs.current['1'] = swiper)} // 存儲 Swiper 實例
+        />
+      ),
     },
     {
       key: '2',
       label: 'ELNA',
-      children: <ProductSwiper products={tab2Products} />,
+      children: (
+        <ProductSwiper
+          products={tab2Products}
+          onSwiper={(swiper) => (swiperRefs.current['2'] = swiper)} // 存儲 Swiper 實例
+        />
+      ),
     },
     {
       key: '3',
       label: 'HRS',
-      children: <ProductSwiper products={tab3Products} />,
+      children: (
+        <ProductSwiper
+          products={tab3Products}
+          onSwiper={(swiper) => (swiperRefs.current['3'] = swiper)} // 存儲 Swiper 實例
+        />
+      ),
+    },
+    {
+      key: '4',
+      label: 'PROSEMI',
+      children: (
+        <ProductSwiper
+          products={tab4Products}
+          onSwiper={(swiper) => (swiperRefs.current['4'] = swiper)} // 存儲 Swiper 實例
+        />
+      ),
+    },
+    {
+      key: '5',
+      label: 'ROHM',
+      children: (
+        <ProductSwiper
+          products={tab5Products}
+          onSwiper={(swiper) => (swiperRefs.current['5'] = swiper)} // 存儲 Swiper 實例
+        />
+      ),
     },
   ];
 
+  const handleAfterChange = (current: number) => {
+    const bannerTextElements = document.querySelectorAll('.banner-text');
+    bannerTextElements.forEach((element, index) => {
+      if (index === current) {
+        element.classList.add('animate-fade-in-up');
+      } else {
+        element.classList.remove('animate-fade-in-up');
+      }
+    });
+  };
+
   return (
     <div className="home-page">
-      <Carousel autoplay={{ dotDuration: true }} autoplaySpeed={4000} ref={carouselRef} effect="fade">
+      <Carousel
+        autoplay={{ dotDuration: true }}
+        autoplaySpeed={4000}
+        ref={carouselRef}
+        effect="fade"
+        afterChange={handleAfterChange}
+      >
         <div className="banner-1">
           <Image
             width={'100%'}
@@ -221,7 +354,7 @@ const Home: React.FC = () => {
               />
             }
           />
-          <div className='banner-text'>
+          <div className='banner-text banner-animal'>
             <div className='title'>为您护航</div>
             <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
             <Paragraph className='font-size1'>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
@@ -239,7 +372,7 @@ const Home: React.FC = () => {
               />
             }
           />
-          <div className='banner-text'>
+          <div className='banner-text banner-animal'>
             <div className='title'>为您护航</div>
             <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
             <Paragraph className='font-size1'>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
@@ -257,7 +390,7 @@ const Home: React.FC = () => {
               />
             }
           />
-          <div className='banner-text'>
+          <div className='banner-text banner-animal'>
             <div className='title'>为您护航</div>
             <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
             <Paragraph className='font-size1'>来专注于为消费电子、汽车电子、通信、工控、新能源等行业提供元器件产品，以及供应链服务和符合市场需求的增值服务</Paragraph>
@@ -304,7 +437,7 @@ const Home: React.FC = () => {
             <Paragraph className='text-paragraph text-indent'>联系电话：0755-8837 7106</Paragraph>
           </div>
           <div className='text-center mt-50 mb-30'>
-            <Button color="primary" variant="outlined"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
+            <Button color="primary" variant="outlined" className="button-normal-dark" shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
               查看详情
             </Button>
           </div>

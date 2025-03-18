@@ -17,43 +17,43 @@ const CoBranding: React.FC = () => {
   
   const brandTaiyo = [
     { 
-      src: './src/assets/images/product/taiyo/taiyo1.png',
+      src: './src/assets/images/product/brands/taiyo1.png',
       name: '陶瓷电容器',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
-    { src: './src/assets/images/product/taiyo/taiyo2.png',
+    { src: './src/assets/images/product/brands/taiyo2.png',
       name: '能源设备-电容',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
-    { src: './src/assets/images/product/taiyo/taiyo3.png',
+    { src: './src/assets/images/product/brands/taiyo3.png',
       name: '模块',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
-    { src: './src/assets/images/product/taiyo/taiyo4.png',
+    { src: './src/assets/images/product/brands/taiyo4.png',
       name: '多层陶瓷器件',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
-    { src: './src/assets/images/product/taiyo/taiyo5.png',
+    { src: './src/assets/images/product/brands/taiyo5.png',
       name: '电感器',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
-    { src: './src/assets/images/product/taiyo/taiyo6.png',
+    { src: './src/assets/images/product/brands/taiyo6.png',
       name: 'FBAR、SAW、RF模块',
       company: 'Taiyo Yuden',
       description: '2000多款产品',
       deliceryTime: '三个工作日內出貨'
     },
-    { src: './src/assets/images/product/taiyo/taiyo7.jpg',
+    { src: './src/assets/images/product/brands/taiyo7.jpg',
       name: '中高压',
       company: 'Taiyo Yuden',
       description: '2000多款产品',

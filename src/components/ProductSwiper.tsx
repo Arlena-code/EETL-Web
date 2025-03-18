@@ -7,19 +7,19 @@ import 'swiper/swiper-bundle.css'; // 引入核心样式
 
 interface ProductSwiperProps {
   products: { src: string, name: string, company: string }[]; // 支持外部传入产品图
+  onSwiper?: (swiper: SwiperType) => void; // 新增 onSwiper 回調
 }
 const { Title } = Typography;
 
 import { Swiper as SwiperType } from 'swiper'; // 引入 Swiper 类型
 
-const ProductSwiper: React.FC<ProductSwiperProps> = ({ products }) => {
+const ProductSwiper: React.FC<ProductSwiperProps> = ({ products, onSwiper }) => {
   const swiperRef = useRef<SwiperType | null>(null); // 使用 SwiperType 类型
-
   return (
     <Swiper
       modules={[Autoplay, Navigation]}
       spaceBetween={15}
-      slidesPerView={'auto'}
+      slidesPerView={4}
       loop={true}
       speed={5000}
       centeredSlides={true}
@@ -29,7 +29,9 @@ const ProductSwiper: React.FC<ProductSwiperProps> = ({ products }) => {
       }}
       navigation={true}
       className='product-swiper'
-      onSwiper={(swiper) => (swiperRef.current = swiper)}
+      onSwiper={(swiper) => {
+        onSwiper?.(swiper); // 觸發外部傳入的 onSwiper 回調
+      }}
       onMouseEnter={() => swiperRef.current?.autoplay.stop()}
       onMouseLeave={() => swiperRef.current?.autoplay.start()}
     >

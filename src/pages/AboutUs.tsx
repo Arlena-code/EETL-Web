@@ -10,8 +10,8 @@ const AboutPage: React.FC = () => {
   // 时间轴数据
   const timelineItems = [
     { 
-      label: '2015 创立', 
-      content: '成立科技研发中心',
+      label: '1997年 创立', 
+      content: '经销多家国内外品牌的电子元器件代理商',
       color: token.colorSuccess 
     },
     { 

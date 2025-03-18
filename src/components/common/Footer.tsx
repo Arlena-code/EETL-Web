@@ -62,7 +62,7 @@ const Footer: React.FC = () => {
               守护每一次询盘的安全与效率，让元器件采购更智能、更省心。</li>
             </ul>
             <div className='text-center pt-15'>
-              <Button color="primary"  shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
+              <Button color="primary" className='button-normal' shape="round" href="/aboutus" style={{width: '160px',height: '46px'}}>
                 点击咨询
               </Button>
             </div>

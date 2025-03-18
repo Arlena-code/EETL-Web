@@ -147,7 +147,8 @@ header {
   .ant-tabs-nav{
     background: #f5f7fa;
     .ant-tabs-tab{
-      width: 215px;
+      padding-left: 50px !important;
+      padding-right: 50px !important;
       justify-content: center;
       &:hover{
         background: #1d2089;
@@ -173,13 +174,16 @@ header {
   }
 }
 .product-swiper{
+  pointer-events: auto;
   .swiper-slide{
     height: 100%;
+    padding-bottom: 20px !important;
     .ant-image{
       height: 240px;
       display: flex;
       align-items: center;
       justify-content: center;
+      img{object-fit: contain;max-height: 100%;}
     }
   }
 }
@@ -286,7 +290,13 @@ header {
   }
 }
 
-
+.home-page{
+  .ant-carousel{
+    .ant-image .ant-image-img{
+      min-height: 400px;
+    }
+  }
+}
 
 
 
