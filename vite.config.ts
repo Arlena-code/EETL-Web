@@ -10,5 +10,12 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name].[hash].[ext]' // 自定义assets输出路径
+      }
+    }
   }
 })
