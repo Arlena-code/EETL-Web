@@ -1,6 +1,6 @@
 import React from 'react';
 import { ConfigProvider, Layout } from 'antd';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './pages/Home';
@@ -16,6 +16,7 @@ import Require from './components/Require';
 import './assets/styles/index.less'
 
 const { Content } = Layout;
+
 
 const App: React.FC = () => {
   return (
@@ -55,7 +56,7 @@ const App: React.FC = () => {
         },
       }}
     >
-      <Router>
+      <Router basename="/EETL-Web">
         <Layout>
           <Header />
           
