@@ -35,22 +35,22 @@ const Home: React.FC = () => {
     {
       title: '1',
       content: '真诚互信',
-      icon: <img src={SolutionIcon} alt="Solution" style={{ width: '60px', height: '60px' }} />
+      icon: <img className='icon-slogan' src={SolutionIcon} alt="Solution" />
     },
     {
       title: '2',
       content: '开发创新',
-      icon: <img src={DevIcon} alt="DevIcon" style={{ width: '60px', height: '60px' }} />
+      icon: <img className='icon-slogan' src={DevIcon} alt="DevIcon" />
     },
     {
       title: '3',
       content: '携手共进',
-      icon: <img src={TrophyIcon} alt="Trophy" style={{ width: '60px', height: '60px' }} />
+      icon: <img className='icon-slogan' src={TrophyIcon} alt="Trophy" />
     },
     {
       title: '4',
       content: '成就卓越',
-      icon: <img src={TeamIcon} alt="Team" style={{ width: '60px', height: '60px' }} />
+      icon: <img className='icon-slogan' src={TeamIcon} alt="Team" />
     },
   ];
 
@@ -413,7 +413,7 @@ const Home: React.FC = () => {
         <div className="slogan-area">
           <Row gutter={[24, 24]}>
             {slogans.map((slogan) => (
-              <Col key={slogan.title} xs={12} md={6}>
+              <Col key={slogan.title} xs={12} md={6} className='text-center'>
                 <Space size={20}>
                   {slogan.icon}
                   <div className='slogan-text'>{slogan.content}</div>

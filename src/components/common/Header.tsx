@@ -1,6 +1,8 @@
-import React from 'react';
-import { Menu, type MenuProps, Input, Button, Grid } from 'antd';
+import React, { useState } from 'react';
+import { Menu, type MenuProps, Input, Button, Grid, Drawer, Space, Dropdown } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
+import type { DrawerStyles } from 'antd/es/drawer/DrawerPanel';
+import { CloseOutlined } from '@ant-design/icons'
 import { 
   HomeFilled,
   GlobalOutlined,
@@ -10,6 +12,8 @@ import type { GetProps } from 'antd';
 
 const { useBreakpoint } = Grid;
 import logo from '@/assets/images/EETL_logo.png'
+import langicon from '@/assets/icons/Chinese.svg'
+import englishicon from '@/assets/icons/English.svg'
 
 type SearchProps = GetProps<typeof Input.Search>
 const { Search } = Input
@@ -97,10 +101,35 @@ const menuItems: MenuItem[] = [
   }
 ];
 
+
 const AppHeader: React.FC = () => {
   const location = useLocation();
   const screens = useBreakpoint();
-  
+  const [open, setOpen] = useState(false);
+  const showDrawer = () => {
+    setOpen(true);
+  };
+  const onClose = () => {
+    setOpen(false);
+  };
+  const [language, setLanguage] = useState('zh'); // 当前语言状态
+  const [langIcon, setLangIcon] = useState(langicon); // 当前语言图标
+
+  const handleLanguageChange = (lang: string) => {
+    setLanguage(lang);
+    // 根据选择的语言切换图标
+    setLangIcon(lang === 'zh' ? langicon : englishicon);
+    console.log('切换到', lang === 'zh' ? '简体中文' : 'English');
+  };
+
+  const drawerStyles: DrawerStyles = {
+    body: {
+      padding: 0,
+    },
+  };
+
+  // 在渲染时使用language状态
+  const currentLanguage = language === 'zh' ? '简体中文' : 'English';
   return (
     <header>
       <div className="header-container">
@@ -124,14 +153,16 @@ const AppHeader: React.FC = () => {
           
           
           {/* 搜索框 */}
-          <Search 
-            size="large" 
-            allowClear 
-            placeholder="请输入产品型号..." 
-            onSearch={onSearch} 
-            style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
-            enterButton 
-          />
+          {screens.md && (
+            <Search 
+              size="large" 
+              allowClear 
+              placeholder="请输入产品型号..." 
+              onSearch={onSearch} 
+              style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
+              enterButton 
+            />
+          )}
 
           {/* 語言切換 */}
           {screens.md ? (
@@ -154,10 +185,24 @@ const AppHeader: React.FC = () => {
             </Button>
           </div>
           ) : (
-            <Button 
-              type="text" 
-              icon={<MenuOutlined />}
-            />
+              <Space size={10}>
+                <Dropdown menu={{ items: [
+                    { key: 'zh', label: '简体中文', onClick: () => handleLanguageChange('zh') },
+                    { key: 'en', label: 'English', onClick: () => handleLanguageChange('en') }
+                  ] }} trigger={['click']}>
+                  <img 
+                    className='icon-size' 
+                    src={langIcon} 
+                    style={{ cursor: 'pointer' }} 
+                    alt={currentLanguage} 
+                  />
+                </Dropdown>
+                <Button 
+                  type="text" 
+                  onClick={showDrawer}
+                  icon={<MenuOutlined />}
+                />
+              </Space>
           )}  
         </div>
       </div>
@@ -165,7 +210,7 @@ const AppHeader: React.FC = () => {
 
         <div className="container pl-0 pr-0">
           {/* 菜單 */}
-          {screens.md && (
+          {screens.md ? (
             <Menu
               mode="horizontal"
               selectedKeys={[location.pathname]}
@@ -176,9 +221,43 @@ const AppHeader: React.FC = () => {
                 borderBottom: '1px solid #f0f0f0'
               }}
             />
+          ) : (
+            <div className='p-10'>
+              <Search
+                allowClear 
+                placeholder="请输入产品型号..." 
+                onSearch={onSearch} 
+                style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
+                enterButton 
+              />
+            </div>
           )}
         </div>
       </div>
+      <Drawer
+        title={<img src={logo} alt="研达创新电子（深圳）有限公司-EETL" style={{ height: 30 }} />}
+        placement="left"
+        closable={false}
+        onClose={onClose}
+        open={open}
+        width={"80%"}
+        styles={drawerStyles}
+        className='drawer-navbar'
+        extra={
+          <CloseOutlined style={{fontSize: 20}} onClick={onClose} />
+        }
+      >
+        <Menu
+          mode="vertical"
+          selectedKeys={[location.pathname]}
+          items={menuItems}
+          onClick={onClose}
+          className='header-menu'
+          style={{
+            backgroundColor: '#f8f9fc',
+          }}
+        />
+      </Drawer>
     </header>
   );
 };

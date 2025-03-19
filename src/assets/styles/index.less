@@ -35,7 +35,6 @@ header {
       width: 140px;
       text-align: center;
       font-weight: 600;
-      color: #2d3246 !important;
       &::after{
         border-width: 3px !important;
       }
@@ -91,7 +90,7 @@ header {
 .slogan-text{
   font-size: 1.375rem;
   font-weight: bold;
-  color: #1d2089
+  color: #4a5cd4;
 }
 
 // 分割线
@@ -298,14 +297,42 @@ header {
   }
 }
 
-
-
 // 添加以下footer样式
 footer {
   color: #ffffff;
   .ant-typography{
     color: #ffffff;
   } 
+}
+
+// 移动端适配
+.drawer-navbar{
+  .ant-drawer-header{padding: 16px;}
+  .ant-drawer-title{line-height: 1;}
+  .ant-drawer-body{
+    background-color: #f8f9fc;
+  }
+  .ant-menu-item{
+    border-bottom: 1px solid #dedede;
+    margin: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+  }
+  .ant-menu-light .ant-menu-item-selected{
+    background: transparent;
+  }
+}
+.mobile-select-dropdown {
+  width: 100% !important;
+  max-width: 300px;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.mobile-select-dropdown .ant-select-item {
+  padding: 12px 16px;
+  font-size: 16px;
 }
 
 
@@ -360,5 +387,11 @@ footer {
   }
   .article-news .article-item .article-image{
     width: 100%;
+  }
+  .slogan-area{
+    padding: 20px 0;
+  }
+  .product-swiper .swiper-slide .ant-image{
+    height: 150px;
   }
 }

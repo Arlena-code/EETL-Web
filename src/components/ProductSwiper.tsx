@@ -19,7 +19,7 @@ const ProductSwiper: React.FC<ProductSwiperProps> = ({ products, onSwiper }) => 
     <Swiper
       modules={[Autoplay, Navigation]}
       spaceBetween={15}
-      slidesPerView={1}
+      slidesPerView={2}
       breakpoints={{
         1200: {
           slidesPerView: 4,
@@ -52,7 +52,7 @@ const ProductSwiper: React.FC<ProductSwiperProps> = ({ products, onSwiper }) => 
               placeholder={<Image preview={false} src={product.src} />}
             />
             <div className="product-info text-center">
-              <Title level={5} className='text-secondary' style={{ fontWeight: 'normal' }}>{product.name}</Title>
+              <Title level={5} className='text-secondary text-ellipsis' style={{ fontWeight: 'normal' }}>{product.name}</Title>
               <div className='text-info'>{product.company}</div>
             </div>
           </Card>
