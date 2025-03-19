@@ -26,6 +26,11 @@ const AboutPage: React.FC = () => {
       label: '2020 突破', 
       content: '用户数突破百万大关',
       color: token.colorWarning 
+    },
+    { 
+      label: '2024 发展', 
+      content: {__html: '<div class="pb-10">Technical testing 1</div> <div class="pb-10">Technical testing 2</div> <div class="pb-10">Technical testing 3 2015-09-01</div>'},
+      color: token.colorWarning 
     }
   ];
 
@@ -145,20 +150,22 @@ const AboutPage: React.FC = () => {
           {/* 里程碑 */}
           <Flex vertical style={{ padding: token.paddingLG }}>
             <Timeline
+              className='timeline'
               mode="alternate"
               items={timelineItems.map(item => ({
                 color: item.color,
                 label: (
-                  <Text strong style={{ fontSize: token.fontSizeLG }}>
+                  <Text strong style={{ fontSize: token.fontSizeXL }}>
                     {item.label}
                   </Text>
                 ),
                 children: (
-                  <Paragraph 
-                    type="secondary"
-                    style={{ marginBottom: token.marginXS }}
-                  >
-                    {item.content}
+                  <Paragraph type="secondary" style={{ marginBottom: token.marginXS }}>
+                    {typeof item.content === 'string' ? (
+                      <span>{item.content}</span> // 如果是字符串，直接渲染
+                    ) : (
+                      <span dangerouslySetInnerHTML={item.content} /> // 如果是对象，使用 dangerouslySetInnerHTML
+                    )}
                   </Paragraph>
                 )
               }))}
