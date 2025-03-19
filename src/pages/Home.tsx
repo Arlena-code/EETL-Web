@@ -1,5 +1,5 @@
 import React from 'react';
-import { Carousel, Row, Col, Typography, Divider, Space, Button, Tabs, Image  } from 'antd';
+import { Carousel, Row, Col, Typography, Divider, Space, Button, Tabs, Image, Grid  } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper'; // 引入 Swiper 类型
@@ -9,7 +9,7 @@ import '@/assets/styles/swiper.min.css';
 
 import ProductSwiper from '../components/ProductSwiper';
 import NewsPage from '../components/NewsPage';
-
+const { useBreakpoint } = Grid;
 const { Title, Paragraph } = Typography;
 import banner1 from '@/assets/images/banner1.jpg';
 import banner2 from '@/assets/images/banner2.jpg';
@@ -26,11 +26,49 @@ import DevIcon from '@/assets/icons/slogan2.svg';
 import TrophyIcon from '@/assets/icons/slogan3.svg';
 import TeamIcon from '@/assets/icons/slogan4.svg';
 import AddressIcon from '@/assets/icons/address.svg';
+import productTaiyo1 from '@/assets/images/product/brands/taiyo1.png';
+import productTaiyo2 from '@/assets/images/product/brands/taiyo2.png';
+import productTaiyo3 from '@/assets/images/product/brands/taiyo3.png';
+import productTaiyo4 from '@/assets/images/product/brands/taiyo4.png';
+import productTaiyo5 from '@/assets/images/product/brands/taiyo5.png';
+import productTaiyo6 from '@/assets/images/product/brands/taiyo6.png';
+import productELNA1 from '@/assets/images/product/brands/ELNA_HVHT.jpg';
+import productELNA2 from '@/assets/images/product/brands/ELNA_RJF.jpg';
+import productELNA3 from '@/assets/images/product/brands/ELNA_RTZ.jpg';
+import productELNA4 from '@/assets/images/product/brands/ELNA_RVR.jpg';
+import productELNA5 from '@/assets/images/product/brands/ELNA_RVT.jpg';
+import productELNA6 from '@/assets/images/product/brands/ELNA_RYT.jpg';
+import productHRS1 from '@/assets/images/product/brands/HRS_1.png';
+import productHRS2 from '@/assets/images/product/brands/HRS_2.png';
+import productHRS3 from '@/assets/images/product/brands/HRS_3.png';
+import productHRS4 from '@/assets/images/product/brands/HRS_4.png';
+import productHRS5 from '@/assets/images/product/brands/HRS_5.png';
+import productHRS6 from '@/assets/images/product/brands/HRS_6.png';
+import productHRS7 from '@/assets/images/product/brands/HRS_7.png';
+import productHRS8 from '@/assets/images/product/brands/HRS_8.png';
+import productProsemi1 from '@/assets/images/product/brands/Prosemi_1.png';
+import productProsemi2 from '@/assets/images/product/brands/Prosemi_2.png';
+import productProsemi3 from '@/assets/images/product/brands/Prosemi_3.png';
+import productProsemi4 from '@/assets/images/product/brands/Prosemi_4.png';
+import productProsemi5 from '@/assets/images/product/brands/Prosemi_5.png';
+import productProsemi6 from '@/assets/images/product/brands/Prosemi_6.png';
+import productProsemi7 from '@/assets/images/product/brands/Prosemi_7.png';
+import productProsemi8 from '@/assets/images/product/brands/Prosemi_8.png';
+import productProsemi9 from '@/assets/images/product/brands/Prosemi_9.png';
+import productROHM1 from '@/assets/images/product/brands/ROHM_IC.png';
+import productROHM2 from '@/assets/images/product/brands/ROHM_LED.png';
+import productROHM3 from '@/assets/images/product/brands/ROHM_3.png';
+import productROHM4 from '@/assets/images/product/brands/ROHM_4.png';
+import productROHM5 from '@/assets/images/product/brands/ROHM_5.png';
+import productROHM6 from '@/assets/images/product/brands/ROHM_6.png';
+import productROHM7 from '@/assets/images/product/brands/ROHM_7.png';
+import productROHM8 from '@/assets/images/product/brands/ROHM_8.png';
+import productROHM9 from '@/assets/images/product/brands/ROHM_9.png';
 
 const Home: React.FC = () => {
   const carouselRef = React.useRef<CarouselRef>(null);
   const swiperRefs = React.useRef<{ [key: string]: SwiperType | null }>({});
-
+  const screens = useBreakpoint();
   const slogans = [
     {
       title: '1',
@@ -109,27 +147,27 @@ const Home: React.FC = () => {
 
   const tab1Products = [
     { 
-      src: './src/assets/images/product/brands/taiyo1.png',
+      src: productTaiyo1,
       name: '陶瓷电容器',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/brands/taiyo2.png',
+    { src: productTaiyo2,
       name: '能源设备（电容器）',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/brands/taiyo3.png',
+    { src: productTaiyo3,
       name: '模块',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/brands/taiyo4.png',
+    { src: productTaiyo4,
       name: '多层陶瓷器件',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/brands/taiyo5.png',
+    { src: productTaiyo5,
       name: 'FBAR、SAW、RF模块',
       company: 'Taiyo Yuden',
     },
-    { src: './src/assets/images/product/brands/taiyo6.png',
+    { src: productTaiyo6,
       name: '电感器',
       company: 'Taiyo Yuden',
     }
@@ -137,27 +175,27 @@ const Home: React.FC = () => {
   
   const tab2Products = [
     { 
-      src: './src/assets/images/product/brands/ELNA_HVHT.jpg',
+      src: productELNA1,
       name: 'HV、HT',
       company: 'ELNA',
     },
-    { src: './src/assets/images/product/brands/ELNA_RJF.jpg',
+    { src: productELNA2,
       name: 'RJF',
       company: 'ELNA',
     },
-    { src: './src/assets/images/product/brands/ELNA_RTZ.jpg',
+    { src: productELNA3,
       name: 'RTZ',
       company: 'ELNA',
     },
-    { src: './src/assets/images/product/brands/ELNA_RVR.jpg',
+    { src: productELNA4,
       name: 'RVR',
       company: 'ELNA',
     },
-    { src: './src/assets/images/product/brands/ELNA_RVT.jpg',
+    { src: productELNA5,
       name: 'RVT',
       company: 'ELNA',
     },
-    { src: './src/assets/images/product/brands/ELNA_RYT.jpg',
+    { src: productELNA6,
       name: 'RYT',
       company: 'ELNA',
     }
@@ -165,35 +203,35 @@ const Home: React.FC = () => {
   
   const tab3Products = [
     { 
-      src: './src/assets/images/product/brands/HRS_1.png',
+      src: productHRS1,
       name: '12G-SDI规格对应',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_2.png',
+    { src: productHRS2,
       name: 'MT金属套管内置防水光纤连接器',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_3.png',
+    { src: productHRS3,
       name: 'Multi RF对应',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_4.png',
+    { src: productHRS4,
       name: 'Zero Screw 端子台',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_5.png',
+    { src: productHRS5,
       name: '插入即锁适合自动化组装',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_6.png',
+    { src: productHRS6,
       name: '高速传输对应',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_7.png',
+    { src: productHRS7,
       name: '抗振设计浮动式连接器',
       company: 'HRS',
     },
-    { src: './src/assets/images/product/brands/HRS_8.png',
+    { src: productHRS8,
       name: '新一代标准以太网连接器',
       company: 'HRS',
     },
@@ -201,39 +239,39 @@ const Home: React.FC = () => {
 
   const tab4Products = [
     { 
-      src: './src/assets/images/product/brands/Prosemi_1.png',
+      src: productProsemi1,
       name: '表面贴片自恢复保险丝',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_2.png',
+    { src: productProsemi2,
       name: '方块保险丝',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_3.png',
+    { src: productProsemi3,
       name: '高速半导体保险丝',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_4.png',
+    { src: productProsemi4,
       name: '功率二极管',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_5.png',
+    { src: productProsemi5,
       name: '光伏专用保险丝',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_6.png',
+    { src: productProsemi6,
       name: '陶瓷管保险丝',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_7.png',
+    { src: productProsemi7,
       name: '陶瓷气体放电管',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_8.png',
+    { src: productProsemi8,
       name: '维修开关系列保险丝',
       company: 'PROSEMI',
     },
-    { src: './src/assets/images/product/brands/Prosemi_9.png',
+    { src: productProsemi9,
       name: '英规熔断器',
       company: 'PROSEMI',
     },
@@ -241,39 +279,39 @@ const Home: React.FC = () => {
 
   const tab5Products = [
     { 
-      src: './src/assets/images/product/brands/ROHM_IC.png',
+      src: productROHM1,
       name: 'IC',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_LED.png',
+    { src: productROHM2,
       name: 'LED',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_3.png',
+    { src: productROHM3,
       name: '传感器',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_4.png',
+    { src: productROHM4,
       name: '电阻',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_5.png',
+    { src: productROHM5,
       name: '二极管',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_6.png',
+    { src: productROHM6,
       name: '功率半导体',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_7.png',
+    { src: productROHM7,
       name: '激光二极管',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_8.png',
+    { src: productROHM8,
       name: '晶体管',
       company: 'ROHM',
     },
-    { src: './src/assets/images/product/brands/ROHM_9.png',
+    { src: productROHM9,
       name: '钽电容器',
       company: 'ROHM',
     },
@@ -438,7 +476,7 @@ const Home: React.FC = () => {
             <Paragraph className='text-paragraph text-indent mb-5 mt-25'>公司地址</Paragraph>
             {address.map((address) => (
               <Paragraph className='text-paragraph' key={address.title}>
-                <Space size={16}>
+                <Space size={screens.md ? 16 : 6}>
                   {addressicon}
                   <div style={{whiteSpace: 'pre-line'}}>{address.content}</div>
                 </Space>

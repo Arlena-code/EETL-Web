@@ -17,6 +17,9 @@ interface NewsItem {
   src: string;
 }
 
+import NewsPageImage1 from '@/assets/images/news/56056059.png';
+import NewsPageImage2 from '@/assets/images/news/47124048.png';
+import NewsPageImage3 from '@/assets/images/news/55563714.png';
 // 新增文章新闻组件
 const ArticleNews: React.FC<{ news: NewsItem[] }> = ({ news }) => {
   const navigate = useNavigate();
@@ -53,28 +56,28 @@ const NewsPage: React.FC<NewsPageProps> = ({ viewMode = 'card' }) => {
   const newsData: NewsItem[] = [
     {
       id: 1,
-      src: './src/assets/images/news/56056059.png',
+      src: NewsPageImage1,
       title: 'EETL产品推荐-TAIYO：MCOIL™金属类功率电感器和铁氧体类功率电感器',
       content: '本文将为大家介绍在各类市场发挥作用的太阳诱电功率电感：MCOIL™金属类功率电感器和铁氧体类功率电感器。',
       date: '2024-01-01',
     },
     {
       id: 2,
-      src: './src/assets/images/news/47124048.png',
+      src: NewsPageImage2,
       title: '新闻标题2',
       content: '新闻内容2',
       date: '2024-01-02',
     },
     {
       id: 3,
-      src: './src/assets/images/news/55563714.png',
+      src: NewsPageImage3,
       title: '新闻标题3',
       content: '新闻内容1',
       date: '2024-01-01',
     },
     {
       id: 4,
-      src: './src/assets/images/news/47124048.png',
+      src: NewsPageImage2,
       title: '新闻标题4',
       content: '新闻内容2',
       date: '2024-01-02',

@@ -13,6 +13,7 @@ interface NewsItem {
 
 const { Title } = Typography;
 const { useToken } = theme;
+import NewsPageImage1 from '@/assets/images/news/56056059.png';
 const NewsPageDetail: React.FC = () => {
   const { token } = useToken();
 
@@ -20,7 +21,7 @@ const NewsPageDetail: React.FC = () => {
   // 这里应该从API或数据源获取新闻详情，暂时使用模拟数据
   const newsData: NewsItem = {
     id: Number(id),
-    src: './src/assets/images/news/56056059.png',
+    src: NewsPageImage1,
     title: '新闻标题',
     content: '新闻详细内容',
     date: '2024-01-01',

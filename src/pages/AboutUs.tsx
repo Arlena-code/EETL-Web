@@ -40,7 +40,7 @@ const AboutPage: React.FC = () => {
           placeholder={
             <Image
               preview={false}
-              src="./src/assets/images/banner_about.jpg"
+              src={bannerAbout}
             />
           }
         />
