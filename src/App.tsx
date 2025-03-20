@@ -32,6 +32,8 @@ const App: React.FC = () => {
           fontSize: 14, // 字体大小
           fontSizeHeading1: screens.md ? 38 : 28, // 根据屏幕尺寸设置h1大小
           fontSizeHeading2: screens.md ? 30 : 24, 
+          fontSizeHeading3: screens.md ? 24 : 18, 
+          fontSizeHeading4: screens.md ? 20 : 16,
           fontSizeHeading5: screens.md? 16 : 14, // 小尺寸字体
           fontSizeLG: screens.md ? 16 : 14, // 大尺寸字体
           colorBgBase: '#ffffff', // 背景色
@@ -50,6 +52,7 @@ const App: React.FC = () => {
             paddingInlineLG: 20, // 按钮内边距
             primaryShadow: '0 2px 8px rgba(0, 0, 0, 0.15)', // 按钮阴影
             onlyIconSize: 22, // 只有图标按钮尺寸
+            contentFontSize: screens.md? 14 : 12, // 按钮内容字体大小
           },
           Tabs: {
             itemColor: '#1e2084', // Tabs 文字颜色

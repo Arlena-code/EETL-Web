@@ -6,7 +6,7 @@ const { Title, Text, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
 //images
 import bannerAbout from '@/assets/images/banner_about.jpg';
-import ImageCompany from '@/assets/images/company.png';
+import ImageCompany from '@/assets/images/company.jpg';
 const AboutPage: React.FC = () => {
   const { token } = useToken();
   const screens = useBreakpoint();

@@ -14,7 +14,7 @@ const { Title, Paragraph } = Typography;
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
 
-import bannerCoBranding from '@/assets/images/banner-cobrand.png';
+import bannerCoBranding from '@/assets/images/banner-cobrand.jpg';
 import logoCompany01 from '@/assets/images/logo_company_01.png';
 import logoCompany02 from '@/assets/images/logo_company_02.png';
 import logoCompany03 from '@/assets/images/logo_company_03.png';

@@ -7,7 +7,7 @@ import Amap from '../components/Amap';
 
 const { useToken } = theme;
 const { useBreakpoint } = Grid;
-import bannerContact from '@/assets/images/banner_contact.png';
+import bannerContact from '@/assets/images/banner_contact.jpg';
 import addressicon from '@/assets/icons/address.svg';
 const addressIcon = <img src={addressicon} alt="Address" style={{ width: '18x', height: '18px' }} />
 

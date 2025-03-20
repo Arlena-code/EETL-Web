@@ -185,7 +185,7 @@ const AppHeader: React.FC = () => {
             </Button>
           </div>
           ) : (
-              <Space size={10}>
+              <Space size={16}>
                 <Dropdown menu={{ items: [
                     { key: 'zh', label: '简体中文', onClick: () => handleLanguageChange('zh') },
                     { key: 'en', label: 'English', onClick: () => handleLanguageChange('en') }

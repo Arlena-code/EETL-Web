@@ -39,8 +39,8 @@ const JoinUs: React.FC = () => {
         </div>
         <div className='mt-20'>
           <Row gutter={30}>
-            <Col span={24} lg={8}>
-              <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
+            <Col className='mb-30' span={24} lg={8}>
+              <div className='h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
                 <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>销售工程师</Title>
                 <Paragraph className='mb-30'>
                   <div className='font-size1'>工作职责：</div>
@@ -61,8 +61,8 @@ const JoinUs: React.FC = () => {
                 </Paragraph>
               </div>
             </Col>
-            <Col span={24} lg={8}>
-              <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
+            <Col className='mb-30' span={24} lg={8}>
+              <div className='h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
                 <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>客服专员</Title>
                 <Paragraph className='mb-30'>
                   <div className='font-size1'>工作职责：</div>
@@ -84,8 +84,8 @@ const JoinUs: React.FC = () => {
                 </Paragraph>
               </div>
             </Col>
-            <Col span={24} lg={8}>
-            <div className='mb-20 h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
+            <Col className='mb-30' span={24} lg={8}>
+            <div className='h-100' style={{backgroundColor: '#f5f5f5',borderTop: '1px solid #340b6d',padding: '20px'}}>
                 <Title level={3} className='text-center pb-10' style={{fontWeight: 'normal'}}>产品经理</Title>
                 <Paragraph className='mb-30'>
                   <div className='font-size1'>工作职责：</div>

@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
               <img 
                 src={logo}
                 alt="Logo"
-                style={{ height: 60 }}
+                style={{ height: screens.md ? 60 : 40 }}
               />
             </div>
             <div className='pt-10 pl-5'>

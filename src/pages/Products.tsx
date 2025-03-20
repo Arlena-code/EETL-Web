@@ -6,7 +6,7 @@ const { useBreakpoint } = Grid;
 const { Title, Paragraph } = Typography;
 import CoBrandingProduct from '../components/CoBranding';
 
-import bannerCoBranding from '@/assets/images/banner-cobrand.png';
+import bannerCoBranding from '@/assets/images/banner-cobrand.jpg';
 import lidarSvg from '@/assets/icons/lidar.svg';
 import AIRobortSvg from '@/assets/icons/AIRobort.svg';
 import smartSvg from '@/assets/icons/smart-devices.svg';
@@ -138,7 +138,7 @@ const Products: React.FC = () => {
       <div className='bg-light pt-40 pb-60'>
         <div className='container'>
           
-          <Flex gap={16}>
+          <Flex vertical={!screens.md} gap={16}>
             
             <div style={{width: 240}}><LeftBar /></div>
 
@@ -147,13 +147,13 @@ const Products: React.FC = () => {
                 <Title className='text-center' level={1} style={{fontWeight: 'normal'}}>产品中心</Title>
                 <Paragraph className='text-indent' style={{maxWidth: 1000,margin: '0 auto'}}>EETL作为一家专业的电子元器件代理商，产品中心涵盖各类电子元配件，包括电阻、电容、电感、二极管、三极管等基础元器件，以及传感器、连接器、电源管理模块等。产品广泛应用于消费电子、通信、汽车电子、工业控制等领域。公司与多家知名厂商长期合作，提供高品质、可靠的产品及一站式服务，满足不同客户需求，助力客户在市场竞争中脱颖而出。</Paragraph>
               </div>
-              <div className='products-center p-30'>
+              <div className={`${screens.md ? 'p-30' : ''} products-center`}>
                 {/* 新增专区分类卡片部分 */}
                 <div className='industry-zones'>
                   {/* 修改部分 */}
                   <Row gutter={[24,24]}>
                     {industryZones.map((zone, index) => (
-                      <Col key={index} span={12}>
+                      <Col key={index} span={24} md={12}>
                         <div className='industry-zone-card'>
                           <div className='card-content p-20'>
                             <img className='bg-image' src={zone.image} />
@@ -174,13 +174,13 @@ const Products: React.FC = () => {
         <div style={{paddingTop: screens.xxl ? 60 : screens.xl ? 40 : 20}}>
           <div className='mb-30'>
             <Divider className='divider-text'>Branding</Divider>
-            <Title className='text-center text-primary' level={2}>代理品牌</Title>
+            <Title className='text-center text-primary' level={3}>代理品牌</Title>
           </div>
           <div style={{padding: screens.md ? '20px 0 20px' : '0'}}>
             <Flex gap={0} wrap justify="center">
               {brands1.map((brand, index) => {
                 return (
-                  <Card className='p-20' key={index} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <Card className={screens.md ? 'p-20' : ''} key={index} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: screens.md ? 'auto' : '33.33%'}}>
                     <div className='brand-card'>
                       <Image src={brand.src} alt={brand.name} preview={false} />
                     </div>
@@ -191,7 +191,7 @@ const Products: React.FC = () => {
             <Flex gap={0} wrap justify="center">
               {brands2.map((brand, index) => {
                 return (
-                  <Card className='p-20' key={index} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                  <Card className={screens.md ? 'p-20' : ''} key={index} style={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: screens.md ? 'auto' : '25%'}}>
                     <div className='brand-card'>
                       <Image src={brand.src} alt={brand.name} preview={false} />
                     </div>
@@ -203,9 +203,9 @@ const Products: React.FC = () => {
         </div>
 
         <div style={{paddingTop: screens.xxl ? 60 : screens.xl ? 40 : 20}}>
-          <div className='mb-30'>
+          <div className={screens.md ? 'mb-30' : ''}>
             <Divider className='divider-text'>Product</Divider>
-            <Title className='text-center text-primary' level={2}>精选产品</Title>
+            <Title className='text-center text-primary' level={3}>精选产品</Title>
           </div>
           <CoBrandingProduct brands={brandTaiyo} />
         </div>
