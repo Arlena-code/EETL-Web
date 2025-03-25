@@ -4,7 +4,7 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/EETLWeb/',
+  base: '/EETL-Web/',
   plugins: [react()],
   publicDir: 'public', // 确保指向正确的公共目录
   resolve: {
