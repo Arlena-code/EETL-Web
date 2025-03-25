@@ -1,0 +1,55 @@
+{
+    "home": "Home",
+    "aboutUs": "About Us",
+    "products": "Products",
+    "coBranding": "Co-branding",
+    "news": "News",
+    "joinUs": "Join Us",
+    "contact": "Contact Us",
+    "searchPlaceholder": "Please enter product model...",
+    "page": {
+        "carousel": {
+            "title": "Escort You With Advanced Technology",
+            "subtitle": "Throughout the last 20 years, we focused on providing electronic component products for consumer market ,automotive market, communication market, industrial market and new energy market , as well as supply chain services and value-added service that meet market demand"
+        },
+        "slogan": {
+            "text1": "Sincere Trust ",
+            "text2": "Open and Evolution",
+            "text3": "Co-operations",
+            "text4": "Achieve excellence"
+        },
+        "aboutUs": {
+            "title": "About  EETL",
+            "paragraph1": "Our company was founded in 1997, EETL is an electronic component authorized distributor many domestic and foreign brands, and creates supply chain services for electronic terminal product manufacturers.Throughout the last 20 years, we focused on providing electronic component products for consumer market ,automotive market, communication market, industrial market and new energy market , as well as supply chain services and value-added service that meet market demand. Relying on our own efforts, it has established long-term strategic partner relations with many world class electronic component manufacturers at home and abroad, and has become its agent distributor in mainland China and Hong Kong, China. Depends on the abundant product line resources and the resource advantages of the Hong Kong logistics center, customers are come from China, Japan, Thailand, Singapore, Malaysia, Vietnam, Taiwan and other places.",
+            "paragraph2": "Combining the product advantages of each brand, our marketing team uses their years of experience in various application fields to become one of the important partners of each brand in different fields and new markets. Headquartered in Shenzhen, china, then sales offices in Hong Kong, Shanghai,Beijing, Japan and Birmingham.",
+            "paragraph3": "As a professional agent, the company has a group of energetic, responsible, experienced marketing sales team and technical team, with competitive solutions to provide customers with one-stop solution & service.    "
+        },
+        "product": {
+            "title": "Product Center"
+        },
+        "news": {
+            "title": "News Dynamics"
+        }
+    },
+    "common": {
+        "viewdetail": "View details",
+        "seemore": "More",
+        "productcenter": "Product Center",
+        "news": "Latest Developments"
+    },
+    "product": {
+        "type1": "片状多层陶瓷电容器",
+        "type2": "铁氧体磁珠电感器",
+        "type3": "铝电解电容器",
+        "type4": "电感器",
+        "type5": "陶瓷RF器件",
+        "type6": "FBAR, SAW, and RF modules"
+    },
+    
+    "footer": {
+        "contact": "Contact Us",
+        "address": "地址：深圳市南山区高新南大道1号高新南科技园1栋1101室",
+        "telephone": "电话：0755-82732333",
+        "fax": "传真：0755-82732333"
+    }
+}
