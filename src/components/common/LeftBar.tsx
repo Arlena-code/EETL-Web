@@ -1,6 +1,7 @@
 import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
-import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
+import { AppstoreOutlined } from '@ant-design/icons';
+import { Link } from 'react-router-dom';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -21,15 +22,16 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('产品分类', 'sub1', <MailOutlined />, [
-    getItem('分类1', '1'),
-    getItem('分类2', '2'),
-    getItem('分类3', '3'),
+  getItem('产品分类', 'sub1', <AppstoreOutlined />, [
+    getItem(<Link to="/products-mlcc">片状多层陶瓷电容器</Link>, '1'),
+    getItem('铝电解电容器', '2'),
+    getItem('铁氧体磁珠电感器', '3'),
+    getItem('陶瓷RF器件', '4'),
+    getItem('电感器', '5'),
+    getItem('FBAR&SAW器件', '6'),
   ]),
-  getItem('其他分类', 'sub2', <AppstoreOutlined />, [
-    getItem('分类4', '4'),
-    getItem('分类5', '5'),
-  ]),
+  // getItem('', 'sub2', <MailOutlined />, [
+  // ])
 ];
 
 export default function LeftBar() {

@@ -12,6 +12,8 @@ import News from './pages/News';
 import Contact from './pages/Contact';
 import NewsPageDetail from './components/NewsPageDetail';
 import Require from './components/Require';
+import ProductListMLCC from './components/ProductListMLCC';
+import ProductDetail from './components/ProductDetail';
 
 import './assets/styles/index.less'
 
@@ -21,7 +23,7 @@ const { useBreakpoint } = Grid;
 const App: React.FC = () => {
   const screens = useBreakpoint();
   return (
-    
+
     <ConfigProvider
       theme={{
         token: {
@@ -82,6 +84,8 @@ const App: React.FC = () => {
               <Route path="/contact" element={<Contact />} />
               <Route path="/news/:id" element={<NewsPageDetail />} />
               <Route path="/require" element={<Require />} />
+              <Route path="/products-mlcc" element={<ProductListMLCC />} />
+              <Route path="/products/:part_number" element={<ProductDetail />} />
             </Routes>
           </Content>
 

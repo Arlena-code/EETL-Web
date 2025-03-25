@@ -27,7 +27,7 @@ const Footer: React.FC = () => {
           style={{ alignItems: 'stretch', flexDirection: screens.md ? 'row' : 'column' }}
         >
           {/* 第一块：Logo 和联系方式 */}
-          <Flex vertical gap={15} style={{ width: screens.md ? '30%' : '100%' }} className='pt-40 pb-20'>
+          <Flex vertical gap={15} style={{ width: screens.md ? '33.33%' : '100%' }} className='pt-40 pb-20'>
             <div>
               <img 
                 src={logo}
@@ -41,22 +41,22 @@ const Footer: React.FC = () => {
                 <Text>公司：研达创新电子（深圳）有限公司</Text>
               </Flex>
               <Flex className='mb-15' align="center" gap={8}>
-                {addressIcon}
-                <Text>地址：深圳市南山区留仙大道4168号众冠时代广场A座39楼3902室</Text>
-              </Flex>
-              <Flex className='mb-15' align="center" gap={8}>
-                <PhoneFilled />
+                <PhoneFilled style={{fontSize: '18px'}} />
                 <Text>电话：0755-8837 7106</Text>
               </Flex>
-              <Flex align="center" gap={8}>
-                <MailFilled />
+              <Flex className='mb-15' align="center" gap={8}>
+                <MailFilled style={{fontSize: '18px'}} />
                 <Text>邮箱：Sales@etlevo.com</Text>
+              </Flex>
+              <Flex align="center" gap={8}>
+                {addressIcon}
+                <Text>地址：深圳市南山区留仙大道4168号众冠时代广场A座39楼3902室<br/>Add： Room 3902, Block A, Zhongguan Times Square, No.4168 Liuxian Road, Nanshan District, Shenzhen, China.</Text>
               </Flex>
             </div>
           </Flex>
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第二块：产品咨询 */}
-          <Flex vertical gap={15} style={{ width: screens.md ? '35%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
+          <Flex vertical gap={15} style={{ width: screens.md ? '33.33%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
             <Text className='mb-5' style={{ fontSize: 18 }}>产品咨询</Text>
             <Text>
               无论是批量采购询价、替代料号匹配，还是技术参数确认，只需留下您的需求，将会获得：
@@ -74,24 +74,27 @@ const Footer: React.FC = () => {
           </Flex>
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第三块：分部地址 */}
-          <Flex vertical gap={15} style={{ width: screens.md ? '35%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
+          <Flex vertical gap={15} style={{ width: screens.md ? '33.33%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
             <Text style={{ fontSize: 18 }}>分部地址</Text>
             <Flex align="center" gap={8}>
               {addressIcon}
               <Text>
-                上海：上海市长宁区仙霞路319号远东国际广场A栋6楼603室
+                上海：上海市长宁区仙霞路319号远东国际广场A栋6楼603室<br/>
+                Add： Room 603, 6 / F, Building A, Far East International Plaza, No.319 Xianxia Road, Changning District, Shanghai，China.
               </Text>
             </Flex>
             <Flex align="center" gap={8}>
               {addressIcon}
               <Text>
-                北京：北京市朝阳区来广营西路5号院诚盈中心1号楼5层515室
+                北京：北京市朝阳区来广营西路5号院诚盈中心1号楼5层515室<br/>
+                Add： Room 515, Building 1, Chengying Center, No.5 Laiguangying West Road, Chaoyang District, Beijing, China.
               </Text>
             </Flex>
             <Flex align="center" gap={8}>
               {addressIcon}
               <Text>
-                香港：香港新界荃灣柴灣角街84-92號順豐工業中心16楼P-Q室
+                香港：香港新界荃灣柴灣角街84-92號順豐工業中心16楼P-Q室<br/>
+                Add： Room P-Q ,16th Floor,Shield Industrial Centre,No.84-92 Chai Wan Kok Street, Tsuen Wan, New Territories, Hong Kong.
               </Text>
             </Flex>
           </Flex>

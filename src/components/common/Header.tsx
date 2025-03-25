@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Menu, type MenuProps, Input, Button, Grid, Drawer, Space, Dropdown } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
 import type { DrawerStyles } from 'antd/es/drawer/DrawerPanel';
@@ -20,89 +21,9 @@ const { Search } = Input
 const onSearch: SearchProps['onSearch'] = (value, _e, info) => console.log(info?.source, value)
 
 type MenuItem = Required<MenuProps>['items'][number];
-const menuItems: MenuItem[] = [
-  { 
-    key: '/',
-    label: (
-      <Link to="/" 
-        onMouseEnter={(e) => e.currentTarget.textContent = 'Home'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '首页'}
-      >
-        首页
-      </Link>
-    ),
-    icon: <HomeFilled />
-  },
-  {
-    key: '/aboutus',
-    label: (
-      <Link to="/aboutus"
-        onMouseEnter={(e) => e.currentTarget.textContent = 'About Us'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '公司介绍'}
-      >
-        公司介绍
-      </Link>
-    ),
-  },
-  {
-    key: '/products',
-    label: (
-      <Link to="/products"
-        onMouseEnter={(e) => e.currentTarget.textContent = 'Products'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '产品中心'}
-      >
-        产品中心
-      </Link>
-    ),
-  },
-  {
-    key: '/co-branding',
-    label: (
-      <Link to="/co-branding"
-        onMouseEnter={(e) => e.currentTarget.textContent = 'Co-branding'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '合作品牌'}
-      >
-        合作品牌
-      </Link>
-    ),
-  },
-  {
-    key: '/news',
-    label: (
-      <Link to="/news"
-        onMouseEnter={(e) => e.currentTarget.textContent = 'News'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '新闻动态'}
-      >
-        新闻动态
-      </Link>
-    ),
-  },
-  {
-    key: '/joinus',
-    label: (
-      <Link to="/joinus"
-        onMouseEnter={(e) => e.currentTarget.textContent = 'Join Us'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '加入我们'}
-      >
-        加入我们
-      </Link>
-    ),
-  },
-  {
-    key: '/contact',
-    label: (
-      <Link to="/contact"
-        onMouseEnter={(e) => e.currentTarget.textContent = 'Contact Us'}
-        onMouseLeave={(e) => e.currentTarget.textContent = '联系我们'}
-      >
-        联系我们
-      </Link>
-    ),
-  }
-];
-
 
 const AppHeader: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const location = useLocation();
   const screens = useBreakpoint();
   const [open, setOpen] = useState(false);
@@ -116,10 +37,11 @@ const AppHeader: React.FC = () => {
   const [langIcon, setLangIcon] = useState(langicon); // 当前语言图标
 
   const handleLanguageChange = (lang: string) => {
-    setLanguage(lang);
-    // 根据选择的语言切换图标
+    const fullLang = lang === 'zh' ? 'zh' : 'en'; 
+    setLanguage(fullLang);
     setLangIcon(lang === 'zh' ? langicon : englishicon);
-    console.log('切换到', lang === 'zh' ? '简体中文' : 'English');
+    i18n.changeLanguage(fullLang); 
+    // console.log('切换到', lang === 'zh' ? '简体中文' : 'English');
   };
 
   const drawerStyles: DrawerStyles = {
@@ -130,6 +52,88 @@ const AppHeader: React.FC = () => {
 
   // 在渲染时使用language状态
   const currentLanguage = language === 'zh' ? '简体中文' : 'English';
+
+  const menuItems: MenuItem[] = [
+    { 
+      key: '/',
+      label: (
+        <Link to="/" 
+          onMouseEnter={(e) => e.currentTarget.textContent = 'Home'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('home')}
+        >
+          {t('home')}
+        </Link>
+      ),
+      icon: <HomeFilled />
+    },
+    {
+      key: '/aboutus',
+      label: (
+        <Link to="/aboutus"
+          onMouseEnter={(e) => e.currentTarget.textContent = 'About Us'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('aboutUs')}
+        >
+          {t('aboutUs')}
+        </Link>
+      ),
+    },
+    {
+      key: '/products',
+      label: (
+        <Link to="/products"
+          onMouseEnter={(e) => e.currentTarget.textContent = 'Products'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('products')}
+        >
+          {t('products')}
+        </Link>
+      ),
+    },
+    {
+      key: '/co-branding',
+      label: (
+        <Link to="/co-branding"
+          onMouseEnter={(e) => e.currentTarget.textContent = 'Co-branding'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('coBranding')}
+        >
+          {t('coBranding')}
+        </Link>
+      ),
+    },
+    {
+      key: '/news',
+      label: (
+        <Link to="/news"
+          onMouseEnter={(e) => e.currentTarget.textContent = 'News'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('news')}
+        >
+          {t('news')}
+        </Link>
+      ),
+    },
+    {
+      key: '/joinus',
+      label: (
+        <Link to="/joinus"
+          onMouseEnter={(e) => e.currentTarget.textContent = 'Join Us'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('joinUs')}
+        >
+          {t('joinUs')}
+        </Link>
+      ),
+    },
+    {
+      key: '/contact',
+      label: (
+        <Link to="/contact"
+          onMouseEnter={(e) => e.currentTarget.textContent = 'Contact Us'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('contact')}
+        >
+          {t('contact')}
+        </Link>
+      ),
+    }
+  ];
+
   return (
     <header>
       <div className="header-container">
@@ -157,7 +161,7 @@ const AppHeader: React.FC = () => {
             <Search 
               size="large" 
               allowClear 
-              placeholder="请输入产品型号..." 
+              placeholder={t("searchPlaceholder")}
               onSearch={onSearch} 
               style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
               enterButton 
@@ -171,7 +175,7 @@ const AppHeader: React.FC = () => {
             {/* 简体中文 */}
             <Button
               type="text"
-              onClick={() => console.log('切换到简体中文')}
+              onClick={() => handleLanguageChange('zh')}
             >
               {screens.md ? '简体中文' : ''}
             </Button>
@@ -179,9 +183,9 @@ const AppHeader: React.FC = () => {
             {/* 英文 */}
             <Button
               type="text"
-              onClick={() => console.log('切换到英文')}
+              onClick={() => handleLanguageChange('en')}
             >
-              {screens.md ? 'EN' : ''}
+              {screens.md ? 'ENG' : ''}
             </Button>
           </div>
           ) : (
@@ -225,7 +229,7 @@ const AppHeader: React.FC = () => {
             <div className='p-10'>
               <Search
                 allowClear 
-                placeholder="请输入产品型号..." 
+                placeholder={t("searchPlaceholder")} 
                 onSearch={onSearch} 
                 style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
                 enterButton 
