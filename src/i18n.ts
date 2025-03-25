@@ -14,7 +14,7 @@ i18n
       escapeValue: false, 
     },
     backend: {
-      loadPath: '/EETLWeb/locales/{{lng}}/{{ns}}.json',
+      loadPath: '/EETL-Web/locales/{{lng}}/{{ns}}.json',
     },
   });
 
