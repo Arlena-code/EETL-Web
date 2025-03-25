@@ -1,11 +1,11 @@
 import { FC, useEffect, useState, useRef } from 'react';
 import '@ant-design/v5-patch-for-react-19';
 import { Link } from 'react-router-dom';
-import { Table, Spin, Breadcrumb, Typography, Divider, Input, Select, Flex } from 'antd';
+import { Table, Spin, Breadcrumb, Typography, Divider, Input, Select, Flex, Button, Modal } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
 import { fetchProducts } from '../api/products';
 import { Product, Pagination, ProductFetchParams } from '../types/product';
-import { HomeOutlined } from '@ant-design/icons';
+import { HomeOutlined, FilterOutlined } from '@ant-design/icons';
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
 const { Option } = Select;
@@ -26,6 +26,33 @@ const ProductListMLCC: FC = () => {
   const [materialFilter, setMaterialFilter] = useState<string | null>(null);
   const [capacityFilter, setCapacityFilter] = useState<string | null>(null);
 
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // 假设 768px 为移动端阈值
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
+
   const columns: ColumnsType<Product> = [
     {
       title: '商品型号',
@@ -34,13 +61,13 @@ const ProductListMLCC: FC = () => {
       render: (text: string, record: Product) => (
         <Link to={`/products/${record.part_number}`}>{text}</Link>
       ),
-      fixed: 'left'
+      fixed: isMobile ? undefined : 'left'
     },
     {
       title: '物料编码',
       dataIndex: 'product_code',
       key: 'product_code',
-      fixed: 'left'
+      fixed: isMobile ? undefined : 'left'
     },
     // {
     //   title: '产品类型显示',
@@ -129,6 +156,68 @@ const ProductListMLCC: FC = () => {
     },
   ];
 
+  const [fixedHeaderVisible, setFixedHeaderVisible] = useState(false);
+  const [columnWidths, setColumnWidths] = useState<number[]>([]);
+  const [tableWidth, setTableWidth] = useState('100%');
+  const tableRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLDivElement>(null);
+  const tableContainerRef = useRef<HTMLDivElement>(null);
+
+  // 处理滚动事件
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!headerRef.current) return;
+      const headerRect = headerRef.current.getBoundingClientRect();
+      setFixedHeaderVisible(headerRect.top < 0);
+
+      // 同步横向滚动
+      if (tableContainerRef.current) {
+        const scrollLeft = tableContainerRef.current.scrollLeft;
+        const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
+        if (fixedHeader) fixedHeader.scrollLeft = scrollLeft;
+      }
+    };
+
+    const handleResize = () => {
+      if (tableRef.current) {
+        setTableWidth(`${tableRef.current.offsetWidth}px`);
+      }
+    };
+
+    const throttledScroll = throttle(handleScroll, 50);
+    window.addEventListener('scroll', throttledScroll);
+    window.addEventListener('resize', handleResize);
+    
+    // 初始化宽度
+    handleResize();
+    
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  // 获取列宽
+  useEffect(() => {
+    if (fixedHeaderVisible && headerRef.current) {
+      const ths = headerRef.current.querySelectorAll('th');
+      const widths = Array.from(ths).map(th => th.offsetWidth);
+      setColumnWidths(widths);
+    }
+  }, [fixedHeaderVisible]);
+
+  // 生成带宽度的列配置
+  const fixedColumns = columns.map((col, index) => ({
+    ...col,
+    width: columnWidths[index] || 0,
+    onHeaderCell: () => ({ 
+      style: { 
+        width: columnWidths[index] ? `${columnWidths[index]}px` : 'auto',
+        whiteSpace: 'nowrap'
+      }
+    })
+  }));
+
   const loadData = async () => {
     setLoading(true);
     try {
@@ -193,27 +282,11 @@ const ProductListMLCC: FC = () => {
     });
   };
 
-  const tableRef = useRef<HTMLDivElement>(null);
-  const [isHeaderFixed, setIsHeaderFixed] = useState(false);
-
-
   useEffect(() => {
     loadData();
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (tableRef.current) {
-        const tableRect = tableRef.current.getBoundingClientRect();
-        // 当表格顶部超出视口顶部时，固定表头
-        setIsHeaderFixed(tableRect.top <= 0); 
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
     filterData();
   }, [searchValue, ratedVoltageFilter, packageFilter, materialFilter, capacityFilter]);
 
@@ -287,71 +360,188 @@ const ProductListMLCC: FC = () => {
           <Title className='text-center text-primary' level={1}>片状多层陶瓷电容器</Title>
           <Divider />
           <Paragraph className='text-indent text-info font-size1'>
-            研达创新所代理的片状多层陶瓷电容器，采用先进工艺，具有小体积、大容量、高频性能优异等特点。
-            TAIYO YUDEN品牌的片状多层陶瓷电容器广泛应用于智能手机、平板电脑、笔记本电脑、通信基站、汽车电子系统等众多领域，可满足不同客户在消费电子、通信、汽车电子等领域的多样化需求。
-            选择研达创新的片状多层陶瓷电容器，就是选择卓越的性能、稳定的质量和专业的服务。我们始终坚持以客户为中心，致力于为客户提供最优质的产品和最满意的电子元件解决方案，助力您的企业发展和创新。
+            研达创新电子的片状多层陶瓷电容器，采用先进工艺，具有小体积、大容量、高频性能优异等特点。
+            我们的片状多层陶瓷电容器广泛应用于智能手机、平板电脑、笔记本电脑、通信基站、汽车电子系统等众多领域，可满足不同客户在消费电子、通信、汽车电子等领域的多样化需求。
+            选择研达创新电子的片状多层陶瓷电容器，就是选择卓越的性能、稳定的质量和专业的服务。我们始终坚持以客户为中心，致力于为客户提供最优质的产品和最满意的电子元件解决方案，助力您的企业发展和创新。
           </Paragraph>
         </div>
 
         {/* 搜索条件 */}
-        <Flex style={{ marginBottom: 16 }}>
-          <Search
-            placeholder="搜索商品型号和物料编码"
-            onSearch={value => setSearchValue(value)}
-            style={{ width: 400,marginRight: 16 }}
-          />
-          <Select
-            placeholder="选择额定电压"
-            onChange={value => setRatedVoltageFilter(value)}
-            style={{ width: 200, marginRight: 16 }}
-          >
-            {getAllValues('rated_voltage').map(value => (
-              <Option key={value} value={value}>{value}</Option>
-            ))}
-          </Select>
-          <Select
-            placeholder="选择封装"
-            onChange={value => setPackageFilter(value)}
-            style={{ width: 120, marginRight: 16 }}
-          >
-            {getAllValues('package').map(value => (
-              <Option key={value} value={value}>{value}</Option>
-            ))}
-          </Select>
-          <Select
-            placeholder="选择材质"
-            onChange={value => setMaterialFilter(value)}
-            style={{ width: 120, marginRight: 16 }}
-          >
-            {getAllValues('material').map(value => (
-              <Option key={value} value={value}>{value}</Option>
-            ))}
-          </Select>
-          <Select
-            placeholder="选择容值"
-            onChange={value => setCapacityFilter(value)}
-            style={{ width: 120, marginRight: 16 }}
-          >
-            {getAllValues('capacity').map(value => (
-              <Option key={value} value={value}>{value}</Option>
-            ))}
-          </Select>
-          <Select
-            placeholder="选择精度"
-            onChange={value => setCapacityFilter(value)}
-            style={{ width: 120 }}
-          >
-            {getAllValues('tolerance').map(value => (
-              <Option key={value} value={value}>{value}</Option>
-            ))}
-          </Select>
-        </Flex>
+        {isMobile ? (
+          <div className='text-right'>
+            <Button className='mb-10 pl-30 pr-30' icon={<FilterOutlined />} onClick={showModal}>
+              筛选产品
+            </Button>
+          </div>
+        ) : (
+          <Flex style={{ marginBottom: 16 }}>
+            <Search
+              placeholder="搜索商品型号和物料编码"
+              onSearch={value => setSearchValue(value)}
+              style={{ width: 400,marginRight: 16 }}
+            />
+            <Select
+              placeholder="选择额定电压"
+              onChange={value => setRatedVoltageFilter(value)}
+              style={{ width: 200, marginRight: 16 }}
+            >
+              {getAllValues('rated_voltage').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择封装"
+              onChange={value => setPackageFilter(value)}
+              style={{ width: 120, marginRight: 16 }}
+            >
+              {getAllValues('package').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择材质"
+              onChange={value => setMaterialFilter(value)}
+              style={{ width: 120, marginRight: 16 }}
+            >
+              {getAllValues('material').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择容值"
+              onChange={value => setCapacityFilter(value)}
+              style={{ width: 120, marginRight: 16 }}
+            >
+              {getAllValues('capacity').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择精度"
+              onChange={value => setCapacityFilter(value)}
+              style={{ width: 120 }}
+            >
+              {getAllValues('tolerance').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+          </Flex>
+        )}
 
-        <div ref={tableRef}>
+        <Modal title="筛选条件" visible={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
+          <Flex vertical gap={16}>
+            <Search
+              placeholder="搜索商品型号和物料编码"
+              onSearch={value => setSearchValue(value)}
+            />
+            <Select
+              placeholder="选择额定电压"
+              onChange={value => setRatedVoltageFilter(value)}
+            >
+              {getAllValues('rated_voltage').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择封装"
+              onChange={value => setPackageFilter(value)}
+            >
+              {getAllValues('package').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择材质"
+              onChange={value => setMaterialFilter(value)}
+            >
+              {getAllValues('material').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择容值"
+              onChange={value => setCapacityFilter(value)}
+            >
+              {getAllValues('capacity').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+            <Select
+              placeholder="选择精度"
+              onChange={value => setCapacityFilter(value)}
+            >
+              {getAllValues('tolerance').map(value => (
+                <Option key={value} value={value}>{value}</Option>
+              ))}
+            </Select>
+          </Flex>
+        </Modal>
+
+        {/* 修改后的表格容器 */}
+        <div 
+          ref={tableContainerRef}
+          onScroll={(e) => {
+            const scrollLeft = (e.target as HTMLElement).scrollLeft;
+            const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
+            if (fixedHeader) fixedHeader.scrollLeft = scrollLeft;
+          }}
+          style={{ 
+            position: 'relative',
+            overflowX: 'auto',
+            paddingTop: fixedHeaderVisible ? '55px' : '0' // 为固定表头预留空间
+          }}
+        >
+          {/* 固定表头 */}
+          {fixedHeaderVisible && (
+            <div
+              className="fixed-header"
+              style={{
+                position: 'fixed',
+                top: 0,
+                left: tableRef.current?.getBoundingClientRect().left || 0,
+                width: tableWidth,
+                zIndex: 1000,
+                background: '#fff',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                overflow: 'hidden',
+                pointerEvents: 'none'
+              }}
+            >
+              <Table
+                columns={fixedColumns}
+                dataSource={[]}
+                showHeader={true}
+                pagination={false}
+                components={{
+                  header: {
+                    wrapper: props => <thead {...props} style={{ margin: 0 }}/>
+                  },
+                  body: {
+                    wrapper: () => <tbody style={{ display: 'none' }}/>
+                  }
+                }}
+                scroll={{ x: 'max-content' }}
+              />
+            </div>
+          )}
+
+          <div  ref={tableRef}>
+            
           <Table<Product>
             columns={columns}
             dataSource={filteredData}
             rowKey="part_number"
+            components={{
+              header: {
+                wrapper: props => (
+                  <thead 
+                    {...props} 
+                    ref={headerRef}
+                    style={{ visibility: fixedHeaderVisible ? 'hidden' : 'visible' }}
+                  />
+                )
+              }
+            }}
             pagination={{
               total: pagination.total,
               showTotal: (total, range) => `显示第 ${range[0]} 到 ${range[1]} 项，共 ${total} 项`,
@@ -359,7 +549,7 @@ const ProductListMLCC: FC = () => {
               pageSize: pagination.pageSize,
               showSizeChanger: true,
               position: ['bottomCenter'],
-              pageSizeOptions: ['25', '50', '100'], 
+              pageSizeOptions: ['25', '50', '100'], // 可选择的每页数量选项
               className: 'mt-30'
             }}
             loading={{
@@ -368,42 +558,31 @@ const ProductListMLCC: FC = () => {
             }}
             onChange={handleTableChange}
             bordered
+            // 确保所有列都能显示
             scroll={{ x: 'max-content' }}
+            style={{ marginTop: fixedHeaderVisible ? -40 : 0 }} // 调整表格位置 
           />
-        </div>
-        {isHeaderFixed && (
-          <div
-            style={{
-              position: 'fixed',
-              top: 0,
-              left: 0,
-              right: 0,
-              backgroundColor: 'white',
-              zIndex: 100,
-              maxWidth: '1360px',
-              margin: '0 auto',
-              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
-            }}
-          >
-            <Table<Product>
-              columns={columns}
-              dataSource={[]}
-              rowKey="part_number"
-              pagination={false}
-              showHeader
-              // 隐藏表格主体
-              components={{
-                body: {
-                  wrapper: () => null,
-                },
-              }}
-              scroll={{ x: 'max-content' }}
-            />
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
 };
+
+// 节流函数
+function throttle<T extends (...args: any[]) => void>(
+  fn: T,
+  delay: number
+): (...args: Parameters<T>) => void {
+  let timer: NodeJS.Timeout | null = null;
+  return function (this: any, ...args: Parameters<T>) {
+    if (!timer) {
+      timer = setTimeout(() => {
+        fn.apply(this, args);
+        timer = null;
+      }, delay);
+    }
+  };
+}
 
 export default ProductListMLCC;
