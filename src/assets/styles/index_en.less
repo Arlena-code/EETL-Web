@@ -1,0 +1,433 @@
+/* 20250315 V1 */
+
+/*Heaer CSS*/
+header {
+  background-color: #ffffff;
+  .header-container{
+    border-bottom: 1px solid rgb(224, 229, 255);
+    height: 100px;
+  }
+  .header-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 100%;
+  }
+  .languageBtn{
+    display: flex;
+    gap: 8;
+    .ant-btn{
+      padding-right: 0;
+      padding-left: 10px;
+      &:hover{
+        background: transparent !important;
+        color: #1d2089 !important;
+      }
+    }
+  }
+  .header-menu{
+    font-size: 16px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .ant-menu-item{
+      width: 140px;
+      text-align: center;
+      font-weight: 600;
+      &::after{
+        border-width: 3px !important;
+      }
+      &:hover{
+        a{
+          font-weight: 600;
+          color: #1d2089 !important;
+        }
+      }
+    }
+  }
+}
+
+//banner
+.banner-text{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  text-align: center;
+  background-color: rgba(29, 32, 137, 0.33);
+  box-shadow: transparent 0px 0px 0px;
+  padding: 20px 80px;
+  color: #ffffff;
+  max-width: 864px;
+  .title{
+    font-size: 2rem;
+    padding-bottom: 20px;
+    font-weight: bold;
+    line-height: 110%;
+    &::after{
+      content: '';
+      position: absolute;
+      left: 50%;
+      translate: translateX(-50%);
+      display: block;
+      width: 42px;
+      height: 5px;
+      background: #ffffff;
+    }
+  }
+  .ant-typography{
+    color: #ffffff;
+  }
+  .ant-divider-horizontal.ant-divider-with-text::before, .ant-divider-horizontal.ant-divider-with-text:after{
+    border-top-color: rgba(255, 255, 255, 0.6);
+  }
+}
+.slogan-area{
+  padding: 40px 0;
+}
+.slogan-text{
+  font-size: 1.375rem;
+  font-weight: bold;
+  color: #1d2089;
+}
+
+// 分割线
+.divider-text{
+  .ant-divider-inner-text{
+    font-size: 1.125rem;
+    font-weight: bold;
+    color: #bbbbbb;
+    font-family: Trebuchet MS,Helvetica,sans-serif;
+    letter-spacing: 6px;
+  }
+  &.text-light{
+    .ant-divider-inner-text{
+      color: #ffffff; 
+    }
+  }
+  &.divider-text-sm{
+    margin: 10px 0;
+    .ant-divider-inner-text{
+     font-size: 1rem; 
+    }
+  }
+}
+.divider-line{
+  position: relative;
+  &::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: -2px;
+    display: block;
+    width: 78px;
+    height: 4px;
+    background: #1d2089;
+  } 
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear !important;
+  align-items: center;
+}
+
+// 保证页面内容与footer的间距
+.main-content {
+  min-height: calc(100vh - 128px);
+}
+
+//标签页
+.tabs-common{
+  .ant-tabs-top >.ant-tabs-nav::before{
+    border-bottom-color: #1d2089;
+  }
+  .ant-tabs-nav{
+    background: #f5f7fa;
+    .ant-tabs-tab{
+      padding-left: 50px !important;
+      padding-right: 50px !important;
+      justify-content: center;
+      &:hover{
+        background: #1d2089;
+      }
+    }
+    .ant-tabs-tab-active{
+      background: #1d2089;
+    }
+  }
+  .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab{
+    border-bottom-color: #e0e5ff;
+  }
+}
+.productTabs-swiper{
+  .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab{
+    border-bottom: 0;
+    border-top: 0;
+    border-radius: 0;
+    border-right-color: #e0e5ff;
+    .ant-tabs-tab-btn{
+     font-weight: bold; 
+    }
+  }
+}
+.product-swiper{
+  pointer-events: auto;
+  .swiper-slide{
+    height: 100%;
+    padding-bottom: 20px !important;
+    .ant-image{
+      height: 240px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      img{object-fit: contain;max-height: 100%;}
+    }
+  }
+}
+.tabs-card{
+  .ant-tabs-nav-wrap{
+    margin-bottom: 1px;
+  }
+}
+.tabs-vertical-75{
+  .ant-tabs-tab{
+    height: 75px;
+    color: #666666;
+  }
+  .ant-tabs-nav{
+    .ant-tabs-tab{
+      width: 230px;
+      .ant-tabs-tab-btn{
+        font-weight: bold;
+        font-size: 1.125rem;
+      }
+    }
+  }
+}
+.tabs-vertical-4in1{
+  .ant-tabs-nav{
+    .ant-tabs-tab{
+      height: 25%;
+      flex: 1;
+      .ant-tabs-tab-btn{
+        font-size: 1.5rem;
+      }
+    }
+  }
+}
+
+//卡片
+.industry-zone-card{
+  background-color: #ffffffde;
+  border-radius: 10px;
+  position: relative;
+  height: 100%;
+  .bg-image{
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    z-index: 1;
+    opacity: .2;
+    max-height: 180px;
+  }
+}
+
+// News
+.card-image {
+ .ant-card-cover{
+    height: 200px;
+    img{object-fit: cover;height: 100%;}
+ } 
+}
+
+// Acticles
+.article-news {
+  margin: 0 auto;
+  
+  .article-item {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+    .article-image {
+      width: 200px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    &:hover{
+      .article-title, .article-text{
+        color: #609ee9;
+      }
+    }
+  }
+  .article-content {
+    flex: 1;
+  }
+  .article-title {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    font-weight: normal;
+  }
+  .article-date {
+    color: #898989;
+    margin-bottom: 12px;
+  }
+  
+  .article-text {
+    line-height: 1.6;
+    color: #666;
+  }
+}
+
+// 文章详情页
+.news-detail {
+
+  .detail-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .detail-date {
+    color: #888;
+    margin-bottom: 20px;
+  }
+
+  .detail-content {
+    line-height: 1.8;
+    font-size: 16px;
+    color: #333;
+  }
+}
+
+.home-page{
+  .ant-carousel{
+    .ant-image .ant-image-img{
+      min-height: 400px;
+    }
+  }
+}
+
+//时间轴
+.timeline{
+  .ant-timeline-item{
+    min-height: 80px;
+  }
+  &.ant-timeline-label .ant-timeline-item-label{
+    inset-block-start: -10px;
+  }
+}
+// 添加以下footer样式
+footer {
+  color: #ffffff;
+  .ant-typography{
+    color: #ffffff;
+  } 
+}
+
+// 移动端适配
+.drawer-navbar{
+  .ant-drawer-header{padding: 16px;}
+  .ant-drawer-title{line-height: 1;}
+  .ant-drawer-body{
+    background-color: #f8f9fc;
+  }
+  .ant-menu-item{
+    border-bottom: 1px solid #dedede;
+    margin: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+  }
+  .ant-menu-light .ant-menu-item-selected{
+    background: transparent;
+  }
+}
+.mobile-select-dropdown {
+  width: 100% !important;
+  max-width: 300px;
+  left: 50% !important;
+  transform: translateX(-50%);
+}
+
+.mobile-select-dropdown .ant-select-item {
+  padding: 12px 16px;
+  font-size: 16px;
+}
+
+
+// 响应式样式
+@media screen and (max-width: 1400px) {
+  .banner-text .title{
+    font-size: 2.75rem;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .home-page .ant-carousel .ant-image .ant-image-img{
+    min-height: 300px;
+  }
+  .banner-text{
+    padding: 20px 30px;
+    width: 600px;
+  }
+  .banner-text .title{
+    font-size: 2.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  body,html{font-size: 12px;}
+  .container{padding: 0 10px;}
+  .home-page .ant-carousel .ant-image .ant-image-img{
+    height: 200px;
+  }
+  header .header-container{height: auto;}
+  header .header-top{padding: 10px;gap: 10px;}
+  .banner-text{
+    width: 90vw;
+  }
+  .home-page .ant-carousel .ant-image .ant-image-img{
+    min-height: auto;
+  }
+  .banner-text .title{
+    font-size: 1.75rem;
+  }
+  .tabs-common .ant-tabs-nav .ant-tabs-tab{
+    padding-left: 10px!important;
+    padding-right: 10px!important;
+  }
+  .tabs-vertical-75 .ant-tabs-nav .ant-tabs-tab{
+    width: auto;
+  }
+  .tabs-vertical-75 .ant-tabs-tab {
+    height: auto;
+  }
+  .article-news .article-item{
+    padding: 0;
+    flex-direction: column;
+  }
+  .article-news .article-item .article-image{
+    width: 100%;
+  }
+  .slogan-area{
+    padding: 20px 0;
+  }
+  .product-swiper .swiper-slide .ant-image{
+    height: 150px;
+  }
+  .industry-zone-card .bg-image{
+    max-height: 150px;
+  }
+  .divider-text{
+    margin-bottom: 5px !important;
+  }
+  .divider-text .ant-divider-inner-text{
+    font-size: 12px;
+    letter-spacing: 3px;
+  }
+  .ant-card{font-size: 1rem;}
+}

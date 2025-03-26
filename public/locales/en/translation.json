@@ -43,13 +43,21 @@
         "type3": "铝电解电容器",
         "type4": "电感器",
         "type5": "陶瓷RF器件",
-        "type6": "FBAR, SAW, and RF modules"
+        "type6": "FBAR, SAW, and RF modules",
+        "Taiyo1": "Ceramic Capacitor",
+        "Taiyo2": "Energy Equipment-Capacitance",
+        "Taiyo3": "Module",
+        "Taiyo4": "Multilayer ceramic device",
+        "Taiyo5": "FBAR, SAW, and RF modules",
+        "Taiyo6": "Inductor"
     },
     
     "footer": {
         "contact": "Contact Us",
-        "address": "地址：深圳市南山区高新南大道1号高新南科技园1栋1101室",
-        "telephone": "电话：0755-82732333",
-        "fax": "传真：0755-82732333"
+        "company": "Company：研达创新电子（深圳）有限公司",
+        "address": "Address：EETL Shenzhen office: Room 3902, 39th Floor, Block A, Zhongguan Times Square, 4168 Liuxian Avenue, Nanshan District, ",
+        "Tel": "Tel",
+        "Email": "Email",
+        "BranchAdd": "Branch Address"
     }
 }

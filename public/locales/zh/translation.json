@@ -43,13 +43,21 @@
         "type3": "铝电解电容器",
         "type4": "电感器",
         "type5": "陶瓷RF器件",
-        "type6": "FBAR&SAW器件"
+        "type6": "FBAR&SAW器件",
+        "Taiyo1": "陶瓷电容器",
+        "Taiyo2": "能源设备（电容器）",
+        "Taiyo3": "模块",
+        "Taiyo4": "多层陶瓷器件",
+        "Taiyo5": "FBAR、SAW、RF模块",
+        "Taiyo6": "电感器"
     },
     
     "footer": {
         "contact": "联系我们",
+        "company": "公司：研达创新电子（深圳）有限公司",
         "address": "地址：深圳市南山区高新南大道1号高新南科技园1栋1101室",
-        "telephone": "电话：0755-82732333",
-        "fax": "传真：0755-82732333"
+        "Tel": "电话",
+        "Email": "邮箱",
+        "BranchAdd": "分部地址"
     }
 }

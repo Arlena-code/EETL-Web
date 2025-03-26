@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { ConfigProvider, Layout, Grid } from 'antd';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
@@ -14,13 +14,24 @@ import NewsPageDetail from './components/NewsPageDetail';
 import Require from './components/Require';
 import ProductListMLCC from './components/ProductListMLCC';
 import ProductDetail from './components/ProductDetail';
+import { useTranslation } from 'react-i18next';
 
-import './assets/styles/index.less'
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
 
 const App: React.FC = () => {
+  const { i18n } = useTranslation();
+  const isChinese = i18n.language === 'zh';
+
+  useEffect(() => {
+    if (isChinese) {
+      import('./assets/styles/index.less');
+    } else {
+      import('./assets/styles/index_en.less');
+    }
+  }, [isChinese]);
+
   const screens = useBreakpoint();
   return (
 

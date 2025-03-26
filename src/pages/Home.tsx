@@ -67,7 +67,7 @@ import productROHM8 from '@/assets/images/product/brands/ROHM_8.png';
 import productROHM9 from '@/assets/images/product/brands/ROHM_9.png';
 
 const Home: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n  } = useTranslation();
   const carouselRef = React.useRef<CarouselRef>(null);
   const swiperRefs = React.useRef<{ [key: string]: SwiperType | null }>({});
   const screens = useBreakpoint();
@@ -130,27 +130,27 @@ const Home: React.FC = () => {
   const tab1Products = [
     { 
       src: productTaiyo1,
-      name: '陶瓷电容器',
+      name: t('product.Taiyo1'),
       company: 'Taiyo Yuden',
     },
     { src: productTaiyo2,
-      name: '能源设备（电容器）',
+      name: t('product.Taiyo2'),
       company: 'Taiyo Yuden',
     },
     { src: productTaiyo3,
-      name: '模块',
+      name: t('product.Taiyo3'),
       company: 'Taiyo Yuden',
     },
     { src: productTaiyo4,
-      name: '多层陶瓷器件',
+      name: t('product.Taiyo4'),
       company: 'Taiyo Yuden',
     },
     { src: productTaiyo5,
-      name: 'FBAR、SAW、RF模块',
+      name: t('product.Taiyo5'),
       company: 'Taiyo Yuden',
     },
     { src: productTaiyo6,
-      name: '电感器',
+      name: t('product.Taiyo6'),
       company: 'Taiyo Yuden',
     }
   ];
@@ -385,8 +385,14 @@ const Home: React.FC = () => {
             }
           />
           <div className='banner-text banner-animal'>
-            <div className='title'>{t('page.carousel.title')}</div>
-            <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
+            {i18n.language !== 'en' ? (
+              <div>
+                <div className='title'>{t('page.carousel.title')}</div>
+                <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
+              </div>
+            ) : (
+              <div className='title'>ESCORT YOU<br/> WITH ADVANCED TECHNOLOGY</div>
+            )}
             <Paragraph className='font-size1'>{t('page.carousel.subtitle')}</Paragraph>
           </div>
         </div>
@@ -403,8 +409,14 @@ const Home: React.FC = () => {
             }
           />
           <div className='banner-text banner-animal'>
-            <div className='title'>{t('page.carousel.title')}</div>
-            <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
+            {i18n.language !== 'en' ? (
+              <div>
+                <div className='title'>{t('page.carousel.title')}</div>
+                <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
+              </div>
+            ) : (
+              <div className='title'>ESCORT YOU<br/> WITH ADVANCED TECHNOLOGY</div>
+            )}
             <Paragraph className='font-size1'>{t('page.carousel.subtitle')}</Paragraph>
           </div>
         </div>
@@ -421,8 +433,14 @@ const Home: React.FC = () => {
             }
           />
           <div className='banner-text banner-animal'>
-            <div className='title'>{t('page.carousel.title')}</div>
-            <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
+            {i18n.language !== 'en' ? (
+              <div>
+                <div className='title'>{t('page.carousel.title')}</div>
+                <div className='subtitle'>ESCORT YOU WITH ADVANCED TECHNOLOGY</div>
+              </div>
+            ) : (
+              <div className='title'>ESCORT YOU<br/> WITH ADVANCED TECHNOLOGY</div>
+            )}
             <Paragraph className='font-size1'>{t('page.carousel.subtitle')}</Paragraph>
           </div>
         </div>
