@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Image, Divider, Typography, theme, Tabs, Flex, Grid } from 'antd';
 import { PhoneFilled, MailFilled } from '@ant-design/icons';
 const { Title, Text } = Typography;
@@ -12,31 +13,32 @@ import addressicon from '@/assets/icons/address.svg';
 const addressIcon = <img src={addressicon} alt="Address" style={{ width: '18x', height: '18px' }} />
 
 const Contact: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const { token } = useToken();
   const screens = useBreakpoint();
   
   const items: TabsProps['items'] = [
     {
       key: '1',
-      label: 'EETL 深圳',
+      label: `EETL ${t('common.city.shenzhen')}`,
       children: (
         <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
           <Flex gap={screens.md ? 40 : 8} vertical={!screens.md} className={screens.md ? '' : 'p-10'}>
             <Flex className='' align="center" gap={8}>
               {addressIcon}
               <div>
-                <Text>地址：39楼3902室</Text><br/>
+                {i18n.language !== 'en' && (<Text>地址：39楼3902室<br/></Text>)}
                 <Text>Add： Room 3902, Block A, Zhongguan Times Square,No.4168 Liuxian Road,NanshanDistrict,Shenzhen, China. </Text>
               </div>
             </Flex>
             <div>
               <Flex className='mb-15' align="center" gap={8}>
                 <PhoneFilled />
-                <Text>电话：0755-8837 7106</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Tel')}：0755-8837 7106</Text>
               </Flex>
               <Flex align="center" gap={8}>
                 <MailFilled />
-                <Text>邮箱：Sales@etlevo.com</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Email')}：Sales@eetl-evo.com</Text>
               </Flex>
             </div>
           </Flex>
@@ -49,25 +51,25 @@ const Contact: React.FC = () => {
     },
     {
       key: '2',
-      label: 'EETL 上海',
+      label: `EETL ${t('common.city.shanghai')}`,
       children: (
         <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
           <Flex gap={screens.md ? 40 : 8} vertical={!screens.md} className={screens.md ? '' : 'p-10'}>
             <Flex className='' align="center" gap={8}>
               {addressIcon}
               <div>
-                <Text>地址：上海市长宁区仙霞路319号远东国际广场A栋6楼603室</Text><br/>
+                {i18n.language !== 'en' && (<Text>地址：上海市长宁区仙霞路319号远东国际广场A栋6楼603室<br/></Text>)}
                 <Text>Add： Room 603, 6 / F, Building A, Far East International Plaza, No.319 Xianxia Road, Changning District, Shanghai，China. </Text>
               </div>
             </Flex>
             <div>
               <Flex className='mb-15' align="center" gap={8}>
                 <PhoneFilled />
-                <Text>电话：0755-8837 7106</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Tel')}：0755-8837 7106</Text>
               </Flex>
               <Flex align="center" gap={8}>
                 <MailFilled />
-                <Text>邮箱：Sales@etlevo.com</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Email')}：Sales@eetl-evo.com</Text>
               </Flex>
             </div>
           </Flex>
@@ -80,25 +82,25 @@ const Contact: React.FC = () => {
     },
     {
       key: '3',
-      label: 'EETL 北京',
+      label: `EETL ${t('common.city.beijing')}`,
       children: (
         <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
           <Flex gap={screens.md ? 40 : 8} vertical={!screens.md} className={screens.md ? '' : 'p-10'}>
             <Flex className='' align="center" gap={8}>
               {addressIcon}
               <div>
-                <Text>地址：北京市朝阳区来广营西路5号院诚盈中心1号楼5层515室</Text><br/>
+                {i18n.language !== 'en' && (<Text>地址：北京市朝阳区来广营西路5号院诚盈中心1号楼5层515室<br/></Text>)}
                 <Text>Add： Room 515, Building 1, Chengying Center, No.5 Laiguangying West Road, Chaoyang District, Beijing, China. </Text>
               </div>
             </Flex>
             <div>
               <Flex className='mb-15' align="center" gap={8}>
                 <PhoneFilled />
-                <Text>电话：0755-8837 7106</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Tel')}：0755-8837 7106</Text>
               </Flex>
               <Flex align="center" gap={8}>
                 <MailFilled />
-                <Text>邮箱：Sales@etlevo.com</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Email')}：Sales@eetl-evo.com</Text>
               </Flex>
             </div>
           </Flex>
@@ -111,25 +113,25 @@ const Contact: React.FC = () => {
     },
     {
       key: '4',
-      label: 'EETL 香港',
+      label: `EETL ${t('common.city.hongkong')}`,
       children: (
         <div className={`${screens.md ? 'p-20' : ''} bg-light`}>
           <Flex gap={screens.md ? 40 : 8} vertical={!screens.md}  className={screens.md ? '' : 'p-10'}>
             <Flex className='' align="center" gap={8}>
               {addressIcon}
               <div>
-                <Text>地址：香港新界荃湾柴湾角街84-92号顺丰工业中心16楼P-Q室</Text><br/>
+                {i18n.language !== 'en' && (<Text>地址：香港新界荃湾柴湾角街84-92号顺丰工业中心16楼P-Q室<br/></Text>)}
                 <Text>Add： Room P-Q,16th Floor，Shield Industrial Centre，No.84-92 Chai Wan Kok Street，Tsuen Wan，New Territories，Hong Kong.</Text>
               </div>
             </Flex>
-            <div style={{whiteSpace: 'nowrap'}}>
+            <div>
               <Flex className='mb-15' align="center" gap={8}>
                 <PhoneFilled />
-                <Text>电话：0755-8837 7106</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Tel')}：0755-8837 7106</Text>
               </Flex>
               <Flex align="center" gap={8}>
                 <MailFilled />
-                <Text>邮箱：Sales@etlevo.com</Text>
+                <Text style={{whiteSpace: 'nowrap'}}>{t('footer.Email')}：Sales@eetl-evo.com</Text>
               </Flex>
             </div>
           </Flex>
@@ -165,8 +167,14 @@ const Contact: React.FC = () => {
           margin: '0 auto',
           textAlign: 'center'
         }}>
-          <Divider className='divider-text text-light'>CONTACT US</Divider>
-          <Title className='text-center' level={2} style={{fontSize: token.fontSizeHeading1}}>联系我们</Title>
+          {i18n.language !== 'en' ? (
+            <div>
+              <Divider className='divider-text text-light'>CONTACT US</Divider>
+              <Title className='text-center' level={2} style={{fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem'}}>{t('footer.contact')}</Title>
+            </div>
+          )
+            : (<Divider className='divider-text text-light'><Title className='mb-0' level={2}>CONTACT US</Title></Divider>)
+          }
         </div>
       </div>
       <div className='container mt-50 mb-50'>

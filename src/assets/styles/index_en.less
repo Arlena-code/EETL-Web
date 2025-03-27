@@ -80,6 +80,9 @@ header {
   .ant-typography{
     color: #ffffff;
   }
+  .ant-divider-horizontal.ant-divider-with-text{
+    min-height: 100px;
+  }
   .ant-divider-horizontal.ant-divider-with-text::before, .ant-divider-horizontal.ant-divider-with-text:after{
     border-top-color: rgba(255, 255, 255, 0.6);
   }
@@ -211,9 +214,6 @@ header {
     .ant-tabs-tab{
       height: 25%;
       flex: 1;
-      .ant-tabs-tab-btn{
-        font-size: 1.5rem;
-      }
     }
   }
 }
@@ -430,4 +430,7 @@ footer {
     letter-spacing: 3px;
   }
   .ant-card{font-size: 1rem;}
+  .banner-text .ant-divider-horizontal.ant-divider-with-text{
+    min-height: auto;
+  }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Row, Col, Image, Card, Typography, Button, Grid } from 'antd';
 const { Title } = Typography;
 const { useBreakpoint } = Grid;
@@ -7,6 +7,7 @@ interface CoBrandingProps {
   brands: { src: string, name: string, company: string, description: string, deliceryTime: string }[]; // 支持外部传入产品图
 }
 const CoBrandingProduct: React.FC<CoBrandingProps> = ({ brands }) => {
+  const { t } = useTranslation();
   const screens = useBreakpoint();
   return (
     <div className='mb-30'>
@@ -27,7 +28,7 @@ const CoBrandingProduct: React.FC<CoBrandingProps> = ({ brands }) => {
                   <p className={screens.md ? 'mt-0' : 'mb-0 mt-0'} style={{color: '#ff6b35'}}>{product.description}<br/>{product.deliceryTime}</p>
                 </div>
                 {screens.md ? (
-                  <div className='text-right'><Button variant="outlined">查看更多</Button></div>
+                  <div className='text-right'><Button variant="outlined">{t('common.seemore')}</Button></div>
                 ) : ('')}
               </div>
             </Card>

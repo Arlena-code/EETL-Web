@@ -71,9 +71,9 @@ const AppHeader: React.FC = () => {
       label: (
         <Link to="/aboutus"
           onMouseEnter={(e) => e.currentTarget.textContent = 'About Us'}
-          onMouseLeave={(e) => e.currentTarget.textContent = t('aboutUs')}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('aboutUs.title')}
         >
-          {t('aboutUs')}
+          {t('aboutUs.title')}
         </Link>
       ),
     },
@@ -92,10 +92,10 @@ const AppHeader: React.FC = () => {
       key: '/co-branding',
       label: (
         <Link to="/co-branding"
-          onMouseEnter={(e) => e.currentTarget.textContent = 'Co-branding'}
-          onMouseLeave={(e) => e.currentTarget.textContent = t('coBranding')}
+          onMouseEnter={(e) => e.currentTarget.textContent = 'Partner Brands'}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('partnerBrands')}
         >
-          {t('coBranding')}
+          {t('partnerBrands')}
         </Link>
       ),
     },
@@ -115,9 +115,9 @@ const AppHeader: React.FC = () => {
       label: (
         <Link to="/joinus"
           onMouseEnter={(e) => e.currentTarget.textContent = 'Join Us'}
-          onMouseLeave={(e) => e.currentTarget.textContent = t('joinUs')}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('joinUs.title')}
         >
-          {t('joinUs')}
+          {t('joinUs.title')}
         </Link>
       ),
     },

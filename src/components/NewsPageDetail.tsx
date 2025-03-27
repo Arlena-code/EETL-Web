@@ -1,8 +1,8 @@
 import React from 'react';
-import { Image, Divider, Typography, theme,Breadcrumb  } from 'antd';
+import { useTranslation } from 'react-i18next';
+import { Image, Divider, Typography, theme,Breadcrumb, Grid } from 'antd';
 import { useParams } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
-
 interface NewsItem {
   id: number;
   title: string;
@@ -10,13 +10,14 @@ interface NewsItem {
   date: string;
   src: string;
 }
-
+const { useBreakpoint } = Grid;
 const { Title } = Typography;
 const { useToken } = theme;
 import NewsPageImage1 from '@/assets/images/news/56056059.png';
 const NewsPageDetail: React.FC = () => {
   const { token } = useToken();
-
+  const { t, i18n } = useTranslation();
+  const screens = useBreakpoint();
   const { id } = useParams<{ id: string }>();
   // 这里应该从API或数据源获取新闻详情，暂时使用模拟数据
   const newsData: NewsItem = {
@@ -48,8 +49,14 @@ const NewsPageDetail: React.FC = () => {
           margin: '0 auto',
           textAlign: 'center'
         }}>
-          <Divider className='divider-text text-light'>News</Divider>
-          <Title className='text-center' level={2} style={{fontSize: token.fontSizeHeading1}}>新闻详情</Title>
+          {i18n.language !== 'en' ? (
+            <div>
+              <Divider className='divider-text text-light'>News</Divider>
+              <Title className='text-center' level={2} style={{fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem'}}>{t('common.news')}</Title>
+            </div>
+          )
+            : (<Divider className='divider-text text-light'><Title className='mb-0' level={2}>News</Title></Divider>)
+          }
         </div>
       </div>
       <div className='bg-light'>

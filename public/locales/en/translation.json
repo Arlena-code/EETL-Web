@@ -1,10 +1,149 @@
 {
     "home": "Home",
-    "aboutUs": "About Us",
+    "aboutUs": {
+        "title": "About Us",
+        "subtitle": "About EETL",
+        "mainTitle": "EMBEDDED EVOLUTION ELECTRONICS TECHNOLOGY LTD",
+        "companyIntro": {
+            "paragraph1": "EETL was founded in 1997, headquartered in Zhongguan Times Square, Xili University Town, Nanshan District, Shenzhen, adjacent to the beautiful Dasha River and Xili Lake. The company is dedicated to providing professional electronic component supply chain services for electronic terminal product manufacturers. Through its own efforts, it has established long-term strategic partnerships with many renowned electronic component manufacturers at home and abroad, becoming their agent in mainland China and Hong Kong.",
+            "paragraph2": "EETL occupies a unique position in the electronic component industry, with its products and services widely used in various fields, including but not limited to:",
+            "applications": {
+                "consumer": "Consumer Electronics: Providing cost-effective components for various consumer electronic products.",
+                "automotive": "Automotive Electronics: Supporting innovation and development in the automotive electronics field.",
+                "communication": "Communication: Helping communication equipment manufacturers achieve efficient and stable communication networks.",
+                "industrial": "Industrial Control: Providing reliable component support for industrial automation and smart manufacturing.",
+                "newEnergy": "New Energy: Promoting the application and popularization of new energy technologies."
+            },
+            "paragraph3": "We focus on providing component products, supply chain services, and value-added solutions that meet market demands for industries such as consumer electronics, automotive electronics, communication, industrial control, and new energy. The company relies on rich product line resources and the coordinated resource advantages of bonded warehouses in Hong Kong, Shenzhen, and Shanghai, with a customer network covering China, Japan, Thailand, Singapore, Malaysia, Vietnam, Taiwan, and other regions.",
+            "paragraph4": "EETL's marketing team combines the product advantages of various brands with years of experience in different application fields, successfully becoming important partners of various brands in new markets across different fields. The company not only has its headquarters in mainland China but also has sales offices in Hong Kong, Shanghai, Beijing, Japan, and Birmingham, forming a wide sales network."
+        },
+        "coreValues": {
+            "title": "CORE VALUES",
+            "subtitle": "Core Advantages",
+            "productLine": {
+                "title": "Rich Product Line",
+                "content": "EETL represents and distributes electronic components from many well-known domestic and international brands, covering basic components such as resistors, capacitors, inductors, diodes, and transistors, as well as high-value-added products such as microcontrollers (MCU) and integrated circuits (IC). These rich product lines enable EETL to meet the diverse needs of different customers in fields such as consumer electronics, automotive electronics, communication, industrial control, and new energy."
+            },
+            "logistics": {
+                "title": "Strong Logistics Resources",
+                "content": "EETL fully utilizes its logistics center advantages in Shenzhen, Hong Kong, and Shanghai to ensure efficient supply chain management and fast logistics delivery. This strategic geographical layout enables EETL to quickly respond to customer needs, providing timely and accurate delivery services, greatly improving customer satisfaction."
+            },
+            "service": {
+                "title": "Customized Supply Chain Service",
+                "content": "EETL has an experienced marketing and technical team that can provide one-stop services from product selection to technical support according to customers' specific needs. This customized service not only helps customers solve technical problems but also provides them with competitive electronic component solutions."
+            }
+        },
+        "history": {
+            "title": "HISTORY",
+            "subtitle": "Development History",
+            "timeline": [
+                {
+                    "label": "1997 Establishment",
+                    "content": "Agent distributor for multiple domestic and international electronic component brands"
+                },
+                {
+                    "label": "2018 Financing",
+                    "content": "Completed Series A financing of tens of millions"
+                },
+                {
+                    "label": "2020 Breakthrough",
+                    "content": "User base exceeded one million"
+                },
+                {
+                    "label": "2024 Development",
+                    "content": "Technical testing 1\nTechnical testing 2\nTechnical testing 3 2015-09-01"
+                }
+            ]
+        },
+        "culture": {
+            "title": "Corporate Culture",
+            "content": "EETL adheres to the corporate philosophy of 'Integrity, Innovation, and Win-win', dedicated to creating value for customers. We focus on technological innovation and service quality, continuously pursuing excellence to provide the best products and services to our customers."
+        },
+        "advantage": {
+            "title": "Our Advantages",
+            "items": [
+                "Professional Sales Team",
+                "Comprehensive Technical Support",
+                "Stable Supply Chain",
+                "Quality Customer Service"
+            ]
+        }
+    },
     "products": "Products",
-    "coBranding": "Co-branding",
+    "partnerBrands": "Partner Brands",
     "news": "News",
-    "joinUs": "Join Us",
+    "joinUs": {
+        "title": "Join Us",
+        "subtitle": "Join Us",
+        "jobTitle": "Recruitment position",
+        "welcome": "Welcome to EETL, Let's Create a Better Future Together",
+        "submitResume": "Submit Resume",
+        "responsibilities": "Job Responsibilities",
+        "requirements": "Requirements",
+        "salesEngineer": {
+            "title": "Sales Engineer",
+            "responsibilities": {
+                "title": "Job Responsibilities",
+                "items": [
+                    "1. Responsible for promoting and selling passive component products, developing new customer resources, identifying potential customers and closing deals;",
+                    "2. Manage and maintain existing customer relationships, build long-term partnerships with end customers;",
+                    "3. Complete company sales targets and payment collection plans;",
+                    "4. Complete tasks assigned by company leaders and support work required by other departments."
+                ]
+            },
+            "requirements": {
+                "title": "Requirements",
+                "items": [
+                    "1. Full-time college degree or above in electronics, marketing or related fields;",
+                    "2. Strong interpersonal communication and business negotiation skills, ability to analyze and solve problems independently, strong pressure resistance;",
+                    "3. Proactive, hardworking, innovative, passionate about sales, with responsibility and team spirit."
+                ]
+            }
+        },
+        "customerService": {
+            "title": "Customer Service Specialist",
+            "responsibilities": {
+                "title": "Job Responsibilities",
+                "items": [
+                    "1. Interface with customers, follow up on order execution, delivery schedules, shipping arrangements, etc., ensure delivery according to requirements;",
+                    "2. Collect/analyze customer needs, manage inventory rationally, improve inventory turnover;",
+                    "3. Responsible for confirming customer accounts receivable and following up on collection;",
+                    "4. Handle and respond to customer requests promptly, maintain good customer relationships;",
+                    "5. Complete tasks assigned by company leaders and support work required by other departments."
+                ]
+            },
+            "requirements": {
+                "title": "Requirements",
+                "items": [
+                    "1. College degree or above, fresh graduates or 1-2 years of order follow-up experience;",
+                    "2. Good learning ability, strong communication skills, pressure resistance, responsibility and professional ethics;",
+                    "3. Follow superiors' arrangements, work carefully and proactively, with team collaboration ability."
+                ]
+            }
+        },
+        "productManager": {
+            "title": "Product Manager",
+            "responsibilities": {
+                "title": "Job Responsibilities",
+                "items": [
+                    "1. Responsible for connector manufacturer interface and relationship maintenance, price negotiation, order delivery achievement, inventory control, etc.;",
+                    "2. Assist sales staff in product promotion, provide product solutions for customer project design;",
+                    "3. Assist sales in following up target customers, coordinate customer public relations, solve customer design and production issues;",
+                    "4. Complete company performance targets;",
+                    "5. Complete other tasks assigned by leaders."
+                ]
+            },
+            "requirements": {
+                "title": "Requirements",
+                "items": [
+                    "1. Full-time bachelor's degree or above in marketing, business management, economics or related fields;",
+                    "2. Language requirements: English Level 8 or Japanese Level 1 or Japanese Level 2 with English Level 6, strong reading and writing ability;",
+                    "3. Strong coordination, communication and interpersonal skills, keen insight, strong judgment and decision-making ability, planning and execution ability;",
+                    "4. Strong learning and understanding ability, quick to familiarize with company business knowledge; careful and responsible work attitude, work passion and good professional ethics."
+                ]
+            }
+        }
+    },
     "contact": "Contact Us",
     "searchPlaceholder": "Please enter product model...",
     "page": {
@@ -35,29 +174,87 @@
         "viewdetail": "View details",
         "seemore": "More",
         "productcenter": "Product Center",
-        "news": "Latest Developments"
+        "news": "Latest Developments",
+        "aboutus": "About Us",
+        "city": {
+            "shenzhen": "Shen Zhen",
+            "shanghai": "Shang Hai",
+            "beijing": "Bei Jing",
+            "hongkong": "Hong Kong"
+        }
     },
     "product": {
-        "type1": "片状多层陶瓷电容器",
-        "type2": "铁氧体磁珠电感器",
-        "type3": "铝电解电容器",
-        "type4": "电感器",
-        "type5": "陶瓷RF器件",
-        "type6": "FBAR, SAW, and RF modules",
+        "type1": "Multilayer Ceramic Capacitors",
+        "type2": "Ferrite Beads",
+        "type3": "Aluminum Electrolytic Capacitors",
+        "type4": "Inductors",
+        "type5": "Ceramic RF Devices",
+        "type6": "FBAR/SAW Devices",
         "Taiyo1": "Ceramic Capacitor",
         "Taiyo2": "Energy Equipment-Capacitance",
         "Taiyo3": "Module",
-        "Taiyo4": "Multilayer ceramic device",
-        "Taiyo5": "FBAR, SAW, and RF modules",
+        "Taiyo4": "Multilayer Ceramic devices",
+        "Taiyo5": "FBAR/SAW Devices",
         "Taiyo6": "Inductor"
     },
     
     "footer": {
         "contact": "Contact Us",
-        "company": "Company：研达创新电子（深圳）有限公司",
+        "company": "Company：EMBEDDED EVOLUTION ELECTRONICS TECHNOLOGY LTD",
         "address": "Address：EETL Shenzhen office: Room 3902, 39th Floor, Block A, Zhongguan Times Square, 4168 Liuxian Avenue, Nanshan District, ",
         "Tel": "Tel",
         "Email": "Email",
-        "BranchAdd": "Branch Address"
+        "BranchAdd": "Branch Address",
+        "copyright": "Copyright © 2024 EMBEDDED EVOLUTION ELECTRONICS TECHNOLOGY LTD",
+        "rights": "All Rights Reserved",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Use",
+        "productConsultation": {
+            "title": "Product Consultation",
+            "description": "Whether it's bulk purchase inquiries, alternative part number matching, or technical parameter confirmation, just leave your requirements and you will receive:",
+            "benefits": {
+                "solution": "One-stop solution from a team with 20+ years of industry experience;",
+                "communication": "Choose your preferred communication method: online customer service/WeChat Work/dedicated account manager phone follow-up, ensuring the safety and efficiency of every inquiry, making component procurement smarter and more worry-free."
+            },
+            "consultButton": "Click to Consult"
+        }
+    },
+    "coBranding": {
+        "partnerBrands": "Partner Brands",
+        "website": "Website",
+        "taiyo": {
+            "intro1": "Since its establishment in 1950, Taiyo Yuden has been continuously committed to developing and manufacturing electronic components that meet the needs of the times. Currently, it is engaged in research, development, production, and sales of capacitors, inductors, circuit products, SAW/FBAR devices, energy devices, optical recording media, and more. Taiyo Yuden's products are mainly used in IT and electronics fields, installed in various devices such as smartphones, personal computers, communication and information equipment, and audio-visual equipment.",
+            "intro2": "In recent years, Taiyo Yuden has also been expanding its product lines into the growing and highly anticipated markets of automotive, industrial equipment, and environmental energy. In the future, Taiyo Yuden will further strengthen its relationships with customers and all stakeholders, and strongly look forward to building win-win partnerships.",
+            "partnership": "As an important strategic partner of Taiyo Yuden, EETL has agency rights for over 2,000 Taiyo Yuden products, covering multiple categories including ceramic capacitors, inductors, mobile communication FBAR/SAW devices, modules, and energy storage components. We provide professional technical support, fast product delivery, and excellent after-sales service to ensure customers receive the highest quality electronic component solutions.",
+            "mainProducts": "Main Products: Ceramic Capacitors, Inductors, Mobile Communication FBAR/SAW Devices, Modules, Energy Storage Components"
+        },
+        "elna": {
+            "intro1": "ELNA is a well-established Japanese electrolytic capacitor manufacturer, now acquired by TAIYO YUDEN. Founded in 1937 and headquartered in Yokohama, Japan, it is a listed company. With seven large-scale production facilities and professional R&D centers globally, ELNA offers a wide range of product series including CERAFINE (Red), DUOREX (Purple), LongLife (Silver), SILMIC(II) (Brown), and FORAUDIO (Black with Gold).",
+            "intro2": "ELNA has been manufacturing electrolytic capacitors for over 70 years, with 25 years of experience in developing audio-specific capacitors. ELNA's electrolytic capacitors are among the top in the audio field. Their audio-specific electrolytic capacitors can be found in many mid-to-high-end audio equipment, especially in HI-FI and HI-END audio equipment from brands like Denon, Marantz, Accuphase, and Electrocompaniet.",
+            "partnership": "EETL is an important partner of ELNA in China. We represent ELNA's full range of electrolytic capacitor products, including their star product series such as CERAFINE, DUOREX, and SILMIC. We provide professional technical selection support, fast product supply, and reliable quality assurance to help customers achieve optimal performance in audio equipment, industrial equipment, and other fields."
+        },
+        "hrs": {
+            "intro1": "Hirose Electric Group is a global leader in innovative connection solutions, providing various connector solutions through advanced technical services, excellent customer support, and global manufacturing capabilities, including industrial, communication, consumer electronics, computer, and automotive industries. Founded in Tokyo as Hirose Manufacturing in 1937, the company was renamed Hirose Electric in August 1963 and began international sales in 1968.",
+            "partnership": "As a strategic partner of Hirose Electric, EETL represents Hirose's full range of connector products, including board-to-board connectors, wire-to-board connectors, and FPC/FFC connectors. We have a professional technical team that can provide one-stop solutions from product selection to technical support and fast delivery, helping customers achieve reliable connection solutions in consumer electronics, industrial equipment, and automotive electronics fields."
+        },
+        "prosemi": {
+            "intro1": "Prosemi is a global circuit protection component enterprise providing more professional and diverse combined circuit protection solutions. Main products include EV Fuses for electric vehicles, SMD block fuses, thick/thin film SMD fuses, ceramic tube fuses, TVS diodes, ESD suppressors, discharge tubes, and more.",
+            "partnership": "EETL is an important partner of Prosemi in China. We represent Prosemi's full range of circuit protection products, including their star product series such as EV Fuses and SMD fuses. We have a professional technical team that can provide one-stop solutions from product selection to application design and fast delivery, helping customers achieve reliable circuit protection in new energy vehicles, industrial equipment, and consumer electronics fields."
+        },
+        "rohm": {
+            "intro1": "As a semiconductor and electronic component manufacturer, Rohm has continuously expanded its business through accumulating design technology, manufacturing technology, quality assurance technology, and solution proposal capabilities over its 60-plus years since establishment. Rohm's accumulated technologies and capabilities can be summarized into four major advantages: Integrated Technology, IDM (Vertical Integration), Rich Product Line, and Customer-Oriented.",
+            "partnership": "EETL is an important partner of Rohm in China. We represent Rohm's full range of semiconductor products, including power devices, analog ICs, and discrete devices. We have a professional technical team that can provide one-stop solutions from product selection to application design and fast delivery, helping customers achieve high-performance electronic system design in industrial equipment, automotive electronics, and consumer electronics fields."
+        },
+        "sunway": {
+            "title": "Sunway",
+            "intro1": "Shenzhen Sunway Communication Co., Ltd. was established on April 27, 2006, as one of the first batch of national high-tech enterprises. On November 5, 2010, the company was listed on the Shenzhen Stock Exchange Growth Enterprise Market with stock code 300136.SZ. The company mainly produces RF-related electronic components and modules, such as antennas and modules, wireless charging modules, EMC/EMI RF isolation devices, precision connectors, high-speed connectors and cables, passive devices, and acoustics. Products are applied in consumer electronics (smartphones, PCs, smart wearables, etc.), automotive, IoT/smart home, communication, and data center fields, falling within the scope of new-generation information technology supported and encouraged by the state.",
+            "partnership": "EETL is an important partner of Sunway. We represent Sunway's full range of RF products, including antennas and modules, wireless charging modules, and EMC/EMI RF isolation devices. We have a professional technical team that can provide one-stop solutions from product selection to application design and fast delivery, helping customers achieve high-performance RF system design in consumer electronics, automotive electronics, and IoT fields."
+        },
+        "invsemi": {
+            "title": "Invsemi",
+            "intro1": "Shenzhen Invsemi Semiconductor Technology Co., Ltd. was established in September 2013 as a national high-tech enterprise focused on power semiconductor R&D, production, and sales. Headquartered in Shenzhen, the company has an automotive-grade power module manufacturing base in Yiwu, Zhejiang, R&D centers in Shenzhen, Shanghai, and Suzhou, and sales offices in Shenzhen, Shanghai, Suzhou, Qingdao, Shunde, and Hangzhou. With over 100 employees, more than 50% of whom are R&D and technical support personnel, the company has become a well-known domestic supplier in the high-voltage power device field after years of development, serving over 1,000 customers widely distributed in small appliances, white goods, industrial control, new energy vehicles, and solar inverters.",
+            "partnership": "EETL is an important partner of Invsemi Semiconductor. We represent Invsemi's full range of power semiconductor products, including discrete devices, intelligent power modules (IPM), and standard power modules (PIM). We have a professional technical team that can provide one-stop solutions from product selection to application design and fast delivery, helping customers achieve high-performance power system design in industrial equipment, home appliances, and new energy vehicle fields.",
+            "vision": "Through continuous technological innovation, we make energy transmission more efficient and contribute to reducing carbon emissions! Building the most trustworthy power semiconductor brand in the energy conversion chain!"
+        }
     }
 }

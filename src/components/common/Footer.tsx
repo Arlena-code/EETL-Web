@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
               </Flex>
               <Flex className='mb-15' align="center" gap={8}>
                 <MailFilled style={{fontSize: '18px'}} />
-                <Text>{t('footer.Email')}：Sales@etlevo.com</Text>
+                <Text>{t('footer.Email')}：Sales@eetl-evo.com</Text>
               </Flex>
               <Flex align="center" gap={8}>
                 {addressIcon}
@@ -62,18 +62,17 @@ const Footer: React.FC = () => {
           <Divider type="vertical" style={{ height: 'auto', margin: '0 10px', borderColor: 'rgba(255, 255, 255, 0.2)' }} />
           {/* 第二块：产品咨询 */}
           <Flex vertical gap={15} style={{ width: screens.md ? '33.33%' : '100%' }} className={`${screens.md ? 'mt-30 pt-45' : ''} pb-20`}>
-            <Text className='mb-5' style={{ fontSize: 18 }}>产品咨询</Text>
+            <Text className='mb-5' style={{ fontSize: 18 }}>{t('footer.productConsultation.title')}</Text>
             <Text>
-              无论是批量采购询价、替代料号匹配，还是技术参数确认，只需留下您的需求，将会获得：
+              {t('footer.productConsultation.description')}
             </Text>
             <ul>
-              <li className='mb-15'>• 20年+行业经验团队的一站式解决方案；</li>
-              <li className='mb-15'>• 自主选择沟通方式：在线客服/企业微信/专属客户经理电话跟进，
-              守护每一次询盘的安全与效率，让元器件采购更智能、更省心。</li>
+              <li className='mb-15'>• {t('footer.productConsultation.benefits.solution')}</li>
+              <li className='mb-15'>• {t('footer.productConsultation.benefits.communication')}</li>
             </ul>
             <div className='text-center pt-15'>
               <Button color="primary" className='button-normal' shape="round" href="/aboutus" style={{width: '160px',height: '46px'}}>
-                点击咨询
+                {t('footer.productConsultation.consultButton')}
               </Button>
             </div>
           </Flex>
@@ -115,9 +114,11 @@ const Footer: React.FC = () => {
       <Divider style={{ margin: '20px 0' }} />
 
       {/* 版权信息 */}
-      <Text className='pb-20 pt-20' style={{ textAlign: 'center', display: 'block' }}>
-        版权所有 © 研达创新电子（深圳）有限公司 <span className='ml-30'>粤ICP备2021155542号</span>
-      </Text>
+      <div className="footer-bottom pb-20 pt-20" style={{ textAlign: 'center', display: 'block' }}>
+        <div className="footer-copyright">
+          {t('footer.copyright')}<span className='ml-30'>粤ICP备2021155542号</span>
+        </div>
+      </div>
     </footer>
   );
 };

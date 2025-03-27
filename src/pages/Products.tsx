@@ -5,7 +5,7 @@ const { useToken } = theme;
 const { useBreakpoint } = Grid;
 const { Title, Paragraph } = Typography;
 import CoBrandingProduct from '../components/CoBranding';
-
+import { useTranslation } from 'react-i18next';
 import bannerCoBranding from '@/assets/images/banner-cobrand.jpg';
 import lidarSvg from '@/assets/icons/lidar.svg';
 import AIRobortSvg from '@/assets/icons/AIRobort.svg';
@@ -24,7 +24,7 @@ import logoCompany05 from '@/assets/images/logo_company_05.png';
 import logoCompany06 from '@/assets/images/logo_company_06.png';
 import logoCompany07 from '@/assets/images/logo_company_07.png';
 const Products: React.FC = () => {
-
+  const { t, i18n } = useTranslation();
   const { token } = useToken();
   const screens = useBreakpoint();
   const industryZones = [
@@ -130,8 +130,14 @@ const Products: React.FC = () => {
           margin: '0 auto',
           textAlign: 'center'
         }}>
-          <Divider className='divider-text text-light'>Products</Divider>
-          <Title className='text-center' level={2} style={{fontSize: token.fontSizeHeading1}}>产品中心</Title>
+          {i18n.language !== 'en' ? (
+            <div>
+              <Divider className='divider-text text-light'>Products</Divider>
+              <Title className='text-center' level={2} style={{fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem'}}>产品中心</Title>
+            </div>
+          )
+            : (<Divider className='divider-text text-light'><Title className='mb-0' level={2}>Products</Title></Divider>)
+          }
         </div>
       </div>
       
@@ -144,7 +150,7 @@ const Products: React.FC = () => {
 
             <div className='products-content flex-1'>
               <div className='products-title mt-20 mb-20'>
-                <Title className='text-center' level={1} style={{fontWeight: 'normal'}}>产品中心</Title>
+                <Title className='text-center' level={1} style={{fontWeight: 'normal'}}>{t('page.product.title')}</Title>
                 <Paragraph className='text-indent' style={{maxWidth: 1000,margin: '0 auto'}}>EETL作为一家专业的电子元器件代理商，产品中心涵盖各类电子元配件，包括电阻、电容、电感、二极管、三极管等基础元器件，以及传感器、连接器、电源管理模块等。产品广泛应用于消费电子、通信、汽车电子、工业控制等领域。公司与多家知名厂商长期合作，提供高品质、可靠的产品及一站式服务，满足不同客户需求，助力客户在市场竞争中脱颖而出。</Paragraph>
               </div>
               <div className={`${screens.md ? 'p-30' : ''} products-center`}>

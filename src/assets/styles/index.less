@@ -162,6 +162,15 @@ header {
     border-bottom-color: #e0e5ff;
   }
 }
+.brand-tabs{
+  .ant-tabs-tab-disabled{
+    color: #666666 !important;
+    cursor: default !important;
+    &:hover{
+      background: transparent !important;
+    }
+  }
+}
 .productTabs-swiper{
   .ant-tabs-card >.ant-tabs-nav .ant-tabs-tab{
     border-bottom: 0;
@@ -330,6 +339,9 @@ footer {
     color: #ffffff;
   } 
 }
+
+// 中文页面适配
+.ant-typography.font-weight-normal-ch{font-weight: normal;}
 
 // 移动端适配
 .drawer-navbar{

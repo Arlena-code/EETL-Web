@@ -16,6 +16,7 @@ i18n
     backend: {
       loadPath: '/EETL-Web/locales/{{lng}}/{{ns}}.json',
     },
+    returnObjects: true
   });
 
 export default i18n;
