@@ -33,7 +33,7 @@ header {
     align-items: center;
     justify-content: center;
     .ant-menu-item{
-      width: 140px;
+      min-width: 140px;
       text-align: center;
       font-weight: 600;
       &::after{
@@ -50,6 +50,9 @@ header {
 }
 
 //banner
+.ant-carousel .banner-text{
+  padding: 40px 80px;
+}
 .banner-text{
   position: absolute;
   left: 50%;
@@ -60,7 +63,7 @@ header {
   box-shadow: transparent 0px 0px 0px;
   padding: 20px 80px;
   color: #ffffff;
-  max-width: 864px;
+  max-width: 1200px;
   .title{
     font-size: 2rem;
     padding-bottom: 20px;
@@ -330,6 +333,89 @@ footer {
   } 
 }
 
+.advantage-card {
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(29, 32, 137, 0.08);
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 1px solid rgba(29, 32, 137, 0.1);
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 32px rgba(29, 32, 137, 0.15);
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(29, 32, 137, 0.2);
+    
+    .advantage-icon {
+      background: rgba(29, 32, 137, 0.15);
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 4px 12px rgba(29, 32, 137, 0.1);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(29, 32, 137, 0.08) 0%, rgba(29, 32, 137, 0) 100%);
+    transition: all 0.3s ease;
+    pointer-events: none;
+  }
+
+  .advantage-icon {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: absolute;
+    z-index: 0;
+    opacity: .5;
+    top: 10px;
+    left: 10px;
+    padding: 15px;
+    border-radius: 50%;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: rgba(29, 32, 137, 0.12);
+      transform: scale(0);
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .ant-card-body {
+    padding: 32px 24px 16px;
+    position: relative;
+    z-index: 1;
+  }
+
+  h4 {
+    color: #1d2089;
+    font-weight: 600;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+    font-size: 1.25rem;
+    margin-left: 70px;
+  }
+
+  .ant-typography.ant-typography-secondary {
+    color: rgba(29, 32, 137, 0.85);
+    line-height: 1.8;
+  }
+
+  &:hover h4 {
+    color: #1d2089;
+  }
+}
+
 // 移动端适配
 .drawer-navbar{
   .ant-drawer-header{padding: 16px;}
@@ -364,7 +450,11 @@ footer {
 // 响应式样式
 @media screen and (max-width: 1400px) {
   .banner-text .title{
-    font-size: 2.75rem;
+    font-size: 1.75rem;
+  }
+  .banner-text{
+    padding: 30px 50px;
+    width: 800px;
   }
 }
 @media screen and (max-width: 1200px) {
@@ -373,10 +463,10 @@ footer {
   }
   .banner-text{
     padding: 20px 30px;
-    width: 600px;
+    width: 800px;
   }
   .banner-text .title{
-    font-size: 2.5rem;
+    font-size: 1.5rem;
   }
 }
 @media screen and (max-width: 768px) {
@@ -433,4 +523,23 @@ footer {
   .banner-text .ant-divider-horizontal.ant-divider-with-text{
     min-height: auto;
   }
+  .advantage-card {
+    margin-bottom: 16px;
+    
+    .advantage-icon {
+      top: 0;
+      left: 0;
+    }
+    
+    .ant-card-body {
+      padding: 24px 16px 0;
+    }
+
+    h4 {
+      font-size: 1.1rem;
+      margin-bottom: 16px;
+      margin-left: 50px;
+    }
+  }
 }
+

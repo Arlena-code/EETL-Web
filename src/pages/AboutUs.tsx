@@ -53,20 +53,20 @@ const AboutPage: React.FC = () => {
       </div>
       <div className='container'>
         <div className='pl-5 pr-5'>
-          <Row gutter={screens.md ? token.sizeXXL : token.sizeMD} style={{ padding: screens.md ? '80px 0 40px' : '20px 0 40px' }}>
-            {screens.md && ( // 仅在md及以上屏幕显示
-              <Col span={12}>
+          <Row gutter={screens.lg ? token.sizeXXL : token.sizeMD} style={{ padding: screens.xxl ? '80px 0 40px' : screens.lg ? '40px 0 20px' : '20px 0 20px' }}>
+            {screens.lg && ( // 仅在md及以上屏幕显示
+              <Col span={9}>
                 <img className='w-100' src={ImageCompany} alt={t('aboutUs.title')} />
               </Col>
             )}
 
             {/* 内容区域 */}
-            <Col span={24} lg={12}>
+            <Col span={24} lg={15}>
               <Title level={1} style={{fontSize: token.fontSizeHeading3, lineHeight: '150%'}}>{t('aboutUs.mainTitle')}</Title>
               <Divider className='divider-line' style={{ marginTop: token.marginSM }} />
-              {!screens.md && (
+              {!screens.lg && (
                 <div>
-                  <img className='w-100' src={ImageCompany} alt={t('aboutUs.title')} />
+                  <img className='img-fluid' src={ImageCompany} alt={t('aboutUs.title')} />
                 </div>
               )}
               <Flex vertical>
@@ -76,13 +76,14 @@ const AboutPage: React.FC = () => {
                 <Paragraph className='text-indent font-size1 mb-0' style={{ lineHeight: '200%' }}>
                   {t('aboutUs.companyIntro.paragraph2')}
                 </Paragraph>
+                {i18n.language !== 'en' && (
                 <ul className='font-size1 mb-10' style={{ lineHeight: '200%', paddingLeft: '2em',listStyle: 'inside' }}>
                   <li>{t('aboutUs.companyIntro.applications.consumer')}</li>
                   <li>{t('aboutUs.companyIntro.applications.automotive')}</li>
                   <li>{t('aboutUs.companyIntro.applications.communication')}</li>
                   <li>{t('aboutUs.companyIntro.applications.industrial')}</li>
                   <li>{t('aboutUs.companyIntro.applications.newEnergy')}</li>
-                </ul>
+                </ul>)}
                 <Paragraph className='text-indent font-size1' style={{ lineHeight: '200%' }}>
                   {t('aboutUs.companyIntro.paragraph3')}
                 </Paragraph>

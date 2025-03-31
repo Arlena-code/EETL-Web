@@ -158,13 +158,63 @@
             "text4": "Achieve excellence"
         },
         "aboutUs": {
-            "title": "About  EETL",
-            "paragraph1": "Our company was founded in 1997, EETL is an electronic component authorized distributor many domestic and foreign brands, and creates supply chain services for electronic terminal product manufacturers.Throughout the last 20 years, we focused on providing electronic component products for consumer market ,automotive market, communication market, industrial market and new energy market , as well as supply chain services and value-added service that meet market demand. Relying on our own efforts, it has established long-term strategic partner relations with many world class electronic component manufacturers at home and abroad, and has become its agent distributor in mainland China and Hong Kong, China. Depends on the abundant product line resources and the resource advantages of the Hong Kong logistics center, customers are come from China, Japan, Thailand, Singapore, Malaysia, Vietnam, Taiwan and other places.",
-            "paragraph2": "Combining the product advantages of each brand, our marketing team uses their years of experience in various application fields to become one of the important partners of each brand in different fields and new markets. Headquartered in Shenzhen, china, then sales offices in Hong Kong, Shanghai,Beijing, Japan and Birmingham.",
-            "paragraph3": "As a professional agent, the company has a group of energetic, responsible, experienced marketing sales team and technical team, with competitive solutions to provide customers with one-stop solution & service.    "
+            "title": "About EETL",
+            "paragraph1": "Founded in 1997, EETL has been committed to becoming a bridge connecting global electronic component manufacturers with end-product manufacturers. As an authorized agent for multiple well-known brands at home and abroad, we focus on providing high-quality component products and supply chain solutions for consumer electronics, automotive electronics, communications, industrial control, new energy and other industries. Over 20 years of dedication has not only accumulated rich industry experience but also won the trust of customers and recognition of partners.",
+            "cards": {
+                "global": {
+                    "title": "Deep Industry Roots, Global Empowerment",
+                    "content": "EETL has established long-term strategic partnerships with multiple renowned electronic component manufacturers at home and abroad, becoming an authorized distributor in Mainland China and Hong Kong. Leveraging the resource advantages of our Hong Kong logistics center, our service network covers China, Japan, Thailand, Singapore, Malaysia, Vietnam, Taiwan and other regions, providing customers with efficient and reliable supply chain support."
+                },
+                "team": {
+                    "title": "Professional Team, One-Stop Service",
+                    "content": "Our core competitiveness stems from a vibrant, proactive and experienced market sales team and technical team. With deep understanding of various application fields and years of accumulated industry insights, we can provide customers with one-stop services from selection to delivery."
+                },
+                "layout": {
+                    "title": "Global Layout, Local Support",
+                    "content": "EETL is headquartered in Shenzhen, China, with sales offices in Hong Kong, Shanghai, Beijing, Japan, Birmingham and other locations. This global layout not only allows us to quickly respond to customer needs but also makes us an important partner for various brands in different markets."
+                },
+                "future": {
+                    "title": "Walking with You, Creating the Future",
+                    "content": "EETL is not just an electronic component agent, but your trusted supply chain partner. We empower your business with professional services, rich resources and global vision, working together to explore broader markets."
+                }
+            }
         },
         "product": {
-            "title": "Product Center"
+            "title": "Product Center",
+            "description": "We provide comprehensive electronic component solutions, including multilayer ceramic capacitors, ferrite beads, aluminum electrolytic capacitors, inductors, ceramic RF devices, FBAR/SAW devices, and more.",
+            "categories": {
+                "mlcc": {
+                    "title": "Multilayer Ceramic Capacitors",
+                    "description": "Offering various specifications of multilayer ceramic capacitors suitable for consumer electronics, automotive electronics, industrial control, and other fields."
+                },
+                "ferrite": {
+                    "title": "Ferrite Beads",
+                    "description": "High-quality ferrite beads for EMI suppression and signal filtering."
+                },
+                "aluminum": {
+                    "title": "Aluminum Electrolytic Capacitors",
+                    "description": "Large capacity, high-reliability aluminum electrolytic capacitors suitable for power supply and audio applications."
+                },
+                "inductor": {
+                    "title": "Inductors",
+                    "description": "Various types of inductors including power inductors and high-frequency inductors."
+                },
+                "ceramic": {
+                    "title": "Ceramic RF Devices",
+                    "description": "High-performance ceramic RF devices for wireless communication and RF applications."
+                },
+                "fbar": {
+                    "title": "FBAR/SAW Devices",
+                    "description": "Advanced FBAR and SAW filters for mobile communication and wireless applications."
+                }
+            },
+            "features": {
+                "title": "Product Features",
+                "quality": "High Quality Assurance",
+                "reliability": "High Reliability",
+                "performance": "Excellent Performance",
+                "support": "Professional Technical Support"
+            }
         },
         "news": {
             "title": "News Dynamics"

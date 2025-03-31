@@ -1,13 +1,14 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Carousel, Row, Col, Typography, Divider, Space, Button, Tabs, Image, Grid  } from 'antd';
+import { Carousel, Row, Col, Typography, Divider, Space, Button, Tabs, Image, Grid, Card, theme } from 'antd';
 import type { CarouselRef } from 'antd/es/carousel';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Swiper as SwiperType } from 'swiper'; // 引入 Swiper 类型
 import { Autoplay } from 'swiper/modules';
 import type { TabsProps } from 'antd';
 import '@/assets/styles/swiper.min.css';
-
+import { GlobalOutlined, TeamOutlined, ShopOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+const { useToken } = theme;
 import ProductSwiper from '../components/ProductSwiper';
 import NewsPage from '../components/NewsPage';
 const { useBreakpoint } = Grid;
@@ -67,7 +68,8 @@ import productROHM8 from '@/assets/images/product/brands/ROHM_8.png';
 import productROHM9 from '@/assets/images/product/brands/ROHM_9.png';
 
 const Home: React.FC = () => {
-  const { t, i18n  } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const { token } = useToken();
   const carouselRef = React.useRef<CarouselRef>(null);
   const swiperRefs = React.useRef<{ [key: string]: SwiperType | null }>({});
   const screens = useBreakpoint();
@@ -471,9 +473,84 @@ const Home: React.FC = () => {
           </div>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
             <Paragraph className='text-paragraph text-indent'>{t('page.aboutUs.paragraph1')}</Paragraph>
-            <Paragraph className='text-paragraph text-indent'>{t('page.aboutUs.paragraph2')}</Paragraph>
-            <Paragraph className='text-paragraph text-indent'>{t('page.aboutUs.paragraph3')}</Paragraph>
           </div>
+
+          {/* 核心优势卡片 */}
+          <Row gutter={screens.md ? [24, 24] : [12, 12]} className='mt-30'>
+            <Col xs={24} sm={12} lg={12}>
+              <Card 
+                hoverable 
+                className='advantage-card'
+                style={{ 
+                  height: '100%',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div className='advantage-icon'>
+                  <GlobalOutlined style={{ fontSize: '2.5rem', color: token.colorPrimary }} />
+                </div>
+                <Title level={4}>{t('page.aboutUs.cards.global.title')}</Title>
+                <Paragraph className='font-size1' style={{lineHeight: '175%'}}>
+                  {t('page.aboutUs.cards.global.content')}
+                </Paragraph>
+              </Card>
+            </Col>
+            <Col xs={24} sm={12} lg={12}>
+              <Card 
+                hoverable 
+                className='advantage-card'
+                style={{ 
+                  height: '100%',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div className='advantage-icon'>
+                  <TeamOutlined style={{ fontSize: '2.5rem', color: token.colorPrimary }} />
+                </div>
+                <Title level={4}>{t('page.aboutUs.cards.team.title')}</Title>
+                <Paragraph className='font-size1' style={{lineHeight: '175%'}}>
+                  {t('page.aboutUs.cards.team.content')}
+                </Paragraph>
+              </Card>
+            </Col>
+            <Col xs={24} sm={12} lg={12}>
+              <Card 
+                hoverable 
+                className='advantage-card'
+                style={{ 
+                  height: '100%',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div className='advantage-icon'>
+                  <ShopOutlined style={{ fontSize: '2.5rem', color: token.colorPrimary }} />
+                </div>
+                <Title level={4}>{t('page.aboutUs.cards.layout.title')}</Title>
+                <Paragraph className='font-size1' style={{lineHeight: '175%'}}>
+                  {t('page.aboutUs.cards.layout.content')}
+                </Paragraph>
+              </Card>
+            </Col>
+            <Col xs={24} sm={12} lg={12}>
+              <Card 
+                hoverable 
+                className='advantage-card'
+                style={{ 
+                  height: '100%',
+                  transition: 'all 0.3s ease'
+                }}
+              >
+                <div className='advantage-icon'>
+                  <CustomerServiceOutlined style={{ fontSize: '2.5rem', color: token.colorPrimary }} />
+                </div>
+                <Title level={4}>{t('page.aboutUs.cards.future.title')}</Title>
+                <Paragraph className='font-size1' style={{lineHeight: '175%'}}>
+                  {t('page.aboutUs.cards.future.content')}
+                </Paragraph>
+              </Card>
+            </Col>
+          </Row>
+
           <div className='text-center mt-50 mb-30'>
             <Button color="primary" variant="outlined" className="button-normal-dark" shape="round" size="large" href="/aboutus" style={{width: '200px'}}>
               {t('common.seemore')}
