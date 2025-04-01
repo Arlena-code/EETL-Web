@@ -1,34 +1,32 @@
 import { FC, useEffect, useState, useRef } from 'react';
 import '@ant-design/v5-patch-for-react-19';
 import { Link } from 'react-router-dom';
-import { Table, Spin, Breadcrumb, Typography, Divider, Input, Select, Flex, Button, Modal } from 'antd';
+import { Table, Spin, Breadcrumb, Typography, Divider, Input, Select, Flex, Button } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import { fetchMLCCProducts } from '../api/products';
-import { MLCCProduct, MLCCProductFetchParams, Pagination, isMLCCProduct } from '../types/product';
+import { fetchAluminumProducts } from '../api/products';
+import { AluminumProduct, AluminumProductFetchParams, Pagination } from '../types/product';
 import { HomeOutlined, FilterOutlined } from '@ant-design/icons';
+import { isAluminumProduct } from '../types/product'; // 导入类型守卫
+
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
 const { Option } = Select;
-const ProductListMLCC: FC = () => {
-  const [allData, setAllData] = useState<MLCCProduct[]>([]);
-  // 修改为 MLCCProduct 类型
-  const [filteredData, setFilteredData] = useState<MLCCProduct[]>([]); 
+
+const ProductListALUM: FC = () => {
+  // 修改为 AluminumProduct 类型
+  const [allData, setAllData] = useState<AluminumProduct[]>([]); 
+  const [filteredData, setFilteredData] = useState<AluminumProduct[]>([]); 
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState<Pagination>({
     current: 1,
-    pageSize: 25, // 设置每页显示 25 条数据
+    pageSize: 25, 
     total: 0
   });
 
   // 搜索状态
   const [searchValue, setSearchValue] = useState('');
   const [ratedVoltageFilter, setRatedVoltageFilter] = useState<string | null>(null);
-  const [packageFilter, setPackageFilter] = useState<string | null>(null);
-  const [materialFilter, setMaterialFilter] = useState<string | null>(null);
-  const [capacityFilter, setCapacityFilter] = useState<string | null>(null);
-
-  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); // 假设 768px 为移动端阈值
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768); 
 
   useEffect(() => {
     const handleResize = () => {
@@ -41,25 +39,14 @@ const ProductListMLCC: FC = () => {
     };
   }, []);
 
-  const showModal = () => {
-    setIsModalVisible(true);
-  };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalVisible(false);
-  };
-
-
-  const columns: ColumnsType<MLCCProduct> = [
+  // 修改为 AluminumProduct 类型
+  const columns: ColumnsType<AluminumProduct> = [
     {
       title: '商品型号',
       dataIndex: 'part_number',
       key: 'part_number',
-      render: (text: string, record: MLCCProduct) => (
+      render: (text: string, record: AluminumProduct) => (
         <Link to={`/products/${record.part_number}`}>{text}</Link>
       ),
       fixed: isMobile ? undefined : 'left'
@@ -70,33 +57,26 @@ const ProductListMLCC: FC = () => {
       key: 'product_code',
       fixed: isMobile ? undefined : 'left'
     },
-    // {
-    //   title: '产品类型显示',
-    //   dataIndex: 'get_product_type_display',
-    //   key: 'get_product_type_display',
-    // },
     {
       title: '额定电压',
-      dataIndex: ['specs', 'rated_voltage'], 
+      dataIndex: ['specs', 'rated_voltage'],
       key: 'specs.rated_voltage',
       render: (_, record) => {
-        return record.specs.rated_voltage;
+        if (isAluminumProduct(record)) {
+          return record.specs.rated_voltage;
+        }
+        return null;
       }
     },
     {
-      title: '封装',
-      dataIndex: ['specs', 'package'],
-      key: 'specs.package',
+      title: '尺寸',
+      dataIndex: ['specs', 'size'],
+      key: 'specs.size',
       render: (_, record) => {
-        return record.specs.package;
-      }
-    },
-    {
-      title: '材质',
-      dataIndex: ['specs', 'material'],
-      key: 'specs.material',
-      render: (_, record) => {
-        return record.specs.material;
+        if (isAluminumProduct(record)) {
+          return record.specs.size;
+        }
+        return null;
       }
     },
     {
@@ -104,15 +84,21 @@ const ProductListMLCC: FC = () => {
       dataIndex: ['specs', 'temperature_range'],
       key: 'specs.temperature_range',
       render: (_, record) => {
-        return record.specs.temperature_range;
+        if (isAluminumProduct(record)) {
+          return record.specs.temperature_range;
+        }
+        return null;
       }
     },
     {
-      title: '容值',
-      dataIndex: ['specs', 'capacity'],
-      key: 'specs.capacity',
+      title: '电容值',
+      dataIndex: ['specs', 'capacitance'],
+      key: 'specs.capacitance',
       render: (_, record) => {
-        return record.specs.capacity;
+        if (isAluminumProduct(record)) {
+          return record.specs.capacitance;
+        }
+        return null;
       }
     },
     {
@@ -120,15 +106,65 @@ const ProductListMLCC: FC = () => {
       dataIndex: ['specs', 'tolerance'],
       key: 'specs.tolerance',
       render: (_, record) => {
-        return record.specs.tolerance;
+        if (isAluminumProduct(record)) {
+          return record.specs.tolerance;
+        }
+        return null;
       }
     },
     {
-      title: '包装方式',
-      dataIndex: ['specs', 'packaging'],
-      key: 'specs.packaging',
+      title: '等效串联电阻',
+      dataIndex: ['specs', 'esr'],
+      key: 'specs.esr',
       render: (_, record) => {
-        return record.specs.packaging;
+        if (isAluminumProduct(record)) {
+          return record.specs.esr;
+        }
+        return null;
+      }
+    },
+    {
+      title: '纹波电流',
+      dataIndex: ['specs', 'ripple_current'],
+      key: 'specs.ripple_current',
+      render: (_, record) => {
+        if (isAluminumProduct(record)) {
+          return record.specs.ripple_current;
+        }
+        return null;
+      }
+    },
+    {
+      title: '纹波频率',
+      dataIndex: ['specs', 'ripple_freq'],
+      key: 'specs.ripple_freq',
+      render: (_, record) => {
+        if (isAluminumProduct(record)) {
+          return record.specs.ripple_freq;
+        }
+        return null;
+      }
+    },
+    {
+      title: '耐久性',
+      dataIndex: ['specs', 'endurance'],
+      key: 'specs.endurance',
+      render: (_, record) => {
+        if (isAluminumProduct(record)) {
+          return record.specs.endurance;
+        }
+        return null;
+      }
+    },
+    {
+      title: '形状',
+      dataIndex: ['specs', 'shape'],
+      key: 'specs.shape',
+      render: (_, record) => {
+        if (isAluminumProduct(record)) {
+          return record.specs.shape;
+        }
+        return null;
       }
     },
     {
@@ -136,23 +172,10 @@ const ProductListMLCC: FC = () => {
       dataIndex: ['specs', 'qualification'],
       key: 'specs.qualification',
       render: (_, record) => {
-        return record.specs.qualification;
-      }
-    },
-    {
-      title: '品牌',
-      dataIndex: ['specs', 'brand'],
-      key: 'specs.brand',
-      render: (_, record) => {
-        return record.specs.brand;
-      }
-    },
-    {
-      title: 'SPQ',
-      dataIndex: ['specs', 'spq'],
-      key: 'specs.spq',
-      render: (_, record) => {
-        return record.specs.spq;
+        if (isAluminumProduct(record)) {
+          return record.specs.qualification;
+        }
+        return null;
       }
     },
   ];
@@ -222,32 +245,28 @@ const ProductListMLCC: FC = () => {
   const loadData = async () => {
     setLoading(true);
     try {
-      const fetchParams: MLCCProductFetchParams  = {
+      const fetchParams: AluminumProductFetchParams = {
         ...pagination,
         search: '',
         rated_voltage: null,
-        package: null,
-        material: null,
-        capacity: null,
+        size: null,
+        capacitance: null,
       };
-      const response = await fetchMLCCProducts(fetchParams);
+      const response = await fetchAluminumProducts(fetchParams);
       if (Array.isArray(response)) {
-        // 筛选出 MLCC 产品
-        const mlccProducts = response.filter(isMLCCProduct);
-        setAllData(mlccProducts);
-        setFilteredData(mlccProducts); // 初始时过滤数据就是全部数据
+        const alumProducts = response.filter(isAluminumProduct);
+        console.log('响应数据:', alumProducts); // 打印响应数据
+        setAllData(alumProducts);
+        setFilteredData(alumProducts); 
         setPagination({
           ...pagination,
-          total: mlccProducts.length
+          total: alumProducts.length
         });
       } else {
         console.error('返回的数据不是数组:', response);
       }
     } catch (error) {
       console.error('加载数据失败:', error);
-      if (error instanceof Error) {
-        console.error('错误详情:', error.message, error.stack);
-      }
     } finally {
       setLoading(false);
     }
@@ -264,19 +283,7 @@ const ProductListMLCC: FC = () => {
       const ratedVoltageMatch = ratedVoltageFilter === null || 
         product.specs.rated_voltage === ratedVoltageFilter;
 
-      // 封装筛选
-      const packageMatch = packageFilter === null || 
-        product.specs.package === packageFilter;
-
-      // 材质筛选
-      const materialMatch = materialFilter === null || 
-        product.specs.material === materialFilter;
-
-      // 容值筛选
-      const capacityMatch = capacityFilter === null || 
-        product.specs.capacity === capacityFilter;
-
-      return searchMatch && ratedVoltageMatch && packageMatch && materialMatch && capacityMatch;
+      return searchMatch && ratedVoltageMatch;
     });
 
     setFilteredData(result);
@@ -292,7 +299,7 @@ const ProductListMLCC: FC = () => {
 
   useEffect(() => {
     filterData();
-  }, [searchValue, ratedVoltageFilter, packageFilter, materialFilter, capacityFilter]);
+  }, [searchValue, ratedVoltageFilter]);
 
   // 修改 handleTableChange 函数以匹配 Table onChange 的类型要求
   const handleTableChange = (
@@ -307,11 +314,11 @@ const ProductListMLCC: FC = () => {
   };
 
   // 获取所有可能的筛选值
-  const getAllValues = (key: keyof MLCCProduct['specs']) => {
+  const getAllValues = (key: keyof AluminumProduct['specs']) => {
     let values = allData.map(item => item.specs[key]);
   
-    // 对容值进行特殊处理，按数字部分排序
-    if (key === 'capacity' || key === 'rated_voltage') {
+    // 对电容值和额定电压进行特殊处理，按数字部分排序
+    if (key === 'capacitance' || key === 'rated_voltage') {
       values = values.sort((a, b) => {
         // 处理 a 和 b 可能为 null 或 undefined 的情况
         const aValue = a !== null && a !== undefined ? a.toString() : '';
@@ -328,7 +335,6 @@ const ProductListMLCC: FC = () => {
       values = values.filter(value => value !== null && value !== undefined && value !== 'nan');
     }
     return Array.from(new Set(values));
-    // return Array.from(new Set(allData.map(item => item.specs[key])));
   };
 
   return (
@@ -353,7 +359,7 @@ const ProductListMLCC: FC = () => {
                 href: '/products',
               },
               {
-                title: '片状多层陶瓷电容器',
+                title: '铝电解电容器',
               },
             ]}
           />
@@ -361,125 +367,31 @@ const ProductListMLCC: FC = () => {
       </div>
       <div className='container'>
         <div className='mt-30 mb-30'>
-          <Title className='text-center text-primary' level={1}>片状多层陶瓷电容器</Title>
+          <Title className='text-center text-primary' level={1}>铝电解电容器</Title>
           <Divider />
           <Paragraph className='text-indent text-info font-size1'>
-            研达创新电子代理的片状多层陶瓷电容器，采用先进工艺，具有小体积、大容量、高频性能优异等特点。
-            我们的片状多层陶瓷电容器广泛应用于智能手机、平板电脑、笔记本电脑、通信基站、汽车电子系统等众多领域，可满足不同客户在消费电子、通信、汽车电子等领域的多样化需求。
-            选择研达创新电子的片状多层陶瓷电容器，就是选择卓越的性能、稳定的质量和专业的服务。我们始终坚持以客户为中心，致力于为客户提供最优质的产品和最满意的电子元件解决方案，助力您的企业发展和创新。
+            研达创新电子代理的铝电解电容器，具有大容量、长寿命等特点。广泛应用于电源电路、滤波电路等场景，能满足不同客户在工业、消费电子等领域的需求。选择研达创新电子的铝电解电容器，就是选择可靠的性能和优质的服务。
           </Paragraph>
         </div>
 
         {/* 搜索条件 */}
-        {isMobile ? (
-          <div className='text-right'>
-            <Button className='mb-10 pl-30 pr-30' icon={<FilterOutlined />} onClick={showModal}>
-              筛选产品
-            </Button>
-          </div>
-        ) : (
-          <Flex style={{ marginBottom: 16 }}>
-            <Search
-              placeholder="搜索商品型号和物料编码"
-              onSearch={value => setSearchValue(value)}
-              style={{ width: 400,marginRight: 16 }}
-            />
-            <Select
-              placeholder="选择额定电压"
-              onChange={value => setRatedVoltageFilter(value)}
-              style={{ width: 200, marginRight: 16 }}
-            >
-              {getAllValues('rated_voltage').map((value, index) => (
-                <Option key={`rated_voltage_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择封装"
-              onChange={value => setPackageFilter(value)}
-              style={{ width: 120, marginRight: 16 }}
-            >
-              {getAllValues('package').map((value, index) => (
-                <Option key={`package_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择材质"
-              onChange={value => setMaterialFilter(value)}
-              style={{ width: 120, marginRight: 16 }}
-            >
-              {getAllValues('material').map((value, index) => (
-                <Option key={`material_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择容值"
-              onChange={value => setCapacityFilter(value)}
-              style={{ width: 120, marginRight: 16 }}
-            >
-              {getAllValues('capacity').map((value, index) => (
-                <Option key={`capacity_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择精度"
-              onChange={value => setCapacityFilter(value)}
-              style={{ width: 120 }}
-            >
-              {getAllValues('tolerance').map((value, index) => (
-                <Option key={`tolerance_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-          </Flex>
-        )}
-
-        <Modal title="筛选条件" open={isModalVisible} onOk={handleOk} onCancel={handleCancel}>
-          <Flex vertical gap={16}>
-            <Search
-              placeholder="搜索商品型号和物料编码"
-              onSearch={value => setSearchValue(value)}
-            />
-            <Select
-              placeholder="选择额定电压"
-              onChange={value => setRatedVoltageFilter(value)}
-            >
-              {getAllValues('rated_voltage').map((value, index) => (
-                <Option key={`modal_rated_voltage_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择封装"
-              onChange={value => setPackageFilter(value)}
-            >
-              {getAllValues('package').map((value, index) => (
-                <Option key={`modal_package_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择材质"
-              onChange={value => setMaterialFilter(value)}
-            >
-              {getAllValues('material').map((value, index) => (
-                <Option key={`modal_material_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择容值"
-              onChange={value => setCapacityFilter(value)}
-            >
-              {getAllValues('capacity').map((value, index) => (
-                <Option key={`modal_capacity_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-            <Select
-              placeholder="选择精度"
-              onChange={value => setCapacityFilter(value)}
-            >
-              {getAllValues('tolerance').map((value, index) => (
-                <Option key={`modal_tolerance_${index}`} value={value}>{value}</Option>
-              ))}
-            </Select>
-          </Flex>
-        </Modal>
+        <Flex style={{ marginBottom: 16 }}>
+          <Search
+            placeholder="搜索商品型号和物料编码"
+            onSearch={value => setSearchValue(value)}
+            style={{ width: 400,marginRight: 16 }}
+          />
+          <Select
+            placeholder="选择额定电压"
+            onChange={value => setRatedVoltageFilter(value)}
+            style={{ width: 200, marginRight: 16 }}
+          >
+            {getAllValues('rated_voltage').map((value, index) => (
+              <Option key={`rated_voltage_${index}`} value={value}>{value}</Option>
+            ))}
+          </Select>
+          
+        </Flex>
 
         <div 
           ref={tableContainerRef}
@@ -530,7 +442,7 @@ const ProductListMLCC: FC = () => {
 
           <div  ref={tableRef}>
             
-          <Table<MLCCProduct>
+          <Table<AluminumProduct>
             columns={columns}
             dataSource={filteredData}
             rowKey="part_number"
@@ -552,7 +464,7 @@ const ProductListMLCC: FC = () => {
               pageSize: pagination.pageSize,
               showSizeChanger: true,
               position: ['bottomCenter'],
-              pageSizeOptions: ['25', '50', '100'], // 可选择的每页数量选项
+              pageSizeOptions: ['25', '50', '100'], 
               className: 'mt-30'
             }}
             loading={{
@@ -561,9 +473,8 @@ const ProductListMLCC: FC = () => {
             }}
             onChange={handleTableChange}
             bordered
-            // 确保所有列都能显示
             scroll={{ x: 'max-content' }}
-            style={{ marginTop: fixedHeaderVisible ? -40 : 0 }} // 调整表格位置 
+            style={{ marginTop: fixedHeaderVisible ? -40 : 0 }} 
           />
           </div>
         </div>
@@ -588,4 +499,4 @@ function throttle<T extends (...args: any[]) => void>(
   };
 }
 
-export default ProductListMLCC;
+export default ProductListALUM;

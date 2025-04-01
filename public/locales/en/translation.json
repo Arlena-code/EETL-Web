@@ -69,7 +69,44 @@
             ]
         }
     },
-    "products": "Products",
+    "productCenter": {
+        "title": "Products",
+        "description": "EETL is a premier electronic component agency. Our product lineup encompasses resistors, capacitors, and other essential components, along with sensors and power management modules.Our offerings serve multiple industries, including consumer electronics, automotive electronics, and industrial applications. We collaborate closely with leading manufacturers to provide high - quality products and comprehensive one - stop solutions, enabling our customers to thrive in the competitive market.",
+        "productlist": {
+            "title": "Product List",
+            "subtitle": "Product List"
+
+        },
+        "industryZones": {
+            "title": "Industry Zoning",
+            "consumer": "Consumer Electronics",
+            "automotive": "Automotive Electronics",
+            "communication": "Communication",
+            "newEnergy": "New Energy",
+            "robot": "Robot",
+            "Car":{
+                "title": "Vehicle-mounted Device",
+                "description": "Our electronic components are widely used in vehicle-mounted systems, providing reliable support for the intelligence and electrification of automobiles, covering multiple aspects from power systems to entertainment systems."
+            },
+            "AIrobot": {
+                "title": "AI Robot",
+                "description": "In the field of AI robots, our products help robots achieve efficient perception, decision-making and execution capabilities, and promote the application of robot technology in multiple scenarios such as industry and service."
+            },
+            "SmartDevices": {
+                "title": "Cnsumer Electronics",
+                "description": "For the consumer smart device market, we provide high-performance components to help achieve clear displays, stable communications, and convenient interaction functions, such as smart watches, smart bracelets, smart glasses, etc. The electronic components among them are used to realize functions such as health monitoring, message reminders, and voice calls."
+            },
+            "industrial": {
+                "title": "Industrial Control",
+                "description": "In the field of industrial control, our products provide stable signals and reliable control capabilities for industrial automation, supporting the normal operation of various automated equipment such as PLCs, microcontrollers, and sensors."
+            }
+
+        },
+        "Agentbrands": {
+            "title": "Agent brands"
+        }
+
+    },
     "partnerBrands": "Partner Brands",
     "news": "News",
     "joinUs": {

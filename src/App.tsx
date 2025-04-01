@@ -13,6 +13,7 @@ import Contact from './pages/Contact';
 import NewsPageDetail from './components/NewsPageDetail';
 import Require from './components/Require';
 import ProductListMLCC from './components/ProductListMLCC';
+import ProductListALUM from './components/ProductListALUM';
 import ProductDetail from './components/ProductDetail';
 import { useTranslation } from 'react-i18next';
 
@@ -96,6 +97,7 @@ const App: React.FC = () => {
               <Route path="/news/:id" element={<NewsPageDetail />} />
               <Route path="/require" element={<Require />} />
               <Route path="/products-mlcc" element={<ProductListMLCC />} />
+              <Route path="/products-alum" element={<ProductListALUM />} />
               <Route path="/products/:part_number" element={<ProductDetail />} />
             </Routes>
           </Content>

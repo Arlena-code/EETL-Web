@@ -59,7 +59,7 @@ const Contact: React.FC = () => {
               {addressIcon}
               <div>
                 {i18n.language !== 'en' && (<Text>地址：上海市长宁区仙霞路319号远东国际广场A栋6楼603室<br/></Text>)}
-                <Text>Add： Room 603, 6 / F, Building A, Far East International Plaza, No.319 Xianxia Road, Changning District, Shanghai，China. </Text>
+                <Text>Add： Room 603, Building A, Far East International Plaza, No.319 Xianxia Road, Changning District, Shanghai，China. </Text>
               </div>
             </Flex>
             <div>
@@ -75,7 +75,7 @@ const Contact: React.FC = () => {
           </Flex>
           <Divider />
           <div className='mt-30'>
-            <Amap lng={121.4072} lat={31.2124} infoWindowContent='<div style="padding: 10px;">EETL 深圳<br/>众冠时代广场A座39楼</div>' />  {/* 上海坐标 */}
+            <Amap lng={121.4072} lat={31.2124} infoWindowContent='<div style="padding: 10px;">EETL 上海<br/>远东国际广场A栋6楼603室</div>' />  {/* 上海坐标 */}
           </div>
         </div>
       ),

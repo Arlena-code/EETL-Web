@@ -82,9 +82,9 @@ const AppHeader: React.FC = () => {
       label: (
         <Link to="/products"
           onMouseEnter={(e) => e.currentTarget.textContent = 'Products'}
-          onMouseLeave={(e) => e.currentTarget.textContent = t('products')}
+          onMouseLeave={(e) => e.currentTarget.textContent = t('productCenter.title')}
         >
-          {t('products')}
+          {t('productCenter.title')}
         </Link>
       ),
     },

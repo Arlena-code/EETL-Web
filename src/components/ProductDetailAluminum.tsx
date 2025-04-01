@@ -1,31 +1,31 @@
-// src/components/ProductDetail.tsx
 import { FC, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Spin, Descriptions, Typography, Breadcrumb, Flex, Divider, Button, Tag, Grid } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
 import { fetchProductDetail } from '../api/products';
-import { MLCCProduct, AluminumProduct, isMLCCProduct, isAluminumProduct } from './types/product';
+import { AluminumProduct } from '../types/product';
+import ProductImg_aluminum from '@/assets/images/product/aluminum.png';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
-import ProductImg_mlcc from '@/assets/images/product/mlcc.png';
 
 const keyToChineseMap: { [key: string]: string } = {
   rated_voltage: '额定电压',
-  package: '封装',
-  material: '材质',
-  temperature_range: '温度范围',
-  capacity: '容值',
+  size: '尺寸',
+  capacitance: '电容值',
   tolerance: '精度',
-  packaging: '包装方式',
+  temperature_range: '温度范围',
+  esr: '等效串联电阻',
+  ripple_current: '纹波电流',
+  ripple_freq: '纹波频率',
+  endurance: '耐久性',
+  shape: '形状',
   qualification: '产品资格',
-  brand: '品牌',
-  spq: 'SPQ',
-  // 可以根据实际情况添加更多映射
 };
-const ProductDetail: FC = () => {
+
+const ProductDetailAluminum: FC = () => {
   const { part_number } = useParams<{ part_number: string }>();
-  const [product, setProduct] = useState<Product | null>(null);
+  const [product, setProduct] = useState<AluminumProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const screens = useBreakpoint();
 
@@ -34,7 +34,10 @@ const ProductDetail: FC = () => {
       try {
         if (!part_number) return;
         const data = await fetchProductDetail(part_number);
-        setProduct(data);
+        // 这里假设返回的是 Aluminum 产品，实际可添加类型检查
+        if (data && data.product_type === 'Aluminum') {
+          setProduct(data as AluminumProduct);
+        }
       } catch (error) {
         console.error('加载产品详情失败:', error);
       } finally {
@@ -50,16 +53,6 @@ const ProductDetail: FC = () => {
 
   if (!product) {
     return <div style={{ padding: 20 }}>产品未找到</div>;
-  }
-
-  // 根据 product_type 确定图片地址
-  let product_image = '';
-  if (product.product_type === 'MLCC') {
-    // 这里需要替换成实际的 MLCC 产品图地址
-    product_image = ProductImg_mlcc; 
-  } else {
-    // 默认图片地址，可根据实际情况修改
-    product_image = ''; 
   }
 
   return (
@@ -79,8 +72,8 @@ const ProductDetail: FC = () => {
                 href: '/',
               },
               {
-                title: '产品列表',
-                href: '/products',
+                title: 'Aluminum 产品列表',
+                href: '/products-aluminum',
               },
               {
                 title: product.part_number,
@@ -91,7 +84,6 @@ const ProductDetail: FC = () => {
       </div>
 
       <div className="container" style={{ marginTop: 30 }}>
-        
         <Flex gap={screens.md ? 48 : 30} align="stretch" wrap="wrap">
           {/* 产品图片区 */}
           <div className='text-center' style={{
@@ -102,7 +94,7 @@ const ProductDetail: FC = () => {
             padding: 16
           }}>
             <img 
-              src={product_image} 
+              src={ProductImg_aluminum} 
               alt={product.get_product_type_display}
             />
           </div>
@@ -169,7 +161,7 @@ const ProductDetail: FC = () => {
               </Flex>
               <Flex justify="space-between">
                 <Text type="secondary">最小起订量</Text>
-                <Text strong>{product.specs.spq} pcs</Text>
+                {/* 假设 Aluminum 产品有 spq 字段，若没有需要调整 */}
               </Flex>
             </Flex>
           </div>
@@ -183,20 +175,20 @@ const ProductDetail: FC = () => {
             {Object.entries(product.specs).filter(([key]) => key !== 'id' && key !== 'product').map(([key, value]) => (
               <Descriptions.Item 
                 key={key} 
-                label={keyToChineseMap[key] || key} // 如果有映射则显示中文，否则显示原英文
+                label={keyToChineseMap[key] || key} 
               >
-                {key === 'spq' && value ? `${value} pcs` : value || '-'}
+                {value || '-'}
               </Descriptions.Item>
             ))}
           </Descriptions>
         </div>
 
         <div style={{ marginTop: 24, textAlign: 'right' }}>
-          <Link to="/products-mlcc">返回产品列表</Link>
+          <Link to="/products-aluminum">返回产品列表</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetailAluminum;

@@ -2,7 +2,7 @@ import { Menu } from 'antd';
 import type { MenuProps } from 'antd';
 import { AppstoreOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
-
+import { useTranslation } from 'react-i18next';
 type MenuItem = Required<MenuProps>['items'][number];
 
 function getItem(
@@ -21,20 +21,23 @@ function getItem(
   } as MenuItem;
 }
 
-const items: MenuItem[] = [
-  getItem('产品分类', 'sub1', <AppstoreOutlined />, [
-    getItem(<Link to="/products-mlcc">片状多层陶瓷电容器</Link>, '1'),
-    getItem('铝电解电容器', '2'),
-    getItem('铁氧体磁珠电感器', '3'),
-    getItem('陶瓷RF器件', '4'),
-    getItem('电感器', '5'),
-    getItem('FBAR&SAW器件', '6'),
+const LeftBarItems = (t: (key: string) => string): MenuItem[] => [
+  getItem(t("productCenter.productlist.title"), 'sub1', <AppstoreOutlined />, [
+    getItem(<Link to="/products-mlcc">{t("page.product.categories.mlcc.title")}</Link>, '1'),
+    getItem(<Link to="/products-alum">{t("page.product.categories.aluminum.title")}</Link>, '2'),
+    getItem(t("page.product.categories.ferrite.title"), '3'),
+    getItem(t("page.product.categories.ceramic.title"), '4'),
+    getItem(t("page.product.categories.inductor.title"), '5'),
+    getItem(t("page.product.categories.fbar.title"), '6'),
   ]),
   // getItem('', 'sub2', <MailOutlined />, [
   // ])
 ];
 
 export default function LeftBar() {
+  const { t } = useTranslation(); 
+  const items = LeftBarItems(t); 
+
   return (
     <Menu
       mode="inline"

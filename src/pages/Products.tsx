@@ -29,23 +29,23 @@ const Products: React.FC = () => {
   const screens = useBreakpoint();
   const industryZones = [
     {
-      title: '车载',
-      description: '我们的电子元器件广泛应用于车载系统，为汽车的智能化、电动化提供可靠支持，涵盖了从动力系统到娱乐系统的多个方面。',
+      title: t('productCenter.industryZones.Car.title'),
+      description: t('productCenter.industryZones.Car.description'),
       image: lidarSvg
     },
     {
-      title: 'AI机器人',
-      description: '在AI机器人领域，我们的产品助力机器人实现高效的感知、决策和执行能力，推动机器人技术在工业、服务等多个场景的应用。',
+      title: t('productCenter.industryZones.AIrobot.title'),
+      description: t('productCenter.industryZones.AIrobot.description'),
       image: AIRobortSvg
     },
     {
-      title: '智能穿戴设备',
-      description: '针对智能穿戴设备市场，我们提供高性能的元器件，帮助实现清晰的显示、稳定的通信和便捷的交互功能，如智能手表、智能手环、智能眼镜等，其中的电子元器件用于实现健康监测、消息提醒、语音通话等功能。',
+      title: t('productCenter.industryZones.SmartDevices.title'),
+      description: t('productCenter.industryZones.SmartDevices.description'),
       image: smartSvg
     },
     {
-      title: '消费类智能眼镜',
-      description: '针对消费类智能眼镜市场，我们提供高性能的元器件，帮助实现清晰的显示、稳定的通信和便捷的交互功能，提升用户体验。',
+      title: t('productCenter.industryZones.industrial.title'),
+      description: t('productCenter.industryZones.industrial.description'),
       image: Aiicon
     }
   ];
@@ -146,12 +146,12 @@ const Products: React.FC = () => {
           
           <Flex vertical={!screens.md} gap={16}>
             
-            <div style={{width: 240}}><LeftBar /></div>
+            <div style={{width: i18n.language !== 'en' ? 240 : 280}}><LeftBar /></div>
 
             <div className='products-content flex-1'>
               <div className='products-title mt-20 mb-20'>
                 <Title className='text-center' level={1} style={{fontWeight: 'normal'}}>{t('page.product.title')}</Title>
-                <Paragraph className='text-indent' style={{maxWidth: 1000,margin: '0 auto'}}>EETL作为一家专业的电子元器件代理商，产品中心涵盖各类电子元配件，包括电阻、电容、电感、二极管、三极管等基础元器件，以及传感器、连接器、电源管理模块等。产品广泛应用于消费电子、通信、汽车电子、工业控制等领域。公司与多家知名厂商长期合作，提供高品质、可靠的产品及一站式服务，满足不同客户需求，助力客户在市场竞争中脱颖而出。</Paragraph>
+                <Paragraph className='text-indent' style={{maxWidth: 1000,margin: '0 auto'}}>{t('productCenter.description')}</Paragraph>
               </div>
               <div className={`${screens.md ? 'p-30' : ''} products-center`}>
                 {/* 新增专区分类卡片部分 */}
@@ -179,8 +179,8 @@ const Products: React.FC = () => {
       <div className='container pb-60'>
         <div style={{paddingTop: screens.xxl ? 60 : screens.xl ? 40 : 20}}>
           <div className='mb-30'>
-            <Divider className='divider-text'>Branding</Divider>
-            <Title className='text-center text-primary' level={3}>代理品牌</Title>
+            <Divider className='divider-text'>Agent brands</Divider>
+            <Title className='text-center text-primary' level={3}>{t("productCenter.Agentbrands.title")}</Title>
           </div>
           <div style={{padding: screens.md ? '20px 0 20px' : '0'}}>
             <Flex gap={0} wrap justify="center">
