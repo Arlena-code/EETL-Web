@@ -27,7 +27,7 @@ const Contact: React.FC = () => {
             <Flex className='' align="center" gap={8}>
               {addressIcon}
               <div>
-                {i18n.language !== 'en' && (<Text>地址：39楼3902室<br/></Text>)}
+                {i18n.language !== 'en' && (<Text>地址：深圳市南山区留仙大道4168号众冠时代广场A座39楼3902室<br/></Text>)}
                 <Text>Add： Room 3902, Block A, Zhongguan Times Square,No.4168 Liuxian Road,NanshanDistrict,Shenzhen, China. </Text>
               </div>
             </Flex>

@@ -4,7 +4,7 @@ import { Spin, Descriptions, Typography, Breadcrumb, Flex, Divider, Button, Tag,
 import { HomeOutlined } from '@ant-design/icons';
 import { fetchProductDetail } from '../api/products';
 import { AluminumProduct } from '../types/product';
-import ProductImg_aluminum from '@/assets/images/product/aluminum.png';
+import ProductImg_aluminum from '@/assets/images/product/aluminum.jpg';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
@@ -72,7 +72,7 @@ const ProductDetailAluminum: FC = () => {
                 href: '/',
               },
               {
-                title: 'Aluminum 产品列表',
+                title: '铝电解电容器',
                 href: '/products-aluminum',
               },
               {

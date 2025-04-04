@@ -71,7 +71,7 @@ const Footer: React.FC = () => {
               <li className='mb-15'>• {t('footer.productConsultation.benefits.communication')}</li>
             </ul>
             <div className='text-center pt-15'>
-              <Button color="primary" className='button-normal' shape="round" href="/aboutus" style={{width: '160px',height: '46px'}}>
+              <Button color="primary" className='button-normal' shape="round" href="mailto:Sales@eetl-evo.com" style={{width: '160px',height: '46px'}}>
                 {t('footer.productConsultation.consultButton')}
               </Button>
             </div>

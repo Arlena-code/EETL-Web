@@ -4,6 +4,7 @@ import { Menu, type MenuProps, Input, Button, Grid, Drawer, Space, Dropdown } fr
 import { Link, useLocation } from 'react-router-dom';
 import type { DrawerStyles } from 'antd/es/drawer/DrawerPanel';
 import { CloseOutlined } from '@ant-design/icons'
+import SearchComponent from '../SearchComponent';
 import { 
   HomeFilled,
   GlobalOutlined,
@@ -42,6 +43,7 @@ const AppHeader: React.FC = () => {
     setLangIcon(lang === 'zh' ? langicon : englishicon);
     i18n.changeLanguage(fullLang); 
     // console.log('切换到', lang === 'zh' ? '简体中文' : 'English');
+    window.location.reload();
   };
 
   const drawerStyles: DrawerStyles = {
@@ -158,14 +160,15 @@ const AppHeader: React.FC = () => {
           
           {/* 搜索框 */}
           {screens.md && (
-            <Search 
-              size="large" 
-              allowClear 
-              placeholder={t("searchPlaceholder")}
-              onSearch={onSearch} 
-              style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
-              enterButton 
-            />
+            <SearchComponent />
+            // <Search 
+            //   size="large" 
+            //   allowClear 
+            //   placeholder={t("searchPlaceholder")}
+            //   onSearch={onSearch} 
+            //   style={{ maxWidth: 615 }} // 修复：使用对象而非字符串
+            //   enterButton 
+            // />
           )}
 
           {/* 語言切換 */}

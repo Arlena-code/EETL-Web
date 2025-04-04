@@ -1,4 +1,4 @@
-import { FC, useEffect, useState, useRef } from 'react';
+import { FC, useEffect, useState, useRef, useCallback } from 'react';
 import '@ant-design/v5-patch-for-react-19';
 import { Link } from 'react-router-dom';
 import { Table, Spin, Breadcrumb, Typography, Divider, Input, Select, Flex, Button, Modal } from 'antd';
@@ -60,7 +60,7 @@ const ProductListMLCC: FC = () => {
       dataIndex: 'part_number',
       key: 'part_number',
       render: (text: string, record: MLCCProduct) => (
-        <Link to={`/products/${record.part_number}`}>{text}</Link>
+        <Link to={`/products-mlcc/${record.part_number}`}>{text}</Link>
       ),
       fixed: isMobile ? undefined : 'left'
     },
@@ -162,21 +162,45 @@ const ProductListMLCC: FC = () => {
   const [tableWidth, setTableWidth] = useState('100%');
   const tableRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
+  // 声明 scrollLeft 状态
+  const [scrollLeft, setScrollLeft] = useState(0);
+
   const tableContainerRef = useRef<HTMLDivElement>(null);
 
-  // 处理滚动事件
+  // 处理表格内容滚动事件
+  const handleTableContentScroll = useCallback((e: Event) => {
+    const newScrollLeft = (e.target as HTMLElement).scrollLeft;
+    setScrollLeft(newScrollLeft);
+    const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
+    if (fixedHeader) {
+      fixedHeader.scrollLeft = newScrollLeft;
+    }
+  }, []);
+
+  useEffect(() => {
+    const tableElement = tableRef.current;
+    if (tableElement) {
+      const tableContent = tableElement.querySelector('.ant-table-content') as HTMLElement;
+      if (tableContent) {
+        tableContent.addEventListener('scroll', handleTableContentScroll);
+      }
+    }
+
+    return () => {
+      if (tableRef.current) {
+        const tableContent = tableRef.current.querySelector('.ant-table-content') as HTMLElement;
+        if (tableContent) {
+          tableContent.removeEventListener('scroll', handleTableContentScroll);
+        }
+      }
+    };
+  }, [handleTableContentScroll]);
+
   useEffect(() => {
     const handleScroll = () => {
       if (!headerRef.current) return;
       const headerRect = headerRef.current.getBoundingClientRect();
       setFixedHeaderVisible(headerRect.top < 0);
-
-      // 同步横向滚动
-      if (tableContainerRef.current) {
-        const scrollLeft = tableContainerRef.current.scrollLeft;
-        const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
-        if (fixedHeader) fixedHeader.scrollLeft = scrollLeft;
-      }
     };
 
     const handleResize = () => {
@@ -349,9 +373,10 @@ const ProductListMLCC: FC = () => {
                 href: '/',
               },
               {
-                title: '产品分类',
+                title: '产品中心',
                 href: '/products',
               },
+              
               {
                 title: '片状多层陶瓷电容器',
               },
@@ -483,48 +508,53 @@ const ProductListMLCC: FC = () => {
 
         <div 
           ref={tableContainerRef}
-          onScroll={(e) => {
-            const scrollLeft = (e.target as HTMLElement).scrollLeft;
-            const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
-            if (fixedHeader) fixedHeader.scrollLeft = scrollLeft;
-          }}
           style={{ 
             position: 'relative',
             overflowX: 'auto',
-            paddingTop: fixedHeaderVisible ? '55px' : '0' // 为固定表头预留空间
+            paddingTop: fixedHeaderVisible ? '55px' : '0' 
           }}
         >
           {/* 固定表头 */}
           {fixedHeaderVisible && (
             <div
-              className="fixed-header"
               style={{
-                position: 'fixed',
-                top: 0,
-                left: tableRef.current?.getBoundingClientRect().left || 0,
                 width: tableWidth,
+                overflowX: 'hidden',
+                position: 'fixed',
+                height: '55px',
+                top: 0,
                 zIndex: 1000,
-                background: '#fff',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
-                overflow: 'hidden',
-                pointerEvents: 'none'
               }}
             >
-              <Table
-                columns={fixedColumns}
-                dataSource={[]}
-                showHeader={true}
-                pagination={false}
-                components={{
-                  header: {
-                    wrapper: props => <thead {...props} style={{ margin: 0 }}/>
-                  },
-                  body: {
-                    wrapper: () => <tbody style={{ display: 'none' }}/>
-                  }
+                <div
+                className="fixed-header"
+                style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: -scrollLeft,
+                    zIndex: 1000,
+                    background: '#fff',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+                    overflow: 'hidden',
+                    pointerEvents: 'none'
                 }}
-                scroll={{ x: 'max-content' }}
-              />
+                >
+                <Table
+                    columns={fixedColumns}
+                    dataSource={[]}
+                    showHeader={true}
+                    pagination={false}
+                    components={{
+                    header: {
+                        wrapper: props => <thead {...props} style={{ margin: 0 }}/>
+                    },
+                    body: {
+                        wrapper: () => <tbody style={{ display: 'none' }}/>
+                    }
+                    }}
+                    scroll={{ x: 'max-content' }}
+                />
+                </div>
             </div>
           )}
 

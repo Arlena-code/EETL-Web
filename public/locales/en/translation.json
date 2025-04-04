@@ -38,20 +38,32 @@
             "subtitle": "Development History",
             "timeline": [
                 {
-                    "label": "1997 Establishment",
-                    "content": "Agent distributor for multiple domestic and international electronic component brands"
+                    "label": "1997 - Setting Sail in Hong Kong",
+                    "content": "Founded in Hong Kong, launching our international electronics components distribution journey \n Partnered with Philips (Global Top 500), establishing our premium brand agency foundation"
                 },
                 {
-                    "label": "2018 Financing",
-                    "content": "Completed Series A financing of tens of millions"
+                    "label": "2003 - Strategic Expansion",
+                    "content": "Established Farben Technology to build a diversified business collaboration platform \n Added Vishay (global discrete semiconductors leader) & OMRON (automation control expert) authorizations"
                 },
                 {
-                    "label": "2020 Breakthrough",
-                    "content": "User base exceeded one million"
+                    "label": "2004 ~ 2007 - Core Competency Development",
+                    "content": "・2004: Became Taiyo Yuden China partner, deepening passive components expertise \n・2005: Joined hands with ROHM (Japanese semiconductor giant) to expand core product lines \n・2007: Formed TEW strategic partnership to enhance connector solutions portfolio"
                 },
                 {
-                    "label": "2024 Development",
-                    "content": "Technical testing 1\nTechnical testing 2\nTechnical testing 3 2015-09-01"
+                    "label": "2015 - Independent Rebirth",
+                    "content": "Completed management buyout, rebranded as EETL with independent operations \nSeparated from Farben Group to focus solely on electronics components"
+                },
+                {
+                    "label": "2016 ~ 2018 - National Network Expansion",
+                    "content": "・2016: Established Hong Kong & Shenzhen offices, relocated headquarters to Shenzhen for stronger domestic reach \n・2017: Partnered with Taiwan RIVER Group to strengthen industrial control capabilities \n・2018: Opened Shanghai branch, completing East China strategic layout"
+                },
+                {
+                    "label": "2019 ~ 2022 - Globalization Upgrade",
+                    "content": "・2019: Became WELINK strategic partner, expanding smart hardware ecosystem \n・2020: Signed HIROSE CHINA agreement, entering high-end connector market \n・2022: Built Hong Kong warehouse hub, creating Shanghai/Shenzhen/Hong Kong intelligent logistics network"
+                },
+                {
+                    "label": "Future Vision",
+                    "content": "Continuing to collaborate with global TOP 100 brands, we aim to build a digitalized, intelligent supply chain platform driving Chinese manufacturing to global value chain leadership."
                 }
             ]
         },

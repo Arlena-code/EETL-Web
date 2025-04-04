@@ -3,19 +3,19 @@ import '@ant-design/v5-patch-for-react-19';
 import { Link } from 'react-router-dom';
 import { Table, Spin, Breadcrumb, Typography, Divider, Input, Select, Flex } from 'antd';
 import type { ColumnsType, TablePaginationConfig } from 'antd/es/table';
-import { fetchAluminumProducts } from '../api/products';
-import { AluminumProduct, AluminumProductFetchParams, Pagination } from '../types/product';
+import { fetchFBARProducts } from '../api/products';
+import { FBARProduct, FBARProductFetchParams, Pagination } from '../types/product';
 import { HomeOutlined } from '@ant-design/icons';
-import { isAluminumProduct } from '../types/product'; // 导入类型守卫
+import { isFBARProduct } from '../types/product'; // 导入类型守卫
 
 const { Title, Paragraph } = Typography;
 const { Search } = Input;
 const { Option } = Select;
 
-const ProductListALUM: FC = () => {
-  // 修改为 AluminumProduct 类型
-  const [allData, setAllData] = useState<AluminumProduct[]>([]); 
-  const [filteredData, setFilteredData] = useState<AluminumProduct[]>([]); 
+const ProductListFBAR: FC = () => {
+  // 修改为 FBARProduct 类型
+  const [allData, setAllData] = useState<FBARProduct[]>([]); 
+  const [filteredData, setFilteredData] = useState<FBARProduct[]>([]); 
   const [loading, setLoading] = useState(false);
   const [pagination, setPagination] = useState<Pagination>({
     current: 1,
@@ -25,7 +25,7 @@ const ProductListALUM: FC = () => {
 
   // 搜索状态
   const [searchValue, setSearchValue] = useState('');
-  const [ratedVoltageFilter, setRatedVoltageFilter] = useState<string | null>(null);
+  const [frequencyBandFilter, setFrequencyBandFilter] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768); 
 
   useEffect(() => {
@@ -39,15 +39,14 @@ const ProductListALUM: FC = () => {
     };
   }, []);
 
-
-  // 修改为 AluminumProduct 类型
-  const columns: ColumnsType<AluminumProduct> = [
+  // 修改为 FBARProduct 类型
+  const columns: ColumnsType<FBARProduct> = [
     {
       title: '商品型号',
       dataIndex: 'part_number',
       key: 'part_number',
-      render: (text: string, record: AluminumProduct) => (
-        <Link to={`/products-aluminum/${record.part_number}`}>{text}</Link>
+      render: (text: string, record: FBARProduct) => (
+        <Link to={`/products-fbarsaw/${record.part_number}`}>{text}</Link>
       ),
       fixed: isMobile ? undefined : 'left'
     },
@@ -58,23 +57,100 @@ const ProductListALUM: FC = () => {
       fixed: isMobile ? undefined : 'left'
     },
     {
-      title: '额定电压',
-      dataIndex: ['specs', 'rated_voltage'],
-      key: 'specs.rated_voltage',
+      title: '频段',
+      dataIndex: ['specs', 'frequency_band'],
+      key: 'specs.frequency_band',
       render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.rated_voltage;
+        if (isFBARProduct(record)) {
+          return record.specs.frequency_band;
         }
         return null;
       }
     },
     {
-      title: '尺寸',
-      dataIndex: ['specs', 'size'],
-      key: 'specs.size',
+      title: '工艺',
+      dataIndex: ['specs', 'process'],
+      key: 'specs.process',
       render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.size;
+        if (isFBARProduct(record)) {
+          return record.specs.process;
+        }
+        return null;
+      }
+    },
+    {
+      title: '功能',
+      dataIndex: ['specs', 'function'],
+      key: 'specs.function',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.function;
+        }
+        return null;
+      }
+    },
+    {
+      title: '插入损耗(typ)',
+      dataIndex: ['specs', 'insertion_loss'],
+      key: 'specs.insertion_loss',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.insertion_loss;
+        }
+        return null;
+      }
+    },
+    {
+      title: '衰减量(typ)',
+      dataIndex: ['specs', 'attenuation'],
+      key: 'specs.attenuation',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.attenuation;
+        }
+        return null;
+      }
+    },
+    {
+      title: '绝缘(typ)',
+      dataIndex: ['specs', 'isolation'],
+      key: 'specs.isolation',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.isolation;
+        }
+        return null;
+      }
+    },
+    {
+      title: 'Input Power(max)',
+      dataIndex: ['specs', 'input_power'],
+      key: 'specs.input_power',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.input_power;
+        }
+        return null;
+      }
+    },
+    {
+      title: '终端阻抗',
+      dataIndex: ['specs', 'impedance'],
+      key: 'specs.impedance',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.impedance;
+        }
+        return null;
+      }
+    },
+    {
+      title: '尺寸(LxWxT)',
+      dataIndex: ['specs', 'dimensions'],
+      key: 'specs.dimensions',
+      render: (_, record) => {
+        if (isFBARProduct(record)) {
+          return record.specs.dimensions;
         }
         return null;
       }
@@ -84,166 +160,78 @@ const ProductListALUM: FC = () => {
       dataIndex: ['specs', 'temperature_range'],
       key: 'specs.temperature_range',
       render: (_, record) => {
-        if (isAluminumProduct(record)) {
+        if (isFBARProduct(record)) {
           return record.specs.temperature_range;
         }
         return null;
       }
-    },
-    {
-      title: '静电容量',
-      dataIndex: ['specs', 'capacitance'],
-      key: 'specs.capacitance',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.capacitance;
-        }
-        return null;
-      }
-    },
-    {
-      title: '精度',
-      dataIndex: ['specs', 'tolerance'],
-      key: 'specs.tolerance',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.tolerance;
-        }
-        return null;
-      }
-    },
-    {
-      title: 'ESR(max)',
-      dataIndex: ['specs', 'esr'],
-      key: 'specs.esr',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.esr;
-        }
-        return null;
-      }
-    },
-    {
-      title: 'Rated Ripple(max)',
-      dataIndex: ['specs', 'ripple_current'],
-      key: 'specs.ripple_current',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.ripple_current;
-        }
-        return null;
-      }
-    },
-    {
-      title: 'Rated Ripple(Freq.)',
-      dataIndex: ['specs', 'ripple_freq'],
-      key: 'specs.ripple_freq',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.ripple_freq;
-        }
-        return null;
-      }
-    },
-    {
-      title: 'Endurance',
-      dataIndex: ['specs', 'endurance'],
-      key: 'specs.endurance',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.endurance;
-        }
-        return null;
-      }
-    },
-    {
-      title: '形状',
-      dataIndex: ['specs', 'shape'],
-      key: 'specs.shape',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.shape;
-        }
-        return null;
-      }
-    },
-    {
-      title: '产品资格',
-      dataIndex: ['specs', 'qualification'],
-      key: 'specs.qualification',
-      render: (_, record) => {
-        if (isAluminumProduct(record)) {
-          return record.specs.qualification;
-        }
-        return null;
-      }
-    },
+    }
   ];
 
   const [fixedHeaderVisible, setFixedHeaderVisible] = useState(false);
-  const [columnWidths, setColumnWidths] = useState<number[]>([]);
-  const [tableWidth, setTableWidth] = useState('100%');
-  const tableRef = useRef<HTMLDivElement>(null);
-  const headerRef = useRef<HTMLDivElement>(null);
-  // 声明 scrollLeft 状态
-  const [scrollLeft, setScrollLeft] = useState(0);
-
-  const tableContainerRef = useRef<HTMLDivElement>(null);
-
-  // 处理表格内容滚动事件
-  const handleTableContentScroll = useCallback((e: Event) => {
-    const newScrollLeft = (e.target as HTMLElement).scrollLeft;
-    setScrollLeft(newScrollLeft);
-    const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
-    if (fixedHeader) {
-      fixedHeader.scrollLeft = newScrollLeft;
-    }
-  }, []);
-
-  useEffect(() => {
-    const tableElement = tableRef.current;
-    if (tableElement) {
-      const tableContent = tableElement.querySelector('.ant-table-content') as HTMLElement;
-      if (tableContent) {
-        tableContent.addEventListener('scroll', handleTableContentScroll);
+    const [columnWidths, setColumnWidths] = useState<number[]>([]);
+    const [tableWidth, setTableWidth] = useState('100%');
+    const tableRef = useRef<HTMLDivElement>(null);
+    const headerRef = useRef<HTMLDivElement>(null);
+    // 声明 scrollLeft 状态
+    const [scrollLeft, setScrollLeft] = useState(0);
+  
+    const tableContainerRef = useRef<HTMLDivElement>(null);
+  
+    // 处理表格内容滚动事件
+    const handleTableContentScroll = useCallback((e: Event) => {
+      const newScrollLeft = (e.target as HTMLElement).scrollLeft;
+      setScrollLeft(newScrollLeft);
+      const fixedHeader = document.querySelector('.fixed-header') as HTMLElement;
+      if (fixedHeader) {
+        fixedHeader.scrollLeft = newScrollLeft;
       }
-    }
-
-    return () => {
-      if (tableRef.current) {
-        const tableContent = tableRef.current.querySelector('.ant-table-content') as HTMLElement;
+    }, []);
+  
+    useEffect(() => {
+      const tableElement = tableRef.current;
+      if (tableElement) {
+        const tableContent = tableElement.querySelector('.ant-table-content') as HTMLElement;
         if (tableContent) {
-          tableContent.removeEventListener('scroll', handleTableContentScroll);
+          tableContent.addEventListener('scroll', handleTableContentScroll);
         }
       }
-    };
-  }, [handleTableContentScroll]);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!headerRef.current) return;
-      const headerRect = headerRef.current.getBoundingClientRect();
-      setFixedHeaderVisible(headerRect.top < 0);
-    };
-
-    const handleResize = () => {
-      if (tableRef.current) {
-        setTableWidth(`${tableRef.current.offsetWidth}px`);
-      }
-    };
-
-    const throttledScroll = throttle(handleScroll, 50);
-    window.addEventListener('scroll', throttledScroll);
-    window.addEventListener('resize', handleResize);
-
-    // 初始化宽度
-    handleResize();
-
-    return () => {
-      window.removeEventListener('scroll', throttledScroll);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+  
+      return () => {
+        if (tableRef.current) {
+          const tableContent = tableRef.current.querySelector('.ant-table-content') as HTMLElement;
+          if (tableContent) {
+            tableContent.removeEventListener('scroll', handleTableContentScroll);
+          }
+        }
+      };
+    }, [handleTableContentScroll]);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        if (!headerRef.current) return;
+        const headerRect = headerRef.current.getBoundingClientRect();
+        setFixedHeaderVisible(headerRect.top < 0);
+      };
+  
+      const handleResize = () => {
+        if (tableRef.current) {
+          setTableWidth(`${tableRef.current.offsetWidth}px`);
+        }
+      };
+  
+      const throttledScroll = throttle(handleScroll, 50);
+      window.addEventListener('scroll', throttledScroll);
+      window.addEventListener('resize', handleResize);
+  
+      // 初始化宽度
+      handleResize();
+  
+      return () => {
+        window.removeEventListener('scroll', throttledScroll);
+        window.removeEventListener('resize', handleResize);
+      };
+    }, []);
 
   // 获取列宽
   useEffect(() => {
@@ -269,21 +257,21 @@ const ProductListALUM: FC = () => {
   const loadData = async () => {
     setLoading(true);
     try {
-      const fetchParams: AluminumProductFetchParams = {
+      const fetchParams: FBARProductFetchParams = {
         ...pagination,
         search: '',
-        rated_voltage: null,
-        size: null,
-        capacitance: null,
+        frequency_band: null,
+        process: null,
+        function: null,
       };
-      const response = await fetchAluminumProducts(fetchParams);
+      const response = await fetchFBARProducts(fetchParams);
       if (Array.isArray(response)) {
-        const alumProducts = response.filter(isAluminumProduct);
-        setAllData(alumProducts);
-        setFilteredData(alumProducts); 
+        const fbarProducts = response.filter(isFBARProduct);
+        setAllData(fbarProducts);
+        setFilteredData(fbarProducts); 
         setPagination({
           ...pagination,
-          total: alumProducts.length
+          total: fbarProducts.length
         });
       } else {
         console.error('返回的数据不是数组:', response);
@@ -302,11 +290,11 @@ const ProductListALUM: FC = () => {
         product.part_number.toLowerCase().includes(searchValue.toLowerCase()) ||
         product.product_code.toLowerCase().includes(searchValue.toLowerCase());
 
-      // 额定电压筛选
-      const ratedVoltageMatch = ratedVoltageFilter === null || 
-        product.specs.rated_voltage === ratedVoltageFilter;
+      // 频段筛选
+      const frequencyBandMatch = frequencyBandFilter === null || 
+        product.specs.frequency_band === frequencyBandFilter;
 
-      return searchMatch && ratedVoltageMatch;
+      return searchMatch && frequencyBandMatch;
     });
 
     setFilteredData(result);
@@ -322,13 +310,11 @@ const ProductListALUM: FC = () => {
 
   useEffect(() => {
     filterData();
-  }, [searchValue, ratedVoltageFilter]);
+  }, [searchValue, frequencyBandFilter]);
 
-  // 修改 handleTableChange 函数以匹配 Table onChange 的类型要求
   const handleTableChange = (
     newPagination: TablePaginationConfig
   ) => {
-    // 只处理分页相关逻辑
     setPagination({
       current: newPagination.current || 1,
       pageSize: newPagination.pageSize || 25,
@@ -336,25 +322,18 @@ const ProductListALUM: FC = () => {
     });
   };
 
-  // 获取所有可能的筛选值
-  const getAllValues = (key: keyof AluminumProduct['specs']) => {
+  const getAllValues = (key: keyof FBARProduct['specs']) => {
     let values = allData.map(item => item.specs[key]);
   
-    // 对电容值和额定电压进行特殊处理，按数字部分排序
-    if (key === 'capacitance' || key === 'rated_voltage') {
+    if (key === 'frequency_band' || key === 'process' || key === 'function') {
       values = values.sort((a, b) => {
-        // 处理 a 和 b 可能为 null 或 undefined 的情况
         const aValue = a !== null && a !== undefined ? a.toString() : '';
         const bValue = b !== null && b !== undefined ? b.toString() : '';
   
-        const numA = parseFloat(aValue.replace(/[^0-9.]/g, ''));
-        const numB = parseFloat(bValue.replace(/[^0-9.]/g, ''));
-  
-        return numA - numB;
+        return aValue.localeCompare(bValue);
       });
       return Array.from(new Set(values));
     } else {
-      // 过滤掉 null 和 undefined 值
       values = values.filter(value => value !== null && value !== undefined && value !== 'nan');
     }
     return Array.from(new Set(values));
@@ -382,7 +361,7 @@ const ProductListALUM: FC = () => {
                 href: '/products',
               },
               {
-                title: '铝电解电容器',
+                title: 'FBAR&SAW器件',
               },
             ]}
           />
@@ -390,10 +369,10 @@ const ProductListALUM: FC = () => {
       </div>
       <div className='container'>
         <div className='mt-30 mb-30'>
-          <Title className='text-center text-primary' level={1}>铝电解电容器</Title>
+          <Title className='text-center text-primary' level={1}>FBAR&SAW器件</Title>
           <Divider />
           <Paragraph className='text-indent text-info font-size1'>
-            研达创新电子代理的铝电解电容器，具有大容量、长寿命等特点。广泛应用于电源电路、滤波电路等场景，能满足不同客户在工业、消费电子等领域的需求。选择研达创新电子的铝电解电容器，就是选择可靠的性能和优质的服务。
+            研达创新电子代理的FBAR&SAW器件，具有高性能、高可靠性等特点。广泛应用于通信、雷达、传感器等场景，能满足不同客户在工业、消费电子等领域的需求。选择研达创新电子的FBAR&SAW器件，就是选择可靠的性能和优质的服务。
           </Paragraph>
         </div>
 
@@ -405,12 +384,12 @@ const ProductListALUM: FC = () => {
             style={{ width: 400,marginRight: 16 }}
           />
           <Select
-            placeholder="选择额定电压"
-            onChange={value => setRatedVoltageFilter(value)}
+            placeholder="选择频段"
+            onChange={value => setFrequencyBandFilter(value)}
             style={{ width: 200, marginRight: 16 }}
           >
-            {getAllValues('rated_voltage').map((value, index) => (
-              <Option key={`rated_voltage_${index}`} value={value}>{value}</Option>
+            {getAllValues('frequency_band').map((value, index) => (
+              <Option key={`frequency_band_${index}`} value={value}>{value}</Option>
             ))}
           </Select>
           
@@ -470,7 +449,7 @@ const ProductListALUM: FC = () => {
 
           <div  ref={tableRef}>
             
-          <Table<AluminumProduct>
+          <Table<FBARProduct>
             columns={columns}
             dataSource={filteredData}
             rowKey="part_number"
@@ -527,4 +506,4 @@ function throttle<T extends (...args: any[]) => void>(
   };
 }
 
-export default ProductListALUM;
+export default ProductListFBAR;

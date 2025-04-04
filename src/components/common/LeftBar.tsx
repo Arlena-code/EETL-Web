@@ -24,11 +24,11 @@ function getItem(
 const LeftBarItems = (t: (key: string) => string): MenuItem[] => [
   getItem(t("productCenter.productlist.title"), 'sub1', <AppstoreOutlined />, [
     getItem(<Link to="/products-mlcc">{t("page.product.categories.mlcc.title")}</Link>, '1'),
-    getItem(<Link to="/products-alum">{t("page.product.categories.aluminum.title")}</Link>, '2'),
-    getItem(t("page.product.categories.ferrite.title"), '3'),
-    getItem(t("page.product.categories.ceramic.title"), '4'),
-    getItem(t("page.product.categories.inductor.title"), '5'),
-    getItem(t("page.product.categories.fbar.title"), '6'),
+    getItem(<Link to="/products-aluminum">{t("page.product.categories.aluminum.title")}</Link>, '2'),
+    getItem(<Link to="/products-ferrite">{t("page.product.categories.ferrite.title")}</Link>, '3'),
+    getItem(<Link to="/products-ceramic">{t("page.product.categories.ceramic.title")}</Link>, '4'),
+    getItem(<Link to="/products-inductor">{t("page.product.categories.inductor.title")}</Link>, '5'),
+    getItem(<Link to="/products-fbarsaw">{t("page.product.categories.fbar.title")}</Link>, '6'),
   ]),
   // getItem('', 'sub2', <MailOutlined />, [
   // ])

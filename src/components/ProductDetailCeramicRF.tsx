@@ -1,31 +1,30 @@
 import { FC, useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Spin, Descriptions, Typography, Breadcrumb, Flex, Divider, Button, Tag, Grid } from 'antd';
+import { Spin, Descriptions, Typography, Breadcrumb, Flex, Divider, Button, Tag, Grid, message } from 'antd';
 import { HomeOutlined } from '@ant-design/icons';
+import { CeramicRFProduct } from '../types/product';
 import { fetchProductDetail } from '../api/products';
-import { MLCCProduct } from '../types/product';
-import ProductImg_mlcc from '@/assets/images/product/mlcc.png';
+import ProductImg_ceramicrf from '@/assets/images/product/ceramicrf.jpg';
 
 const { Title, Text } = Typography;
 const { useBreakpoint } = Grid;
 
 const keyToChineseMap: { [key: string]: string } = {
-  rated_voltage: '额定电压',
-  package: '封装',
-  material: '材质',
+  application: '应用',
+  category: '类别',
+  passband_freq_1: '通带频率1',
+  passband_freq_2: '通带频率2',
+  passband_freq_3: '通带频率3',
+  insertion_loss_max: '插入损耗(max)',
+  dimensions: '尺寸(LxWxT)',
   temperature_range: '温度范围',
-  capacity: '容值',
-  tolerance: '精度',
-  packaging: '包装方式',
-  qualification: '产品资格',
-  brand: '品牌',
-  spq: 'SPQ',
 };
 
-const ProductDetailMLCC: FC = () => {
+const ProductDetailCeramicRF: FC = () => {
   const { part_number } = useParams<{ part_number: string }>();
-  const [product, setProduct] = useState<MLCCProduct | null>(null);
+  const [product, setProduct] = useState<CeramicRFProduct | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const screens = useBreakpoint();
 
   useEffect(() => {
@@ -33,12 +32,13 @@ const ProductDetailMLCC: FC = () => {
       try {
         if (!part_number) return;
         const data = await fetchProductDetail(part_number);
-        // 这里假设返回的是 MLCC 产品，实际可添加类型检查
-        if (data && data.product_type === 'MLCC') {
-          setProduct(data as MLCCProduct);
+        if (data && data.product_type === 'CeramicRF') {
+            setProduct(data as CeramicRFProduct);
         }
       } catch (error) {
         console.error('加载产品详情失败:', error);
+        setError('加载产品详情失败，请稍后再试');
+        message.error('加载产品详情失败，请稍后再试');
       } finally {
         setLoading(false);
       }
@@ -48,6 +48,10 @@ const ProductDetailMLCC: FC = () => {
 
   if (loading) {
     return <Spin size="large" style={{ display: 'block', margin: '20px auto' }} />;
+  }
+
+  if (error) {
+    return <div style={{ padding: 20 }}>{error}</div>;
   }
 
   if (!product) {
@@ -71,8 +75,8 @@ const ProductDetailMLCC: FC = () => {
                 href: '/',
               },
               {
-                title: '片状多层陶瓷电容器',
-                href: '/products-mlcc',
+                title: '陶瓷RF器件',
+                href: '/products-ceramic',
               },
               {
                 title: product.part_number,
@@ -93,7 +97,7 @@ const ProductDetailMLCC: FC = () => {
             padding: 16
           }}>
             <img 
-              src={ProductImg_mlcc} 
+              src={ProductImg_ceramicrf} 
               alt={product.get_product_type_display}
             />
           </div>
@@ -160,7 +164,7 @@ const ProductDetailMLCC: FC = () => {
               </Flex>
               <Flex justify="space-between">
                 <Text type="secondary">最小起订量</Text>
-                <Text strong>{product.specs.spq} pcs</Text>
+                {/* 假设 CeramicRF 产品有 spq 字段，若没有需要调整 */}
               </Flex>
             </Flex>
           </div>
@@ -176,18 +180,18 @@ const ProductDetailMLCC: FC = () => {
                 key={key} 
                 label={keyToChineseMap[key] || key} 
               >
-                {key === 'spq' && value ? `${value} pcs` : value || '-'}
+                {value || '-'}
               </Descriptions.Item>
             ))}
           </Descriptions>
         </div>
 
         <div style={{ marginTop: 24, textAlign: 'right' }}>
-          <Link to="/products-mlcc">返回产品列表</Link>
+          <Link to="/products-ceramic">返回产品列表</Link>
         </div>
       </div>
     </div>
   );
 };
 
-export default ProductDetailMLCC;
+export default ProductDetailCeramicRF;

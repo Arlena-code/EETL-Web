@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Flex, Card, Timeline, Typography, theme, Image, Divider, Row, Col, Grid } from 'antd';
 import { useTranslation } from 'react-i18next';
 const { useToken } = theme;
 const { Title, Text, Paragraph } = Typography;
 const { useBreakpoint } = Grid;
-//images
+// images
 import bannerAbout from '@/assets/images/banner_about.jpg';
 import ImageCompany from '@/assets/images/company.jpg';
 
@@ -12,6 +12,27 @@ const AboutPage: React.FC = () => {
   const { t, i18n } = useTranslation();
   const { token } = useToken();
   const screens = useBreakpoint();
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const timelineRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsIntersecting(entry.isIntersecting);
+      },
+      { threshold: 0.1 }
+    );
+
+    if (timelineRef.current) {
+      observer.observe(timelineRef.current);
+    }
+
+    return () => {
+      if (timelineRef.current) {
+        observer.unobserve(timelineRef.current);
+      }
+    };
+  }, []);
 
   // 时间轴数据
   const timelineItems = (t('aboutUs.history.timeline', { returnObjects: true }) as Array<{ label: string; content: string }>).map((item) => ({
@@ -142,22 +163,28 @@ const AboutPage: React.FC = () => {
           </div>
 
           {/* 里程碑 */}
-          <Flex vertical style={{ padding: token.paddingLG }}>
+          <Flex vertical style={{ padding: token.paddingLG }} ref={timelineRef}>
             <Timeline
               className='timeline'
-              mode="alternate"
-              items={timelineItems.map(item => ({
+              mode="alternate" 
+              items={timelineItems.map((item, index) => ({
                 color: item.color,
-                label: (
-                  <Text strong style={{ fontSize: token.fontSizeXL }}>
-                    {item.label}
-                  </Text>
-                ),
                 children: (
-                  <Paragraph type="secondary" style={{ marginBottom: token.marginXS }}>
-                    {item.content}
-                  </Paragraph>
-                )
+                  <div 
+                    className={`about-timeline-content ${isIntersecting ? 'animate' : ''}`}
+                    style={{ 
+                      // 根据索引设置动画延迟，实现依次出现效果
+                      animationDelay: `${isIntersecting ? index * 0.5 : 0}s` 
+                    }}
+                  >
+                    <Text className="about-timeline-label" strong style={{ fontSize: token.fontSizeXL }}>
+                      {item.label}
+                    </Text>
+                    <Paragraph className='font-size1' style={{ marginBottom: token.marginXS, whiteSpace: 'pre-line' }}>
+                      {item.content}
+                    </Paragraph>
+                  </div>
+                ),
               }))}
             />
           </Flex>

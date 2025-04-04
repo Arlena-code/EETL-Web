@@ -1,45 +1,63 @@
-import React from 'react';
+// src/components/NewsPageDetail.tsx
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Image, Divider, Typography, theme,Breadcrumb, Grid } from 'antd';
+import { Image, Divider, Typography, theme, Breadcrumb, Grid } from 'antd';
 import { useParams } from 'react-router-dom';
 import { HomeOutlined } from '@ant-design/icons';
-interface NewsItem {
-  id: number;
-  title: string;
-  content: string;
-  date: string;
-  src: string;
-}
+import axios from 'axios';
+import bannerNews from '@/assets/images/banner_news.jpg';
 const { useBreakpoint } = Grid;
 const { Title } = Typography;
 const { useToken } = theme;
-import NewsPageImage1 from '@/assets/images/news/56056059.png';
+
+// 定义新闻数据的类型
+type NewsData = {
+  id: number;
+  title: string;
+  pub_date: string;
+  src: string;
+  content: string;
+};
+
 const NewsPageDetail: React.FC = () => {
   const { token } = useToken();
   const { t, i18n } = useTranslation();
   const screens = useBreakpoint();
   const { id } = useParams<{ id: string }>();
-  // 这里应该从API或数据源获取新闻详情，暂时使用模拟数据
-  const newsData: NewsItem = {
-    id: Number(id),
-    src: NewsPageImage1,
-    title: '新闻标题',
-    content: '新闻详细内容',
-    date: '2024-01-01',
-  };
+  const [newsData, setNewsData] = useState<NewsData | null>(null);
+
+  useEffect(() => {
+    const fetchNewsDetail = async () => {
+      try {
+        // 替换为实际的后端 API 地址
+        const response = await axios.get<NewsData>(`http://localhost:8000/api/news/${id}/`);
+        setNewsData(response.data);
+      } catch (error) {
+        console.error('获取新闻详情失败:', error);
+      }
+    };
+
+    if (id) {
+      fetchNewsDetail();
+    }
+  }, [id]);
+
+  if (!newsData) {
+    return <div>加载中...</div>;
+  }
 
   return (
-    <div style={{paddingBottom: '80px'}}>
+    <div style={{ paddingBottom: '80px' }}>
       <div className="position-relative">
-        <Image
+      <Image
           width={'100%'}
           preview={false}
-          src="../src/assets/images/banner_news.jpg"
-          style={{ height: '250px', objectFit: 'cover', objectPosition: '50% 50%' }}
+          src={bannerNews}
+          style={{ height: screens.md ? '250px' : '150px', objectFit: 'cover', objectPosition: '50% 50%' }}
           placeholder={
             <Image
               preview={false}
-              src="../src/assets/images/banner_news.jpg"
+              src={bannerNews}
             />
           }
         />
@@ -52,7 +70,7 @@ const NewsPageDetail: React.FC = () => {
           {i18n.language !== 'en' ? (
             <div>
               <Divider className='divider-text text-light'>News</Divider>
-              <Title className='text-center' level={2} style={{fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem'}}>{t('common.news')}</Title>
+              <Title className='text-center' level={2} style={{ fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem' }}>{t('common.news')}</Title>
             </div>
           )
             : (<Divider className='divider-text text-light'><Title className='mb-0' level={2}>News</Title></Divider>)
@@ -89,15 +107,13 @@ const NewsPageDetail: React.FC = () => {
         <div className="news-detail mt-50 mb-50">
           <h1 className="detail-title text-center mb-10">{newsData.title}</h1>
           <Divider className='mt-0' />
-          <p className="detail-date text-right">创建时间：{newsData.date}</p>
+          <p className="detail-date text-right">创建时间：{new Date(newsData.pub_date).toLocaleDateString()}</p>
           <div className="detail-content">
-            <img src={newsData.src} alt={newsData.title} className="detail-image" />
-            {newsData.content}
+            <div dangerouslySetInnerHTML={{ __html: newsData.content }} />
           </div>
         </div>
       </div>
     </div>
-
   );
 };
 

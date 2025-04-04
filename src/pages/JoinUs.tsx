@@ -32,7 +32,7 @@ const JoinUs: React.FC = () => {
         }}>
           {i18n.language !== 'en' ? (
             <div>
-              <Divider className='divider-text text-light'>{t('joinUs.title')}</Divider>
+              <Divider className='divider-text text-light'>JOIN US</Divider>
               <Title className='text-center' level={2} style={{fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem'}}>{t('joinUs.title')}</Title>
             </div>
           )

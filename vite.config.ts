@@ -4,7 +4,17 @@ import path from 'path';
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/EETL-Web/',
+  server: {
+    proxy: {
+      // 只对 API 请求进行代理，避免代理静态资源
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // 移除 /api 前缀
+      },
+    },
+  },
+  base: '/',
   plugins: [react()],
   publicDir: 'public', // 确保指向正确的公共目录
   resolve: {

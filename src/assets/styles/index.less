@@ -268,7 +268,7 @@ header {
       border-radius: 4px;
     }
     &:hover{
-      .article-title, .article-text{
+      .article-title{
         color: #609ee9;
       }
     }
@@ -328,10 +328,60 @@ header {
   .ant-timeline-item{
     min-height: 80px;
   }
-  &.ant-timeline-label .ant-timeline-item-label{
-    inset-block-start: -10px;
+  .about-timeline-content{
+    margin-inline-end: 10px;
   }
 }
+/* 定义淡入动画 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 自定义时间轴圆点样式 */
+.ant-timeline-item-dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 3px solid;
+  top: 4px;
+}
+
+/* 时间轴标签样式 */
+.about-timeline-label {
+  font-size: 1.25rem; 
+  color: #333; 
+  font-weight: bold; 
+}
+
+/* 时间轴内容容器样式 */
+.about-timeline-content {
+  padding: 15px;
+  /* 半透明背景 */
+  background-color: rgba(255, 255, 255, 0.7); 
+  /* 磨玻璃模糊效果 */
+  backdrop-filter: blur(10px); 
+  -webkit-backdrop-filter: blur(10px); 
+  border-radius: 8px; 
+  /* 添加轻微边框 */
+  border: 1px solid rgba(255, 255, 255, 0.18); 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); 
+  opacity: 0; /* 初始状态隐藏 */
+  animation: none; 
+}
+
+/* 只有添加 animate 类时才触发动画 */
+.about-timeline-content.animate {
+  animation: fadeIn 1s ease-out;
+  animation-fill-mode: both;
+}
+
 // 添加以下footer样式
 footer {
   color: #ffffff;

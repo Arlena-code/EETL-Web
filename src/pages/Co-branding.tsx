@@ -77,6 +77,7 @@ const CoBranding: React.FC = () => {
     {
       key: '0',
       label: t('coBranding.partnerBrands'),
+      disabled: true,
     },
     {
       key: '1',
@@ -111,10 +112,9 @@ const CoBranding: React.FC = () => {
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.elna.intro1')}</Paragraph>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.elna.intro2')}</Paragraph>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.elna.partnership')}</Paragraph>
-            <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='https://www.elna.co.jp/' target='_blank'>https://www.elna.co.jp/</a></Paragraph>
+            <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='https://www.yuden.co.jp/cs/' target='_blank'>https://www.yuden.co.jp/cs/</a></Paragraph>
           </div>
           <div className='mt-30'>
-            <CoBrandingProduct brands={brandTaiyo} />
           </div>
         </div>
       ),
@@ -133,7 +133,6 @@ const CoBranding: React.FC = () => {
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='https://www.hirose.com/?lang=zh' target='_blank'>https://www.hirose.com/?lang=zh</a></Paragraph>
           </div>
           <div className='mt-30'>
-            <CoBrandingProduct brands={brandTaiyo} />
           </div>
         </div>
       ),
@@ -152,7 +151,6 @@ const CoBranding: React.FC = () => {
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='http://www.prosemitech.com/index_cn.aspx' target='_blank'>http://www.prosemitech.com/index_cn.aspx</a></Paragraph>
           </div>
           <div className='mt-30'>
-            <CoBrandingProduct brands={brandTaiyo} />
           </div>
         </div>
       ),
@@ -168,10 +166,8 @@ const CoBranding: React.FC = () => {
           <div className='mt-20'>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.rohm.intro1')}</Paragraph>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.rohm.partnership')}</Paragraph>
-            <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='https://www.rohm.com.cn/' target='_blank'>https://www.rohm.com.cn/</a></Paragraph>
           </div>
           <div className='mt-30'>
-            <CoBrandingProduct brands={brandTaiyo} />
           </div>
         </div>
       ),
@@ -187,10 +183,8 @@ const CoBranding: React.FC = () => {
           <div className='mt-20'>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.sunway.intro1')}</Paragraph>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.sunway.partnership')}</Paragraph>
-            <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='http://www.sz-sunway.com' target='_blank'>http://www.sz-sunway.com</a></Paragraph>
           </div>
           <div className='mt-30'>
-            <CoBrandingProduct brands={brandTaiyo} />
           </div>
         </div>
       ),
@@ -207,17 +201,15 @@ const CoBranding: React.FC = () => {
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.invsemi.intro1')}</Paragraph>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.invsemi.partnership')}</Paragraph>
             <Paragraph className='text-paragraph text-indent'>{t('coBranding.invsemi.vision')}</Paragraph>
-            <Paragraph className='text-paragraph text-indent'>{t('coBranding.website')}：<a href='http://www.invsemi.com/' target='_blank'>http://www.invsemi.com/</a></Paragraph>
           </div>
           <div className='mt-30'>
-            <CoBrandingProduct brands={brandTaiyo} />
           </div>
         </div>
       ),
     }
   ];
-  const onChange = (key: string) => {
-    console.log(key);
+  const onChange = () => {
+    
   };
 
   return (
@@ -243,7 +235,7 @@ const CoBranding: React.FC = () => {
         }}>
           {i18n.language !== 'en' ? (
             <div>
-              <Divider className='divider-text text-light'>{t('coBranding.partnerBrands')}</Divider>
+              <Divider className='divider-text text-light'>Partner Brands</Divider>
               <Title className='text-center' level={2} style={{fontSize: screens.md ? token.fontSizeHeading1 : '1.5rem'}}>{t('coBranding.partnerBrands')}</Title>
             </div>
           )
@@ -252,7 +244,7 @@ const CoBranding: React.FC = () => {
         </div>
       </div>
       <div className='container'>
-        <div className='tabs-common mt-30 mb-30'>
+        <div className='tabs-common brand-tabs mt-30 mb-30'>
           <Tabs defaultActiveKey="1" tabPosition={screens.md ? "left" : 'top'} type="card" centered size="large" className='tabs-vertical-75' items={items} onChange={onChange} />
         </div>
       </div>

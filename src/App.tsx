@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { ConfigProvider, Layout, Grid } from 'antd';
-import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter  as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/common/Header';
 import Footer from './components/common/Footer';
 import Home from './pages/Home';
@@ -14,9 +14,19 @@ import NewsPageDetail from './components/NewsPageDetail';
 import Require from './components/Require';
 import ProductListMLCC from './components/ProductListMLCC';
 import ProductListALUM from './components/ProductListALUM';
+import ProductListFBAR from './components/ProductListFBAR';
+import ProductListInductor from './components/ProductListInductor';
+import ProductListCeramicRF from './components/ProductListCeramicRF';
+import ProductListFerriteBead from './components/ProductListFerriteBead';
 import ProductDetail from './components/ProductDetail';
+import ProductDetailMLCC from './components/ProductDetailMLCC';
+import ProductDetailALUM from './components/ProductDetailAluminum';
+import ProductDetailFBAR from './components/ProductDetailFBARSAW';
+import ProductDetailInductor from './components/ProductDetailInductor';
+import ProductDetailCeramicRF from './components/ProductDetailCeramicRF';
+import ProductDetailFerriteBead from './components/ProductDetailFerriteBead';
 import { useTranslation } from 'react-i18next';
-
+import SearchResultsPage from './pages/SearchResultsPage';
 
 const { Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -97,8 +107,19 @@ const App: React.FC = () => {
               <Route path="/news/:id" element={<NewsPageDetail />} />
               <Route path="/require" element={<Require />} />
               <Route path="/products-mlcc" element={<ProductListMLCC />} />
-              <Route path="/products-alum" element={<ProductListALUM />} />
+              <Route path="/products-aluminum" element={<ProductListALUM />} />
+              <Route path="/products-fbarsaw" element={<ProductListFBAR />} />
+              <Route path="/products-inductor" element={<ProductListInductor />} />
+              <Route path="/products-ceramic" element={<ProductListCeramicRF />} />
+              <Route path="/products-ferrite" element={<ProductListFerriteBead />} />
               <Route path="/products/:part_number" element={<ProductDetail />} />
+              <Route path="/products-mlcc/:part_number" element={<ProductDetailMLCC />} />
+              <Route path="/products-aluminum/:part_number" element={<ProductDetailALUM />} />
+              <Route path="/products-fbarsaw/:part_number" element={<ProductDetailFBAR />} />
+              <Route path="/products-inductor/:part_number" element={<ProductDetailInductor />} />
+              <Route path="/products-ceramic/:part_number" element={<ProductDetailCeramicRF />} />
+              <Route path="/products-ferrite/:part_number" element={<ProductDetailFerriteBead />} />
+              <Route path="/search-results" element={<SearchResultsPage />} />
             </Routes>
           </Content>
 

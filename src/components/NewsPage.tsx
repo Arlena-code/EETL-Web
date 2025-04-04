@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+// src/components/NewsPage.tsx
+
+import React, { useEffect, useState } from 'react';
 import { Card, Pagination, Row, Col, Button } from 'antd';
 import type { PaginationProps } from 'antd';
 import { useNavigate } from 'react-router-dom';
-
+import axios from 'axios';
 const { Meta } = Card;
 
 // 修改 NewsPage 组件接口
@@ -21,13 +23,31 @@ import NewsPageImage1 from '@/assets/images/news/56056059.png';
 import NewsPageImage2 from '@/assets/images/news/47124048.png';
 import NewsPageImage3 from '@/assets/images/news/55563714.png';
 // 新增文章新闻组件
-const ArticleNews: React.FC<{ news: NewsItem[] }> = ({ news }) => {
+const ArticleNews: React.FC<{ news: { id: number; title: string; content: string; pub_date: string }[] }> = ({ news }) => {
+  
   const navigate = useNavigate();
 
   const handleClick = (id: number) => {
     navigate(`/news/${id}`);
   };
 
+  // 定义一个函数来提取第一个 p 标签及其内容
+  const extractFirstTwoParagraphs = (html: string) => {
+    const matches  = html.match(/<p[^>]*>(.*?)<\/p>/g);
+    if (matches) {
+      // 取前两个匹配结果
+      return matches.slice(0, 2).join('');
+    }
+    return html;
+  };
+
+  // 定义一个函数来提取第一张图片的 src
+  const extractFirstImageSrc = (html: string) => {
+    const match = html.match(/<img[^>]+src="([^">]+)"/);
+    return match ? match[1] : '';
+  };
+
+  const BACKEND_URL = 'http://localhost:8000';
   return (
     <div className="article-news">
       {news.map((item) => (
@@ -37,11 +57,12 @@ const ArticleNews: React.FC<{ news: NewsItem[] }> = ({ news }) => {
           onClick={() => handleClick(item.id)}
           style={{ cursor: 'pointer' }}
         >
-          <img src={item.src} alt={item.title} className="article-image" />
+          {/* 使用提取的图片 src */}
+          <img src={`${BACKEND_URL}${extractFirstImageSrc(item.content)}`} alt={item.title} className="article-image" />
           <div className="article-content">
             <h4 className="article-title">{item.title}</h4>
-            <p className="article-text">{item.content}</p>
-            <p className="article-date">{item.date}</p>
+            <div className="article-text" dangerouslySetInnerHTML={{ __html: extractFirstTwoParagraphs(item.content) }} />
+            <p className="article-date">{new Date(item.pub_date).toLocaleDateString()}</p>
           </div>
         </div>
       ))}
@@ -104,6 +125,36 @@ const NewsPage: React.FC<NewsPageProps> = ({ viewMode = 'card' }) => {
     currentPage * pageSize
   );
 
+  const [news, setNews] = useState<{ id: number; title: string; content: string; pub_date: string; src: string }[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchNews = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get<{ id: number; title: string; content: string; pub_date: string }[]>(
+          'http://localhost:8000/api/news/' // 修改为正确的后端 API 地址
+        );
+        // 处理数据，添加 src 属性
+        const processedNews = response.data.map(item => ({
+          ...item,
+          src: '' // 可以设置默认值，或者根据业务逻辑生成
+        }));
+        setNews(processedNews);
+      } catch (error) {
+        console.error('Error fetching news:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchNews();
+  }, []);
+
+  if (loading) {
+    return <div>加载中，请稍候...</div>;
+  }
+
   return (
     <div className="news-page">
       {/* 根据视图模式显示不同内容 */}
@@ -128,13 +179,13 @@ const NewsPage: React.FC<NewsPageProps> = ({ viewMode = 'card' }) => {
           </div>
         </div>
       ) : (
-        <ArticleNews news={currentNews} />
+        <ArticleNews news={news} />
       )}
       <div className="text-center mt-30">
         <Pagination
           current={currentPage}
           pageSize={pageSize}
-          total={newsData.length}
+          total={news.length} // 使用从 API 获取的新闻总数
           onChange={onChange}
           itemRender={itemRender}
           style={{justifyContent: 'center'}}
